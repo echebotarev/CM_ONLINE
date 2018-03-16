@@ -1,0 +1,32 @@
+.logoPreview, .logoPreviewWithImg {
+  position: relative;
+  display: flex;
+  width: 120px;
+  height: 120px;
+  border-radius: 100px;
+  box-sizing: border-box;
+}
+.logoPreview {
+  border: 2px dashed #000;
+}
+.logoPreviewWithImg {
+  border: none;
+}
+.logoPreview:hover {
+  cursor: pointer;
+  border-style: solid;
+}
+.logoPreviewWithImg:hover {
+  cursor: pointer;
+}
+.logoPreviewWithImg img {
+  height: 120px;
+  margin: auto;
+}
+.logoPreview span {
+  display: inline-block;
+  margin: auto;
+}
+.logoPreview span:before {
+  font-size: 50px;
+}
