@@ -20,6 +20,6 @@ module.exports = session({
 		maxAge: 1000 * 60 * 60 * 4 // 4 hours
 	},
 	store: store,
-	resave: true,
-	saveUninitialized: true
+	resave: false,
+	saveUninitialized: false
 });

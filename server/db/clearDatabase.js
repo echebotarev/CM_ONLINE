@@ -12,7 +12,7 @@ User.remove({}, function (err) {
 	if (err) return log.error(err);
 });
 
-Client.remove({}, function (err) {
+/*Client.remove({}, function (err) {
 	if (err) return log.error(err);
 
 });
@@ -21,7 +21,7 @@ AccessToken.remove({}, function (err) {
 });
 RefreshToken.remove({}, function (err) {
 	if (err) return log.error(err);
-});
+});*/
 
 setTimeout(function () {
 	mongoose.disconnect();

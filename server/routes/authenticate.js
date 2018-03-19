@@ -17,37 +17,73 @@ router.post('/register', function (req, res) {
 	});
 
 	user.save(function (err, user) {
-	    if (err) {
-	    	log.error(err);
-	    	return res.json(err);
-	    }
+		if (err) {
+			log.error(err);
+			return res.json(err);
+		}
 
-	    passport.authenticate('local')(req, res, function () {
-	        res.json(user);
-	    });
-	    /*req.login(user, function (err) {
-	        if (err) {
-	        	log.error(err);
-	        	res.json(err);
-	        }
+		passport.authenticate('local', (err, user, info) => {
+			log.info('ROUTE REGISTER');
 
-	        console.log('REQ USER', req.user);
+			console.log('USER', user);
+			console.log('INFO', info);
 
-	        res.json(user);
-	    });*/
+			if (err) return log.error(err);
+			if (!user) return res.json({});
+
+			req.logIn(user, function (err) {
+				if (err) return log.error(err);
+
+				return res.json(user);
+			})
+
+		})(req, res);
+
+		/*passport.authenticate('local', function (err, user, info) {
+			log.info('ROUTE REGISTER');
+
+			console.log('USER', user);
+			console.log('INFO', info);
+
+			if (err) return next(err);
+			if (!user) return res.json({});
+
+			req.logIn(user, function (err) {
+				if (err) return next(err);
+
+				return res.json(user);
+			})
+		})(req, res, next);*/
+
+		/*req.login(user, function (err) {
+			if (err) {
+				log.error(err);
+				res.json(err);
+			}
+
+			console.log('REQ USER', req.user);
+
+			res.json(user);
+		});*/
 	})
-    /*passport.authenticate('bearer', function (err, user, info) {
-    	log.info('ROUTE GET authenticate');
+	/*passport.authenticate('bearer', function (err, user, info) {
+		log.info('ROUTE GET authenticate');
 
-        if (err) return next(err);
-        if (!user) return res.json({ isAuthenticate: false });
+		if (err) return next(err);
+		if (!user) return res.json({ isAuthenticate: false });
 
-        req.logIn(user, function (err) {
-            if (err) return next(err);
+		req.logIn(user, function (err) {
+			if (err) return next(err);
 
-            return res.json({ isAuthenticate: true });
-        })
-    })(req, res, next);*/
+			return res.json({ isAuthenticate: true });
+		})
+	})(req, res, next);*/
+});
+
+router.get('/users', (req, res) => {
+	console.log('Authenticated', req.isAuthenticated());
+	console.log('Session', req.session);
+	res.json(passport);
 });
 
 router.post('/users', (req, res) => {
