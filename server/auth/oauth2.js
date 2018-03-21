@@ -6,7 +6,7 @@ import config from './../../conf';
 import logger from './../log';
 const log = logger(module);
 
-import db from './../db/mongoose';
+import db from '../libs/mongoose';
 import User from './../model/user';
 import AccessToken from './../model/accessToken';
 import RefreshToken from './../model/refreshToken';

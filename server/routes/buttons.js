@@ -1,11 +1,8 @@
 import express from 'express';
-import passport from 'passport';
 const router = express.Router();
 
 import logger from './../log';
 const log = logger(module);
-
-import db from './../db/mongoose';
 
 import { buttons, templates } from './../../client/fixtures';
 

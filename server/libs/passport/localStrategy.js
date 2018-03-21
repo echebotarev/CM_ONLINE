@@ -1,9 +1,6 @@
-// import passport from 'passport';
 const LocalStrategy = require('passport-local').Strategy;
 
-import config from './../../conf';
-
-import User from './../model/user';
+import User from '../../model/user';
 
 module.exports =  new LocalStrategy({
 		usernameField: 'email',

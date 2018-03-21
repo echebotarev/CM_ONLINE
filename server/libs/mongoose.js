@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 import beautifyUnique from 'mongoose-beautiful-unique-validation';
-import config from './../../conf';
+import config from '../../conf/index';
 
-import logger from './../log';
+import logger from '../log';
 const log = logger(module);
 
 mongoose.connect(config.get('mongoose:uri'));

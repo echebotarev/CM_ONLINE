@@ -9,7 +9,7 @@ const log = logger(module);
 router.post('/register', function (req, res) {
 	console.log('email', req.body.email);
 	console.log('password', req.body.password);
-	console.log('authenticated', req.isAuthenticated());
+	console.log('authenticated 1', req.isAuthenticated());
 
 	let user = new User({
 		email: req.body.email,
@@ -22,7 +22,14 @@ router.post('/register', function (req, res) {
 			return res.json(err);
 		}
 
-		passport.authenticate('local', (err, user, info) => {
+		req.logIn(user, function (err) {
+			if (err) return log.error(err);
+
+			console.log('authenticated 2', req.isAuthenticated());
+			return res.json(user);
+		})
+
+		/*passport.authenticate('local', (err, user, info) => {
 			log.info('ROUTE REGISTER');
 
 			console.log('USER', user);
@@ -37,7 +44,7 @@ router.post('/register', function (req, res) {
 				return res.json(user);
 			})
 
-		})(req, res);
+		})(req, res);*/
 
 		/*passport.authenticate('local', function (err, user, info) {
 			log.info('ROUTE REGISTER');
@@ -80,7 +87,7 @@ router.post('/register', function (req, res) {
 	})(req, res, next);*/
 });
 
-router.get('/users', (req, res) => {
+router.get('/users', /*passport.authenticate('local'),*/ (req, res) => {
 	console.log('Authenticated', req.isAuthenticated());
 	console.log('Session', req.session);
 	res.json(passport);
@@ -108,6 +115,7 @@ router.post('/login',
 
 router.post('logout', (req, res) => {
 	req.logout();
+	req.session = null;
 	res.redirect('/');
 });
 

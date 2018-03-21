@@ -7,9 +7,9 @@
   "scripts": {
     "build-dev": "export NODE_ENV=development&& babel-node server.js",
     "build-prod": "export NODE_ENV=production&& webpack && babel-node server.js",
-    "clear-db": "babel-node server/db/clearDatabase.js",
-    "create-db": "babel-node server/db/createDatabase.js ",
-    "clear-create-db": "babel-node server/db/clearDatabase.js && babel-node server/db/createDatabase.js "
+    "clear-db": "babel-node server/libs/clearDatabase.js",
+    "create-db": "babel-node server/libs/createDatabase.js ",
+    "clear-create-db": "babel-node server/libs/clearDatabase.js && babel-node server/libs/createDatabase.js "
   },
   "keywords": [
     "instagram"

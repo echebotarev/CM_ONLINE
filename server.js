@@ -1,23 +1,14 @@
 import express from 'express';
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import methodOverride from 'method-override';
-// import session from 'express-session';
 import path from 'path';
 import fs from 'fs';
 
 import logger from './server/log';
 const log = logger(module);
 
-// import passport from 'passport';
-// import passport from './server/auth/index';
-// import oauth2 from './server/auth/oauth2';
-
 import config from './conf';
+import mongoose from './server/libs/mongoose';
 
 import authenticate from './server/routes/authenticate';
-import login from './server/routes/login';
-import users from './server/routes/users';
 import buttons from './server/routes/buttons';
 
 const PORT = config.get('port');
@@ -41,37 +32,17 @@ else {
 	app.use(express.static(PUBLIC_PATH));
 }
 
-app.use(cookieParser());
-/*app.use(session({
-	secret: 'keyboard cat',
-	resave: false,
-	saveUninitialized: false
-}));*/
-
-
-// app.use(passport.initialize());
-// app.use(passport.session());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-	extended: false
-}));
-/*app.use(methodOverride());*/
-
 const middlewares = fs.readdirSync(path.join(__dirname, 'server', 'middlewares')).sort();
 middlewares.forEach(function(middleware) {
 	app.use(require('./server/middlewares/' + middleware));
 });
 
 app.use('/auth', authenticate);
-
-app.use('/api/users', users);
 app.use('/api/buttons', buttons);
-// app.use('/api/oauth/token', oauth2.token);
 
 router.all("*", function(req, res) {
 	res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'));
 });
-
 
 app.listen(PORT, function() {
 	log.info('Listening on port ' + PORT + '...');

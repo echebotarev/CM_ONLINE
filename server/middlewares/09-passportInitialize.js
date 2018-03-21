@@ -1,2 +1,2 @@
-import passport from './../auth/index';
+import passport from '../libs/passport';
 module.exports = passport.initialize();
