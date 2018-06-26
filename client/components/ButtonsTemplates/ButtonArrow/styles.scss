@@ -1,0 +1,33 @@
+.button {
+  overflow: hidden;
+  background: none !important;
+
+  a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .top {
+    border-bottom: 50px solid;
+    bottom: 50% !important;
+  }
+  .bottom {
+    border-top: 50px solid;
+    top: 50% !important;
+  }
+}
+.border {
+  border-left: 0;
+  border-right: 50px solid transparent;
+  position: absolute;
+  right: 0;
+}
+.body {
+  position: absolute;
+  top: 0;
+  right: 50px;
+  bottom: 0;
+  left: 0;
+}

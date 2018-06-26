@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import FA from 'react-fontawesome'
-import styles from './styles.scss'
+import FA                          from 'react-fontawesome'
+import styles                      from './styles.scss'
+import { filtratedTemplateSelector } from '../../selectors'
+import { updateItem } from '../../AC'
 
 class ImageUpload extends Component {
-	state = {
-		file: '',
-		imagePreviewUrl: ''
-	};
 
 	render() {
-		let {imagePreviewUrl} = this.state;
-		let imagePreview = null;
-		if (imagePreviewUrl) {
-			imagePreview = (<img src={imagePreviewUrl} alt={this.state.file.name}/>);
+		let logotypePicture = this.props.template ?
+			this.props.template.logotypePicture :
+			null,
+
+			imagePreview = null;
+		
+		if (logotypePicture) {
+			imagePreview = (<img src={logotypePicture}/>);
 		} else {
 			imagePreview = (<FA name="camera-retro" />)
 		}
@@ -31,12 +33,12 @@ class ImageUpload extends Component {
 				</form>
 				<div onClick={this.handleClick}
 				     className={
-					     imagePreviewUrl ?
+					     logotypePicture ?
 						     styles.logoPreviewWithImg :
 						     styles.logoPreview
 				     }
 				     data-tip={
-					     imagePreviewUrl ?
+					     logotypePicture ?
 						     "Выберите другой" :
 						     "Добавьте логотип"
 				     }
@@ -65,13 +67,18 @@ class ImageUpload extends Component {
 		let reader = new FileReader();
 		let file = e.target.files[0];
 
+		let { template: {_id: id, type = 'templates', name = 'logotypePicture'}, updateItem } = this.props;
+
 		reader.onloadend = () => {
 			console.log('reader', reader);
 			console.log('target', file);
 
-			this.setState({
-				file: file,
-				imagePreviewUrl: reader.result
+			// this.setState({
+			// 	logotypePicture: reader.result
+			// });
+			updateItem({
+				id, type, name,
+				value: reader.result
 			});
 		};
 
@@ -87,4 +94,8 @@ class ImageUpload extends Component {
 	buttons: state.buttons
 });*/
 
-export default connect(null)(ImageUpload)
+export default connect(state => {
+	return {
+		template: filtratedTemplateSelector(state)
+	}
+}, { updateItem })(ImageUpload)

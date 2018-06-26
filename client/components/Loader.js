@@ -6,7 +6,6 @@ function Loader(props) {
 	)
 }
 
-Loader.propTypes = {
-}
+Loader.propTypes = {};
 
 export default Loader

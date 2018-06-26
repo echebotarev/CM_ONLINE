@@ -1,22 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { filtratedButtonsSelector } from '../../selectors'
-import { checkAndLoadButtons } from '../../AC'
-import Button from '../Button'
-import Loader from '../Loader'
-import FA from 'react-fontawesome'
+import {filtratedButtonsSelector} from '../../selectors'
+import {addItem, deleteItem, openEditor}      from '../../AC'
+import Button                     from '../Button'
+import Loader                     from '../Loader'
+import FA                         from 'react-fontawesome'
 
 class ButtonList extends Component {
 
-	componentDidMount() {
-		const { checkAndLoadButtons } = this.props;
-		checkAndLoadButtons();
-	}
-
 	render() {
 		return (
-			<div>
+			<div className='buttons'>
 				{ this.getButtons() }
 			</div>
 		)
@@ -30,20 +25,48 @@ class ButtonList extends Component {
 			<ul>
 				{
 					buttons.map(button =>
-						<li key = { button.id }>
+						<li key = { button._id }>
 							<Button button = { button } />
+							<FA
+								onClick={ this.openEditor.bind(null, button._id, true) }
+								name="cog"
+							/>
+							<FA
+								onClick={ this.deleteItem.bind(this, button._id) }
+								name="trash"
+							/>
 						</li>
 					)
 				}
-				<FA name="plus-circle" />
+				<span onClick={ this.addButton } className="addItem">Добавить кнопку</span>
 			</ul>
-		) : <h3>No buttons yet</h3>;
+		) : (
+			<div>
+				<h3>No buttons yet</h3>
+				<span onClick={ this.addButton } className="addItem">Добавить кнопку</span>
+			</div>
+		);
+	}
+
+	addButton = () => {
+		let { templateId, addItem } = this.props;
+		addItem('btn', templateId)
+	};
+
+	openEditor = (id, advanced) => {
+		this.props.openEditor('buttons', id, advanced);
+	};
+
+	deleteItem = (id) => {
+		let { deleteItem } = this.props;
+		deleteItem('btn', id);
 	}
 }
 
 export default connect(state => {
 	return {
+		templateId: state.templates.currentTemplate,
 		buttons: filtratedButtonsSelector(state),
-		loading: state.buttons.loading
+		loading: state.templates.loading
 	}
-}, { checkAndLoadButtons })(ButtonList)
+}, { addItem, deleteItem, openEditor })(ButtonList)

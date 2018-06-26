@@ -8,13 +8,14 @@ module.exports =  new LocalStrategy({
 		passReqToCallback: true // req for more complex cases
 	},
 	function(req, email, password, done) {
-		console.log('EMAIL: ', email);
+		console.log('Local Strategy - EMAIL: ', email);
 
 		User.findOne({ email }, function (err, user) {
-			if (err) { return done(err); }
-			if (!user) { return done(null, false); }
-
-			if (!user.checkPassword(password)) { return done(null, false); }
+			if (err) return done(err);
+			if (!user || !user.checkPassword(password)) {
+				return done(null, false, { message: 'Нет такого пользователя или пароль не верен' });
+			}
+			if (!user.verifiedEmail) return done(null, false, { message: 'Email не подтвержден' });
 
 			return done(null, user);
 		});

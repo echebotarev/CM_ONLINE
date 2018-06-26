@@ -3,25 +3,25 @@ const log = logger(module);
 
 import mongoose from './mongoose';
 import User from '../model/user';
-import Client from '../model/client';
-import AccessToken from '../model/accessToken';
-import RefreshToken from '../model/refreshToken';
+import Letter from '../model/letter';
+import Template from '../model/template';
+import Button from '../model/button';
 
-// router.get('/', (req, res) => {
+Button.remove({}, function (err) {
+	if (err) return log.error(err);
+});
+
 User.remove({}, function (err) {
 	if (err) return log.error(err);
 });
 
-/*Client.remove({}, function (err) {
+Letter.remove({}, function (err) {
 	if (err) return log.error(err);
+});
 
-});
-AccessToken.remove({}, function (err) {
+Template.remove({}, function (err) {
 	if (err) return log.error(err);
 });
-RefreshToken.remove({}, function (err) {
-	if (err) return log.error(err);
-});*/
 
 setTimeout(function () {
 	mongoose.disconnect();

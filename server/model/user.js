@@ -1,9 +1,13 @@
 import mongoose from 'mongoose';
 import crypto from 'crypto';
-import passportLocalMongoose from 'passport-local-mongoose';
 
 const Schema = mongoose.Schema;
 const User = new Schema({
+	_id: mongoose.Schema.Types.ObjectId,
+	username: {
+		default: 'Noname',
+		type: String
+	},
 	email: {
 		type: String,
 		unique: true,
@@ -31,7 +35,13 @@ const User = new Schema({
 	created: {
 		type: Date,
 		default: Date.now
-	}
+	},
+
+	verifyEmailToken: String,
+	pendingVerifyEmail: String,
+	verifyEmailRedirect: String,
+	verifiedEmailsHistory: [{ date: Date, email: String }],
+	verifiedEmail: Boolean,
 });
 
 User.methods.encryptPassword = function (password) {
@@ -55,9 +65,5 @@ User.virtual('password')
 User.methods.checkPassword = function (password) {
 	return this.encryptPassword(password) === this.hashedPassword;
 };
-
-/*User.plugin(passportLocalMongoose, {
-	usernameField: "email"
-});*/
 
 module.exports = mongoose.model('User', User);

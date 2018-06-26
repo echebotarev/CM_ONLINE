@@ -1,0 +1,36 @@
+.button {
+  background: none !important;
+
+  .left, .right {
+    background: transparent url(https://static.parastorage.com/services/skins/2.1229.80/images/wysiwyg/core/themes/base/scotchtape_edges.png) repeat-y;
+    bottom: 0;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 10px;
+  }
+  .left {
+    background-position: right -2px;
+    left: -7px;
+  }
+  .right {
+    background-position: left -2px;
+    right: -7px;
+  }
+}
+.button:before, .button:after {
+  border-bottom: solid 1px rgba(255, 255, 255, 0.12);
+  content: '';
+  display: block;
+  height: 7px;
+  left: 1px;
+  position: absolute;
+  right: 1px;
+}
+.button:before {
+  top: -7px;
+}
+.button:after {
+  bottom: 0;
+}

@@ -1,0 +1,38 @@
+.button {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.53);
+  background-image: url(https://static.parastorage.com/services/skins/2.1229.80/images/wysiwyg/core/themes/base/ironpatern.png) !important;
+
+    .body {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      box-shadow: rgba(255, 255, 255, 0.59) 0 0 6px 0 inset, rgba(255, 255, 255, 0.92) 0 1px 0 0 inset, rgba(255, 255, 255, 0.2) 0 0 5px 0 inset;
+      border-radius: 2px;
+    }
+    .screw {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-image: url(https://static.parastorage.com/services/skins/2.1229.80/images/wysiwyg/core/themes/base/skrew.png);
+      background-repeat: no-repeat;
+      display: inline-block;
+    }
+    .tl {
+      left: 2px;
+      top: 2px;
+    }
+    .bl {
+      bottom: 2px;
+      left: 2px;
+    }
+    .tr {
+      right: 2px;
+      top: 2px;
+    }
+    .br {
+      bottom: 2px;
+      right: 2px;
+    }
+}

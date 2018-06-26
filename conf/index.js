@@ -14,6 +14,7 @@ nconf.file('defaults', {
 	file: process.cwd() + '/config.json'
 });
 
+nconf.set('root_path', process.cwd());
 nconf.set('public_path', process.cwd() + '/public');
 
 export default nconf

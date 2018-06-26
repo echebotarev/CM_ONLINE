@@ -1,0 +1,21 @@
+.button {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+
+  .left_shadow {
+    background-position: 0 0;
+    left: -20px;
+  }
+
+  .right_shadow {
+    background-position: 100% 0;
+    right: -20px;
+  }
+}
+.shadow {
+  background: url(https://static.parastorage.com/services/skins/2.1229.80/images/wysiwyg/core/themes/base/liftedshadow_medium.png) no-repeat;
+  bottom: -26px;
+  height: 26px;
+  position: absolute;
+  width: 165px;
+  pointer-events: none;
+}

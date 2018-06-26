@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader';
 
 import store from './store'
-import Root from './Root'
+import Root from './components/Root'
 import './main.gscss'
 
 render(
@@ -14,9 +14,9 @@ render(
 );
 
 if(module.hot) {
-	module.hot.accept('./Root', () => {
+	module.hot.accept('./components/Root', () => {
 		console.log("index.js HMR");
-		const NewApp = require('./Root').default;
+		const NewApp = require('./components/Root').default;
 		render(<AppContainer><NewApp store={store} /></AppContainer>, document.getElementById('root'));
 	});
 }

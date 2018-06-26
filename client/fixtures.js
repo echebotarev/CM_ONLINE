@@ -37,7 +37,8 @@ export const templates = [
 		buttons: [
 			1, 2, 3
 		],
-		background: "#ccc"
+		background: "#ccc",
+		displayName: "Новый шаблон"
 	},
 	{
 		id: 2,
@@ -47,6 +48,7 @@ export const templates = [
 		buttons: [
 			3, 2
 		],
-		background: "blue"
+		background: "blue",
+		displayName: "Новейший шаблон"
 	}
 ];

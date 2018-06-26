@@ -1,15 +1,20 @@
 import express from 'express';
-import path from 'path';
-import fs from 'fs';
+import path    from 'path';
+import fs      from 'fs';
 
 import logger from './server/log';
+
 const log = logger(module);
 
-import config from './conf';
-import mongoose from './server/libs/mongoose';
+import config          from './conf';
+import mongoose        from './server/libs/mongoose';
+import isAuthenticated from './server/routes/isAuthenticated'
 
-import authenticate from './server/routes/authenticate';
-import buttons from './server/routes/buttons';
+import frontpage   from './server/routes/frontpage';
+import error       from './server/routes/error';
+import users       from './server/routes/users';
+import api         from './server/routes/api';
+import verifyEmail from './server/routes/verifyEmail';
 
 const PORT = config.get('port');
 const PUBLIC_PATH = config.get('public_path');
@@ -33,17 +38,22 @@ else {
 }
 
 const middlewares = fs.readdirSync(path.join(__dirname, 'server', 'middlewares')).sort();
-middlewares.forEach(function(middleware) {
+middlewares.forEach(function (middleware) {
 	app.use(require('./server/middlewares/' + middleware));
 });
 
-app.use('/auth', authenticate);
-app.use('/api/buttons', buttons);
+app.use(isAuthenticated);
 
-router.all("*", function(req, res) {
+// app.use('/', frontpage);
+app.use('/users', users);
+app.use('/api', api);
+app.use('/verify-email', verifyEmail);
+app.use('/error', error);
+
+/*router.get("/", function(req, res) {
 	res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'));
-});
+});*/
 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
 	log.info('Listening on port ' + PORT + '...');
 });
