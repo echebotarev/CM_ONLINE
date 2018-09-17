@@ -10,22 +10,41 @@ const Button = new Schema({
 	},
 	link: String,
 	style: {
-		background: {
-			default: 'rgb(56, 153, 236)',
+		backgroundColor: {
+			default: 'rgb(7, 97, 219)',
 			type: String
 		},
-		color: {
-			default: '#fff',
+		backgroundOpacity: {
+			default: 1,
+			type: Number
+		},
+		textColor: {
+			default: 'rgb(255, 255, 255)',
 			type: String
 		},
-		padding: Number,
-		fontSize: Number,
+		textOpacity: {
+			default: 1,
+			type: Number
+		},
+		padding: String,
+		fontSize: String,
 		textAlign: {
 			default: 'center',
 			type: String
 		},
 		boxShadow: String,
-		border: String,
+		borderColor: {
+			default: 'rgb(0, 0, 0)',
+			type: String
+		},
+		borderWidth: {
+			default: 0,
+			type: Number
+		},
+		borderOpacity: {
+			default: 1,
+			type: Number
+		},
 		borderRadius: String
 	},
 	template: {

@@ -10,7 +10,8 @@ function isAuthenticated(req, res, next) {
 	    (
 		    !req.path.includes('verify-email') &&
 	    	!req.path.includes('users') &&
-	        !req.path.includes('error')
+	        !req.path.includes('error') &&
+		    !req.path.includes('auth')
 	    )
     ) {
 	    res

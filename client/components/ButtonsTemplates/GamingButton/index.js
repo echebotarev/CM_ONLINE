@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
-import styles from './styles.scss'
 
 class GamingButton extends Component {
 	render() {
-		let { text, style } = this.props.button;
+		let { styles } = this.props,
+			{ text } = this.props.button;
 
 		return (
-			<div style={style} className={styles.button + ' button'}>
-				<span className={styles.substrate + ' ' + styles.left}></span>
-				<span className={styles.substrate + ' ' + styles.right}></span>
-				<span className={styles.top}></span>
+			<div>
+				<span className="substrate left"></span>
+				<span className="substrate right"></span>
+				<span className="top"></span>
 				<a href="#">
-					<span>{ text }</span>
+					<span style={{color: styles.color}}>{ text }</span>
 				</a>
 			</div>
 		)

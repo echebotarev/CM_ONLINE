@@ -8,9 +8,7 @@ export const buttonsSelector = createSelector(buttonsMapSelector, buttons => but
 
 // получаем список кнопок
 export const filtratedButtonsSelector = createSelector(buttonsSelector, currentTemplateSelector, (buttons, currentTemplate) => {
-	return buttons.filter(button => {
-		return (button.template === currentTemplate)
-	})
+	return buttons.filter(button => button.template === currentTemplate)
 });
 
 // получаем конкретную кнопку

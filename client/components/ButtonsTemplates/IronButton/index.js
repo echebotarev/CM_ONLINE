@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
-import styles from './styles.scss'
 
 class IronButton extends Component {
 	render() {
-		let { text, style } = this.props.button;
+		let { styles } = this.props,
+			{ text } = this.props.button;
 
 		return (
-			<div style={style} className={styles.button + ' button'}>
-				<div className={styles.body}></div>
-				<div className={styles.screw + ' ' + styles.tl}></div>
-				<div className={styles.screw + ' ' + styles.bl}></div>
-				<div className={styles.screw + ' ' + styles.tr}></div>
-				<div className={styles.screw + ' ' + styles.br}></div>
+			<div>
+				<div className="body"></div>
+				<div className="screw tl"></div>
+				<div className="screw bl"></div>
+				<div className="screw tr"></div>
+				<div className="screw br"></div>
 				<a href="#">
-					<span>{ text }</span>
+					<span style={{color: styles.color}}>{ text }</span>
 				</a>
 			</div>
 		)

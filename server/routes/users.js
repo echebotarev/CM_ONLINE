@@ -9,6 +9,25 @@ import logger from './../log';
 const log = logger(module);
 const sendMail = require('./../libs/sendMail');
 
+router.get('/', (req, res) => {
+	if (!req.isAuthenticated()) {
+		res
+			.status(403)
+			.json({
+				error: 'AUTHENTICATE_FAIL',
+				auth: false,
+				username: null
+			})
+	}
+	else {
+		res.json({
+			auth: true,
+			username: req.user.username,
+			id: req.user._id
+		})
+	}
+});
+
 router.post('/register', function (req, res) {
 	let verifyEmailToken = Math.random().toString(36).slice(2, 10);
 	let user = new User({
@@ -45,25 +64,6 @@ router.post('/register', function (req, res) {
 			message: 'На вашу почту отправлено письмо. Перейдите по ссылке указанной в нем.'
 		});
 	})
-});
-
-router.get('/', (req, res) => {
-	if (!req.isAuthenticated()) {
-		res
-			.status(403)
-			.json({
-				error: 'AUTHENTICATE_FAIL',
-				auth: false,
-				username: null
-			})
-	}
-	else {
-		res.json({
-			auth: true,
-			username: req.user.username,
-			id: req.user._id
-		})
-	}
 });
 
 router.post('/login', (req, res) => {

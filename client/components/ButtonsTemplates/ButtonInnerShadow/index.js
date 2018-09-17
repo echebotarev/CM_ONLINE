@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import styles from './styles.scss'
 
 class ButtonInnerShadow extends Component {
 	render() {
-		let { text, style } = this.props.button;
+		let { styles } = this.props,
+			{ text } = this.props.button;
 
 		return (
-			<div style={style} className={styles.button + ' button'}>
+			<div>
 				<a href="#">
-					<span>{ text }</span>
+					<span style={{color: styles.color}}>{ text }</span>
 				</a>
 			</div>
 		)

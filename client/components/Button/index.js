@@ -21,71 +21,170 @@ import {
 	ScotchTapeButton
 } from '../ButtonsTemplates'
 
+import { content } from '../../fixturesEditor'
+const { buttonsPreviewEditor } = content;
+
 class Button extends Component {
-	render() {
-		return this.getTemplateButton()
+	state = {
+		style: null
+	};
+
+	componentDidMount() {
+		let { style, templatesButton } = this.props.button;
+		this.setState({ style: this.renderStyle(style, templatesButton) });
 	}
 
-	getTemplateButton = () => {
+	componentWillReceiveProps(nextProps) {
+		let { style, templatesButton } = nextProps.button;
+		this.setState({ style: this.renderStyle(style, templatesButton) });
+	}
+
+	render() {
 		let { templatesButton } = this.props.button;
 
-		switch(templatesButton) {
+		return <div style = { this.state.style } className = {`${templatesButton} button`}>
+			{ this.getTemplateButton(
+				templatesButton, 
+				this.props.button, 
+				this.state.style ? this.state.style : {}
+			) }
+		</div>
+	}
+
+	getTemplateButton = (template, data, styles) => {
+		switch(template) {
 			case 'BasicButton':
-				return <BasicButton button={this.props.button} />;
+				return <BasicButton
+					button = { data }
+					styles = { styles }
+				/>;
 
 			case 'ButtonThreeD':
-				return <ButtonThreeD button={this.props.button} />;
+				return <ButtonThreeD
+					button = { data }
+					styles = { styles }
+				/>;
 
 			case 'ButtonLiftedShadow':
-				return <ButtonLiftedShadow button={this.props.button} />;
+				return <ButtonLiftedShadow
+					button = { data }
+					styles = { styles }
+				/>;
 
 			case 'ShinyButtonInverted':
-				return <ShinyButtonInverted button={this.props.button} />;
+				return <ShinyButtonInverted
+					button = { data }
+					styles = { styles }
+				/>;
 
 			case 'ButtonArrow':
-				return <ButtonArrow button={this.props.button} />;
+				return <ButtonArrow
+					button = { data }
+					styles = { styles }
+				/>;
 
 			case 'ButtonArrowLeft':
-				return <ButtonArrowLeft button={this.props.button} />;
+				return <ButtonArrowLeft
+					button = { data }
+					styles = { styles }
+				/>;
 
 			case 'ButtonInnerShadow':
-				return <ButtonInnerShadow button={this.props.button} />;
+				return <ButtonInnerShadow button = { data }
+					styles = { styles } />;
 
 			case 'ButtonShadowRight':
-				return <ButtonShadowRight button={this.props.button} />;
+				return <ButtonShadowRight
+					button = { data }
+					styles = { styles }
+				/>;
 
 			case 'ButtonShadowLeft':
-				return <ButtonShadowLeft button={this.props.button} />;
+				return <ButtonShadowLeft
+					button = { data }
+					styles = { styles }
+				/>;
 
 			case 'TextOnlyButtonSkin':
-				return <TextOnlyButtonSkin button={this.props.button} />;
+				return <TextOnlyButtonSkin
+					button = { data }
+					styles = { styles }
+				/>;
 
 			case 'ShinyButtonISkin':
-				return <ShinyButtonISkin button={this.props.button} />;
+				return <ShinyButtonISkin
+					button = { data }
+					styles = { styles }
+				/>;
 
 			case 'ShinyButtonIISkin':
-				return <ShinyButtonIISkin button={this.props.button} />;
+				return <ShinyButtonIISkin
+					button = { data }
+					styles = { styles }
+				/>;
 
 			case 'RibbonButton':
-				return <RibbonButton button={this.props.button} />;
+				return <RibbonButton
+					button = { data }
+					styles = { styles }
+				/>;
 
 			case 'CircleButton':
-				return <CircleButton button={this.props.button} />;
+				return <CircleButton
+					button = { data }
+					styles = { styles }
+				/>;
 
 			case 'SloopyButton':
-				return <SloopyButton button={this.props.button} />;
+				return <SloopyButton
+					button = { data }
+					styles = { styles }
+				/>;
 
 			case 'IronButton':
-				return <IronButton button={this.props.button} />;
+				return <IronButton
+					button = { data }
+					styles = { styles }
+				/>;
 
 			case 'GamingButton':
-				return <GamingButton button={this.props.button} />;
+				return <GamingButton
+					button = { data }
+					styles = { styles }
+				/>;
 
 			case 'ScotchTapeButton':
-				return <ScotchTapeButton button={this.props.button} />;
+				return <ScotchTapeButton
+					button = { data }
+					styles = { styles }
+				/>;
 
 			default:
-				return <BasicButton button={this.props.button} />;
+				return <BasicButton
+					button = { data }
+					styles = { styles }
+				/>;
+		}
+	};
+
+	renderStyle = (inputStyle, templatesButton) => {
+		let styles = {
+				background: __getRGBA(inputStyle.backgroundColor, inputStyle.backgroundOpacity),
+				color: __getRGBA(inputStyle.textColor, inputStyle.textOpacity)
+			};
+
+
+		if (buttonsPreviewEditor[templatesButton].includes('border')) {
+			styles.border = `${inputStyle.borderWidth}px solid ${__getRGBA(inputStyle.borderColor, inputStyle.borderOpacity)}`;
+			styles.lineHeight = `${60 - inputStyle.borderWidth*2}px`;
+		}
+
+		return styles;
+
+		function __getRGBA(color, opacity) {
+			return color
+				.replace('rgb', 'rgba').
+				replace(')', `, ${opacity})`)
 		}
 	}
 }

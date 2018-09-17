@@ -13,6 +13,7 @@ import isAuthenticated from './server/routes/isAuthenticated'
 import frontpage   from './server/routes/frontpage';
 import error       from './server/routes/error';
 import users       from './server/routes/users';
+import instagram       from './server/routes/instagram';
 import api         from './server/routes/api';
 import verifyEmail from './server/routes/verifyEmail';
 
@@ -46,9 +47,12 @@ app.use(isAuthenticated);
 
 // app.use('/', frontpage);
 app.use('/users', users);
+// app.use('/auth/instagram', instagram);
 app.use('/api', api);
 app.use('/verify-email', verifyEmail);
 app.use('/error', error);
+
+app.use('*', (req, res) => res.sendFile(path.join(PUBLIC_PATH, 'index.html')));
 
 /*router.get("/", function(req, res) {
 	res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'));

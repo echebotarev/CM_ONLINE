@@ -8,7 +8,7 @@ const Template = new Schema({
 		type: String
 	},
 	logotypePicture: String,
-	background: String,
+	backgroundColor: String,
 	font: String,
 	link: String,
 	user: {

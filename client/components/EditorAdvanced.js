@@ -21,6 +21,8 @@ class EditorAdvanced extends Component {
 	};
 
 	componentDidMount() {
+		console.log('BUTTON', this.props.button);
+
 		let { templatesButton } = this.props.button;
 
 		if (templatesButton) {
@@ -64,7 +66,7 @@ class EditorAdvanced extends Component {
 								let src = `https://static.parastorage.com/services/santa-resources/resources/editor/advancedStylePanel/iconsForSkins/wysiwyg.viewer.skins.button.${item}.v1.png`;
 								return <label data-template = {item} key = {item}>
 									<input
-										ref={item}
+										ref = { item }
 										onChange = { this.onSelect }
 										type = "radio"
 										name = "rb_5"
@@ -93,7 +95,10 @@ class EditorAdvanced extends Component {
 							</div> : ""
 					}
 					</div>
-				<EditorStylePanel />
+
+				<hr className="divider-long" />
+
+				<EditorStylePanel id = { this.props.id } />
 			</div>
 		)
 	}

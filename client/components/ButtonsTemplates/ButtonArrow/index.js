@@ -1,29 +1,39 @@
 import React, { Component } from 'react'
-import styles from './styles.scss'
 
 class ButtonArrow extends Component {
 	render() {
-		let { text, style } = this.props.button;
+		let { styles } = this.props,
+			{ text } = this.props.button;
 
 		return (
-			<div style={style} className={styles.button + ' button'}>
+			<div>
 				<div
-					style={{borderBottomColor: style.background}}
-					className={styles.top + ' ' + styles.border}
+					ref = { elem => this.setColor(elem, styles, 'bottom') }
+					className='top border'
 				></div>
 				<div
-					style={{borderTopColor: style.background}}
-					className={styles.bottom + ' ' + styles.border}
+					ref = { elem => this.setColor(elem, styles, 'top') }
+					className='bottom border'
 				></div>
 				<div
-					style={{background: style.background}}
-					className={styles.body}
+					style={{background: styles.background}}
+					className='body'
 				></div>
-				<a className={styles.a} href="#">
-					<span>{ text }</span>
+				<a className='a' href="#">
+					<span style={{color: styles.color}} >{ text }</span>
 				</a>
 			</div>
 		)
+	}
+
+	setColor = (elem, style, direct) => {
+		if (elem) {
+			elem.style.setProperty(
+				direct === 'bottom' ? 'border-bottom-color' : 'border-top-color',
+				style.background,
+				'important'
+			);
+		}
 	}
 }
 

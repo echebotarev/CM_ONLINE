@@ -2,9 +2,10 @@ import passport from 'passport';
 import User from '../../model/user';
 
 passport.use(require('./localStrategy'));
+passport.use(require('./instagramStrategy'));
 
 passport.serializeUser(function(user, done) {
-	done(null, user.id); // uses _id as idFieldd
+	done(null, user.id); // uses _id as idField
 });
 
 passport.deserializeUser(function(id, done) {

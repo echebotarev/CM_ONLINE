@@ -16,14 +16,21 @@ import { arrToMap } from './utils'
 import { Record } from 'immutable'
 
 const ButtonStyleRecord = Record({
-	background: null,
-	color: null,
+	backgroundColor: null,
+	backgroundOpacity: null,
+
+	textColor: null,
+	textOpacity: null,
+
 	padding: null,
 	fontSize: null,
 	textAlign: null,
 	boxShadow: null,
+
 	borderRadius: null,
-	border: null
+	borderColor: null,
+	borderWidth: null,
+	borderOpacity: null
 });
 
 const ButtonRecord = Record({
@@ -33,11 +40,11 @@ const ButtonRecord = Record({
 	link: null,
 	style: ButtonStyleRecord,
 	template: null,
-	templatesButton: null
+	templatesButton: 'BasicButton'
 });
 
 const ReducerRecord = Record({
-	entities: arrToMap([], ButtonRecord),
+	entities: arrToMap([], ButtonRecord, ButtonStyleRecord),
 	loading: false,
 	loaded: false,
 	creating: false,
@@ -60,11 +67,12 @@ export default (state = defaultState, action) => {
 		case ADD_BUTTON + SUCCESS:
 			return state
 				.setIn(['creating'], false)
-				.updateIn(['entities'], entities => entities.concat(arrToMap([payload.response], ButtonRecord)));
+				.updateIn(['entities'], entities => entities.concat(arrToMap([payload.response], ButtonRecord, ButtonStyleRecord)));
 
 		case UPDATE + BUTTON:
-			return state
-				.updateIn(['entities', payload.id, payload.name], () => payload.value);
+			return payload.style ?
+				state.updateIn(['entities', payload.id, 'style', payload.name], () => payload.value) :
+				state.updateIn(['entities', payload.id, payload.name], () => payload.value);
 
 		case RETURN + BUTTON:
 			return state
@@ -89,7 +97,7 @@ export default (state = defaultState, action) => {
 			return state
 				.setIn(['loading'], false)
 				.setIn(['loaded'], true)
-				.setIn(['entities'], arrToMap(payload.response.buttons, ButtonRecord));
+				.setIn(['entities'], arrToMap(payload.response.buttons, ButtonRecord, ButtonStyleRecord));
 
 		case LOAD_TEMPLATES + FAIL:
 			return;

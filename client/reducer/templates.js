@@ -21,7 +21,7 @@ const TemplateRecord = Record({
 	_id: null,
 	displayName: null,
 	logotypePicture: null,
-	background: null,
+	backgroundColor: null,
 	link: null,
 	user: null
 });

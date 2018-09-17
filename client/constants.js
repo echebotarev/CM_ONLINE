@@ -15,6 +15,10 @@ export const CURRENT_TEMPLATE = '_CURRENT_TEMPLATE';
 export const START = '_START';
 export const SUCCESS = '_SUCCESS';
 export const FAIL = '_FAIL';
+export const STOP = '_STOP';
+
+export const DRAG = '_DRAG';
+export const IS = 'IS';
 
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const NOT = '_NOT';

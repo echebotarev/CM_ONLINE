@@ -8,6 +8,7 @@ const User = new Schema({
 		default: 'Noname',
 		type: String
 	},
+
 	email: {
 		type: String,
 		unique: true,
@@ -23,6 +24,16 @@ const User = new Schema({
 		lowercase: true,
 		trim: true
 	},
+
+	providers: [{
+		name:    String,
+		nameId:  {
+			type:  String,
+			index: true
+		},
+		profile: {}
+	}],
+
 	deleted: Boolean,
 	hashedPassword: {
 		type: String,

@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 
 import EditorContainer from '../EditorContainer'
 
-import {setEditableData} from "../../AC";
+import {setEditableData, setDraggableSlider } from "../../AC";
 import {
 	filtratedTemplateSelector,
 	filtratedButtonSelector
-}                        from "../../selectors";
+}                                            from "../../selectors";
 
 class Editor extends Component {
 	state = {
@@ -22,25 +22,27 @@ class Editor extends Component {
 		}
 	};
 
-	componentWillMount() {
+	componentDidMount() {
 		// сохраняем начальные данные на случай,
 		// если пользователь отменит введенные изменения
 		let { type, setEditableData } = this.props;
 
-		setEditableData(
-			type === 'templates' ?
-				this.props.template :
-				this.props.button
-		);
+		if (type === 'buttons') return;
+
+		setEditableData(this.props.template);
 	}
 
 	render() {
 		return this.props.open ? (
 			<div
-				className="editor"
+				className = "editor"
+				ref = "editor"
 				onMouseMove={ this.onMouseMove }
+				onMouseUp={ this.handlerSliderStepperMouseUp }
+				// onMouseDown={ this.handlerColorPickerOpen }
 			>
 				{ this.getEditor() }
+				{/*{ this.getColorPicker() }*/}
 			</div>
 		) : ''
 	}
@@ -55,6 +57,8 @@ class Editor extends Component {
 			onMouseUp = { this.onMouseUp }
 		/>
 	};
+
+	handlerSliderStepperMouseUp = () => this.props.setDraggableSlider(false);
 
 	onMouseDown = (event) => {
 		if (!event.target.classList.contains('editor-header')) return;
@@ -105,8 +109,8 @@ export default connect(state => {
 		open: state.editor.open,
 		id: state.editor.id,
 		type: state.editor.type,
+		advanced: state.editor.advanced,
 		template: filtratedTemplateSelector(state),
-		button: filtratedButtonSelector(state),
-		advanced: state.editor.advanced
+		button: filtratedButtonSelector(state)
 	}
-}, { setEditableData })(Editor)
+}, { setEditableData, setDraggableSlider })(Editor)

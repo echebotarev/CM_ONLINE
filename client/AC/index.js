@@ -22,7 +22,8 @@ import {
 	TEMPLATE,
 	UPDATE,
 	AND,
-	SAVE, EDITABLE_DATA
+	SAVE, EDITABLE_DATA,
+	IS, DRAG, STOP, START
 } from "../constants";
 import { push }       from 'react-router-redux';
 import isAuthenticate from "../reducer/isAuthenticate";
@@ -115,6 +116,22 @@ export function checkAuthenticate() {
 			method: 'GET'
 		}
 	}
+}
+
+export function setDraggableSlider(value) {
+	let type = value ?
+		IS + DRAG + START :
+		IS + DRAG + STOP;
+
+    return { type }
+}
+
+export function openColorPicker(value, payload) {
+	let type = value ?
+		SET + OPEN :
+		SET + CLOSE;
+
+	return { type, payload }
 }
 
 export function deleteMessage() {
@@ -215,6 +232,22 @@ export function saveData() {
 			editableData
 		})
 	}
+}
+
+export function pureSaveData(payload) {
+    return (dispatch, getState) => {
+	    let { type, id } = payload,
+		    data = getState()[type].getIn(['entities', id]).toJSON();
+
+	    dispatch({
+		    type: type === 'templates' ? SAVE + TEMPLATE : SAVE + BUTTON,
+		    callAPI: {
+			    pathname: `/api/${type}/${id}`,
+			    method: 'PUT'
+		    },
+		    payload: data
+	    })
+    }
 }
 
 export function setEditableData(payload) {

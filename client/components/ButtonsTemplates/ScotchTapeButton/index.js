@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
-import styles from './styles.scss'
 
 class ScotchTapeButton extends Component {
 	render() {
-		let { text, style } = this.props.button;
+		let { styles } = this.props,
+			{ text } = this.props.button;
 
 		return (
-			<div style={style} className={styles.button + ' button'}>
-				<div className={styles.left}></div>
+			<div>
+				<div className="left"></div>
 				<a href="#">
-					<span>{ text }</span>
+					<span style={{color: styles.color}}>{ text }</span>
 				</a>
-				<div className={styles.right}></div>
+				<div className="right"></div>
 			</div>
 		)
 	}

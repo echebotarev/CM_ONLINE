@@ -1,0 +1,87 @@
+.input_stepper {
+  position: absolute;
+  right: 0;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  width: 56px;
+  padding: 0 6px;
+  text-align: left;
+  display: inline-block;
+}
+.input_stepper.small {
+  width: 45px;
+  margin: -2px 6px 0 3px;
+  padding: 0 6px 0 4px;
+}
+.input_stepper.editing {
+  background-color: transparent !important;
+}
+.editing.input_stepper:after {
+  border-color: #9cccf6;
+  box-shadow: inset 0 0 3px 0 rgba(0, 90, 132, 0.25);
+}
+.input_stepper:after {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  content: '';
+  border: 1px solid transparent;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.input {
+  border: none;
+  outline: none;
+  text-align: center;
+  font-family: HelveticaNeueW01-55Roma, HelveticaNeueW02-55Roma, HelveticaNeueW10-55Roma, Helvetica Neue, Helvetica, Arial, メイリオ, meiryo, ヒラギノ角ゴ pro w3, hiragino kaku gothic pro, sans-serif;
+  font-size: 18px;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 7px;
+  width: calc(100% - 14px);
+  display: inline-block;
+  color: #162d3d;
+}
+.has_units .input {
+  width: 70%;
+  padding: 0;
+  text-align: right;
+  display: inline-block;
+  font-size: 18px;
+  height: 36px;
+}
+.input_stepper:not(.editing) > .input {
+  cursor: default;
+}
+.small.input_stepper > .input {
+  font-size: 12px;
+  height: 18px;
+  line-height: 18px;
+}
+
+.small.input_stepper > .units_container > .units {
+  height: 18px;
+  line-height: 18px;
+  font-size: 12px;
+}
+.input_stepper > .units_container > .units {
+  line-height: 36px;
+  height: 36px;
+  width: 1%;
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0 7px 0 1px;
+}
+.editing.input_stepper:not(.with_units_dd) > .units_container {
+  visibility: hidden;
+}
+
+.input_stepper:not(.disabled):not(.bad_value):not(.editing):hover,
+.input_stepper:not(.disabled):not(.bad_value):not(.editing):hover .input {
+  background-color: #d3edff;
+  color: #2b5672;
+  cursor: pointer;
+}
