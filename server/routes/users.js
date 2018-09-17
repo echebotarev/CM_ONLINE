@@ -9,6 +9,8 @@ import logger from './../log';
 const log = logger(module);
 const sendMail = require('./../libs/sendMail');
 
+import config from '../../conf';
+
 router.get('/', (req, res) => {
 	if (!req.isAuthenticated()) {
 		res
@@ -55,7 +57,7 @@ router.post('/register', function (req, res) {
 			template: 'verify-registration-email',
 			to: user.email,
 			subject: "Подтверждение email",
-			link: 'http://localhost:3001/verify-email/' + verifyEmailToken
+			link: `http://${config.get('host')}:${config.get('port')}/verify-email/` + verifyEmailToken
 		});
 
 		return res.json({
