@@ -72,15 +72,22 @@ module.exports = function(options) {
 
 	message.headers = options.headers;
 
-	let transportResponse = transport.sendMail(message);
+	let transportResponse = transport.sendMail(message, function (error, info) {
+		if (error) {
+			console.log('Error occured');
+			console.log(error.message);
+			return;
+		}
 
-	let letter = Letter.create({
-		message,
-		transportResponse,
-		messageId: transportResponse.messageId //.replace(/@email.amazonses.com$/, '')
+		console.log('INFO', info);
+
+		Letter.create({
+			message,
+			info,
+			messageId: info.messageId //.replace(/@email.amazonses.com$/, '')
+		});
+
 	});
 
-	console.log('LETTER', letter);
-
-	return letter;
+	// return letter;
 };
