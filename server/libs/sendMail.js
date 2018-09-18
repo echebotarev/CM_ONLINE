@@ -21,6 +21,7 @@ const transportEngine = config.get('mailer:transport') === 'aws' ? new SesTransp
 		rateLimit: 50
 	}) : new SMTPTransport({
 		service: "Gmail",
+		port: 443,
 		debug: true,
 		auth: {
 			user: config.get('mailer:gmail:user'),
@@ -71,6 +72,15 @@ module.exports = function(options) {
 	message.subject = options.subject;
 
 	message.headers = options.headers;
+
+	// verify connection configuration
+	transport.verify(function(error, success) {
+		if (error) {
+			console.log(error);
+		} else {
+			console.log('Server is ready to take our messages');
+		}
+	});
 
 	let transportResponse = transport.sendMail(message, function (error, info) {
 		if (error) {
