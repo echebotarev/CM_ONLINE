@@ -80,5 +80,7 @@ module.exports = function(options) {
 		messageId: transportResponse.messageId //.replace(/@email.amazonses.com$/, '')
 	});
 
+	console.log('LETTER', letter);
+
 	return letter;
 };
