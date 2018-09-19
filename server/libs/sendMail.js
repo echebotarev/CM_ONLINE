@@ -21,7 +21,7 @@ const transportEngine = config.get('mailer:transport') === 'aws' ? new SesTransp
 		rateLimit: 50
 	}) : new SMTPTransport({
 		service: "Gmail",
-		port: 443,
+		port: 587,
 		debug: true,
 		auth: {
 			user: config.get('mailer:gmail:user'),
