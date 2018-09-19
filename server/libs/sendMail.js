@@ -4,7 +4,7 @@ import config from '../../conf/index';
 const juice = require('juice');
 const fs = require('fs');
 const path = require('path');
-const AWS = require('aws');
+const AWS = require('aws-sdk');
 const pug = require('pug');
 const Letter = require('../model/letter');
 
