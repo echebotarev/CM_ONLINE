@@ -40,7 +40,7 @@ let options = config.get('mailer:transport') === 'aws' ?
 		{
 			auth: {
 				api_user: config.get('mailer:sendGrid:user'),
-				api_key: config.get('mailer:password:user'),
+				api_key: config.get('mailer:sendGrid:password'),
 			}
 		};
 
