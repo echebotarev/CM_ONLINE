@@ -53,14 +53,20 @@ transport.use('compile', htmlToText());
 module.exports = function(options) {
 	console.log('OPTIONS EMAIL: ', options);
 
-	let message = {};
+	let message = {
+		from: 'awesome@bar.com',
+		to: '9111721308@mail.ru',
+		subject: 'Hello',
+		text: 'Hello world',
+		html: '<b>Hello world</b>'
+	};
 
 	let sender = config.get('mailer:senders')[options.from || 'default'];
 	if (!sender) {
 		throw new Error("Unknown sender:" + options.from);
 	}
 
-	message.from = {
+	/*message.from = {
 		name: sender.fromName,
 		address: sender.fromEmail
 	};
@@ -97,7 +103,7 @@ module.exports = function(options) {
 		} else {
 			console.log('Server is ready to take our messages');
 		}
-	});
+	});*/
 
 	let transportResponse = transport.sendMail(message, function (error, info) {
 		if (error) {
