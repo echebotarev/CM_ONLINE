@@ -11,23 +11,40 @@ const Letter = require('../model/letter');
 const nodemailer = require('nodemailer');
 const htmlToText = require('nodemailer-html-to-text').htmlToText;
 const SesTransport = require('nodemailer-ses-transport');
+const SendGridTransport = require('nodemailer-sendgrid-transport');
 
 // configure gmail: https://nodemailer.com/using-gmail/
 // allow less secure apps
 const SMTPTransport = require('nodemailer-smtp-transport');
 
-const transportEngine = config.get('mailer:transport') === 'aws' ? new SesTransport({
+const Transport = config.get('mailer:transport') === 'aws' ?
+	SesTransport :
+	config.get('mailer:transport') === 'gmail' ?
+		SMTPTransport : SendGridTransport;
+
+let options = config.get('mailer:transport') === 'aws' ?
+	{
 		ses: new AWS.SES(),
 		rateLimit: 50
-	}) : new SMTPTransport({
-		service: "Gmail",
-		port: 587,
-		debug: true,
-		auth: {
-			user: config.get('mailer:gmail:user'),
-			pass: config.get('mailer:gmail:password')
-		}
-	});
+	} :
+	config.get('mailer:transport') === 'gmail' ?
+		{
+			service: "Gmail",
+			port: 587,
+			debug: true,
+			auth: {
+				user: config.get('mailer:gmail:user'),
+				pass: config.get('mailer:gmail:password')
+			}
+		} :
+		{
+			auth: {
+				api_user: config.get('mailer:sendGrid:user'),
+				api_key: config.get('mailer:password:user'),
+			}
+		};
+
+const transportEngine = new Transport(options);
 
 const transport = nodemailer.createTransport(transportEngine);
 
