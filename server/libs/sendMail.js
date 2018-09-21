@@ -57,7 +57,6 @@ module.exports = function(options) {
 		from: 'awesome@bar.com',
 		to: '9111721308@mail.ru',
 		subject: 'Hello',
-		text: 'Hello world',
 		html: '<b>Hello world</b>'
 	};
 
@@ -66,10 +65,7 @@ module.exports = function(options) {
 		throw new Error("Unknown sender:" + options.from);
 	}
 
-	/*message.from = {
-		name: sender.fromName,
-		address: sender.fromEmail
-	};
+	message.from = sender.fromEmail;
 
 	// for template
 	let locals = Object.create(options);
@@ -96,14 +92,7 @@ module.exports = function(options) {
 
 	message.headers = options.headers;
 
-	// verify connection configuration
-	transport.verify(function(error, success) {
-		if (error) {
-			console.log(error);
-		} else {
-			console.log('Server is ready to take our messages');
-		}
-	});*/
+	console.log('MESSAGE', message);
 
 	let transportResponse = transport.sendMail(message, function (error, info) {
 		if (error) {
