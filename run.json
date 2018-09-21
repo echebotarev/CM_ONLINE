@@ -1,0 +1,14 @@
+{
+  "apps": [
+    {
+      "name": "cm-online-dev",
+      "script": "npm",
+      "args" : "build-dev"
+    },
+    {
+      "name": "cm-online-prod",
+      "script": "npm",
+      "args" : "build-prod"
+    }
+  ]
+}
