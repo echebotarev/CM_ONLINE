@@ -78,7 +78,7 @@ module.exports = function(options) {
 	message.html  = juice(message.html);
 
 
-	message.to = options.to;
+	message.to = (typeof options.to === 'string') ? {address: options.to} : options.to;
 
 	if (process.env.MAILER_REDIRECT) { // for debugging
 		message.to = {address: sender.fromEmail};
