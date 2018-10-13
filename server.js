@@ -1,4 +1,5 @@
 import express from 'express';
+import subdomain from 'express-subdomain'
 import path    from 'path';
 import fs      from 'fs';
 
@@ -10,7 +11,6 @@ import config          from './conf';
 import mongoose        from './server/libs/mongoose';
 import isAuthenticated from './server/routes/isAuthenticated'
 
-import frontpage   from './server/routes/frontpage';
 import error       from './server/routes/error';
 import users       from './server/routes/users';
 import instagram       from './server/routes/instagram';
@@ -45,7 +45,10 @@ middlewares.forEach(function (middleware) {
 
 app.use(isAuthenticated);
 
-// app.use('/', frontpage);
+app.use(subdomain('api', function (req, res, next) {
+	res.send('API');
+}));
+
 app.use('/users', users);
 // app.use('/auth/instagram', instagram);
 app.use('/api', api);
@@ -53,10 +56,6 @@ app.use('/verify-email', verifyEmail);
 app.use('/error', error);
 
 app.use('*', (req, res) => res.sendFile(path.join(PUBLIC_PATH, 'index.html')));
-
-/*router.get("/", function(req, res) {
-	res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'));
-});*/
 
 app.listen(PORT, function () {
 	log.info('Listening on port ' + PORT + '...');
