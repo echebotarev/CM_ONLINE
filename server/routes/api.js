@@ -9,6 +9,8 @@ const log = logger(module);
 import Template from '../model/template';
 import Button   from '../model/button';
 
+import setLinkTemplate from '../utils/setLinkTemplate';
+
 router.get('/:target/:id', async (req, res) => {
 	log.info('Router api');
 	let templates, buttons;
@@ -48,7 +50,8 @@ router.post('/:target', async (req, res) => {
 
 router.put('/:target/:id', async (req, res) => {
 	let { target, id } = req.params,
-		payload = req.body,
+		// TODO: checkLinkTemplate - проверка на уникальность URL
+		payload = setLinkTemplate(req.body),
 		models = {
 			buttons: Button,
 			templates: Template

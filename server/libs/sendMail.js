@@ -51,8 +51,6 @@ const transport = nodemailer.createTransport(transportEngine);
 transport.use('compile', htmlToText());
 
 module.exports = function(options) {
-	console.log('OPTIONS EMAIL: ', options);
-
 	let message = {
 		from: 'awesome@bar.com',
 		to: '9111721308@mail.ru',
@@ -91,8 +89,6 @@ module.exports = function(options) {
 	message.subject = options.subject;
 
 	message.headers = options.headers;
-
-	console.log('MESSAGE', message);
 
 	let transportResponse = transport.sendMail(message, function (error, info) {
 		if (error) {

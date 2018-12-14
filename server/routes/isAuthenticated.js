@@ -22,7 +22,9 @@ function isAuthenticated(req, res, next) {
 			    username: null
 		    });
     }
-    else next();
+    else {
+    	next();
+    }
 }
 
 export default isAuthenticated;

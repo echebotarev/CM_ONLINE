@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "build-dev": "export NODE_ENV=development&& babel-node server.js",
+    "build-debug": "export NODE_ENV=development&& babel-node --inspect server.js",
     "build-prod": "export NODE_ENV=production&& webpack && babel-node server.js",
     "clear-db": "babel-node server/libs/clearDatabase.js",
     "create-db": "babel-node server/libs/createDatabase.js ",
@@ -24,7 +25,6 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
-    "express-subdomain": "^1.0.5",
     "extract-text-webpack-plugin": "^3.0.2",
     "faker": "^4.1.0",
     "file-loader": "^1.1.6",
