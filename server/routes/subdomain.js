@@ -4,21 +4,43 @@ import path from 'path';
 import express from 'express';
 const router = express.Router();
 
+import Template from '../model/template';
+import Button from '../model/button';
+
 import logger from './../log';
 const log = logger(module);
 
-router.get('*', (req, res, next) => {
-	console.log('PARAMS', req.params);
-	console.log('URL', req.originalUrl);
+let getSubdomain = subdomains => {
+	return subdomains.length <= 1 ? subdomains[0] : null;
+};
 
-	console.log('Sub domains!!!');
+let getData = async link => {
+	let template = await Template.find({ link }).lean(),
+		buttons, data = null;
+
+	template = template.length ? template[0] : null;
+
+	if (template) {
+		buttons = await Button.find({ template: template }).lean();
+		data = Object.assign(template, { buttons: buttons });
+	}
+
+	return data;
+};
+
+router.get('*', async (req, res, next) => {
 	if (req.subdomains.length) {
-		console.log('IN SUBDOMAINS');
-		console.log('---------------------------');
-		res.send('API');
+		let subdomain = getSubdomain(req.subdomains),
+			data = await getData(subdomain);
+
+		if (data) {
+			res.render('hello', { title: 'Hey', message: 'Hello there!'});
+		}
+		else {
+			res.send('API');
+		}
 	}
 	else {
-		console.log('NEXT');
 		next();
 	}
 });

@@ -20,6 +20,9 @@ const PORT = config.get('port');
 const PUBLIC_PATH = config.get('public_path');
 const app = express();
 
+app.set('views', path.join(__dirname, 'server', 'views'));
+app.set('view engine', 'pug');
+
 const middlewares = fs.readdirSync(path.join(__dirname, 'server', 'middlewares')).sort();
 middlewares.forEach(function (middleware) {
 	app.use(require('./server/middlewares/' + middleware));
