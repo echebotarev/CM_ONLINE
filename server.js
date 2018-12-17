@@ -52,7 +52,7 @@ app.use('/verify-email', verifyEmail);
 app.use('/error', error);
 
 app.use('*', (req, res) => {
-	console.log('REQ', req);
+	// console.log('REQ', req);
 
 	// res.sendFile(path.join(PUBLIC_PATH, 'index.html'))
 });
