@@ -14,7 +14,7 @@ let getSubdomain = subdomains => {
 	return subdomains.length <= 1 ? subdomains[0] : null;
 };
 
-let getData = async link => {
+let getData = async (link, hostname) => {
 	let template = await Template.find({ link }).lean(),
 		buttons, data = null;
 
@@ -22,7 +22,7 @@ let getData = async link => {
 
 	if (template) {
 		buttons = await Button.find({ template: template }).lean();
-		data = Object.assign(template, { buttons: buttons });
+		data = Object.assign(template, { buttons: buttons, hostname });
 	}
 
 	return data;
@@ -31,7 +31,7 @@ let getData = async link => {
 router.get('*', async (req, res, next) => {
 	if (req.subdomains.length) {
 		let subdomain = getSubdomain(req.subdomains),
-			data = await getData(subdomain);
+			data = await getData(subdomain, req.hostname);
 
 		if (data) {
 			res.render('index', data);
