@@ -1,0 +1,38 @@
+.GamingButton {
+	background-image: url(https://static.parastorage.com/services/skins/2.1229.80/images/wysiwyg/core/themes/base/gaming_pattern.png) !important;
+	background-position: 0 0 !important;
+	background-repeat: repeat !important;
+	border: solid #000 2px;
+	-webkit-box-shadow: rgba(255, 255, 255, 0.3) 0 3px 6px 0 inset, rgba(0, 0, 0, 0.6) -2px -3px 6px 0 inset, rgba(0, 0, 0, 0.6) 1px 1px 6px 1px, rgba(255, 255, 255, 0.3) 1px 1px 3px 0;
+	box-shadow: rgba(255, 255, 255, 0.3) 0 3px 6px 0 inset, rgba(0, 0, 0, 0.6) -2px -3px 6px 0 inset, rgba(0, 0, 0, 0.6) 1px 1px 6px 1px, rgba(255, 255, 255, 0.3) 1px 1px 3px 0;
+	border-radius: 12px !important;
+	line-height: 56px !important;
+}
+.GamingButton .substrate {
+	background-position: 0 center;
+	background-repeat: no-repeat;
+	height: 100%;
+	position: absolute;
+	width: 66px;
+}
+.GamingButton .left {
+	background-image: url(https://static.parastorage.com/services/skins/2.1229.80/images/wysiwyg/core/themes/base/darknessleft.png);
+	border-radius: 10px 0 0 10px;
+	left: 0;
+}
+.GamingButton .right {
+	background-image: url(https://static.parastorage.com/services/skins/2.1229.80/images/wysiwyg/core/themes/base/darknessright.png);
+	border-radius: 0 10px 10px 0;
+	right: 0;
+}
+.GamingButton .top {
+	bottom: 50%;
+	top: 0;
+	left: 0;
+	background: url(https://static.parastorage.com/services/skins/2.1229.80/images/wysiwyg/core/themes/base/whitegradient.png) repeat-x 0 100%;
+	overflow: hidden;
+	border-radius: 12px 12px 0 0;
+	width: 100%;
+	content: '';
+	position: absolute;
+}

@@ -1,0 +1,20 @@
+.SloopyButton .border {
+	background: url(https://static.parastorage.com/services/skins/2.1229.80/images/wysiwyg/core/themes/base/sloppyframe.png) no-repeat;
+	position: absolute;
+	border: 0 !important;
+}
+
+.SloopyButton .border_top {
+	top: -4px;
+	right: 0;
+	bottom: 0;
+	left: -4px;
+	background-position: 0 0;
+}
+.SloopyButton .border_bottom {
+	top: 0;
+	right: -4px;
+	bottom: -4px;
+	left: 0;
+	background-position: 100% 100%;
+}

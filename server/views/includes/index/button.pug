@@ -1,0 +1,10 @@
+-
+    var backgroundColor = btn.style.backgroundColor.replace(')', `, ${btn.style.backgroundOpacity})`)
+    var borderColor = btn.style.borderColor.replace(')', `, ${btn.style.borderOpacity})`)
+
+block style
+div(
+    class=`button ${btn.templatesButton}`
+    style={'background': backgroundColor, 'border': `${btn.style.borderWidth}px solid ${borderColor}`}
+)
+    block internal

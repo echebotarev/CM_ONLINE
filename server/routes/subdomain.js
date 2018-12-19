@@ -34,7 +34,7 @@ router.get('*', async (req, res, next) => {
 			data = await getData(subdomain);
 
 		if (data) {
-			res.render('hello', { title: 'Hey', message: 'Hello there!'});
+			res.render('index', data);
 		}
 		else {
 			res.send('API');

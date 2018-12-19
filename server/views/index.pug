@@ -1,0 +1,10 @@
+doctype html
+html
+    include includes/index/head
+    body(style=`margin: 0;padding: 0`)
+        .content(style={'background': `${backgroundColor}`, 'width': '100%', 'max-width': '360px', 'margin': '0 auto', 'overflow': 'auto'})
+
+            .img-wrapper(style={'width': '150px', 'height': '150px', 'margin': '20px auto', 'overflow': 'hidden', 'border-radius': '50%'})
+                img(src=logotypePicture style={'width': '100%'})
+
+            include includes/index/buttons

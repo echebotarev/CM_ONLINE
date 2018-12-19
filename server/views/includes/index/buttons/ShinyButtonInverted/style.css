@@ -1,0 +1,7 @@
+.ShinyButtonInverted {
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+	background-image: url(https://static.parastorage.com/services/skins/2.1229.80/images/wysiwyg/core/themes/base/indented_bg.png) !important;
+	background-position: 0 0 !important;
+	background-repeat: repeat-x !important;
+}

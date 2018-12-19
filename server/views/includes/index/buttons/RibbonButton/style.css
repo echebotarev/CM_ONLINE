@@ -1,0 +1,26 @@
+.RibbonButton {
+	background: none !important;
+}
+.RibbonButton .body {
+	position: absolute;
+	top: 0;
+	right: 5px;
+	bottom: 0;
+	left: 0;
+}
+.RibbonButton .ribbon {
+	overflow: hidden;
+	width: 5px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: auto;
+}
+.RibbonButton .ribbon div:first-child {
+	margin-top: -5px;
+}
+
+.RibbonButton .ribbon div {
+	border: solid 5px transparent;
+}

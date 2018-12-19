@@ -1,0 +1,43 @@
+.ScotchTapeButton {
+	background: none !important;
+}
+
+.ScotchTapeButton :before, .ScotchTapeButton :after {
+	border-bottom: solid 1px rgba(255, 255, 255, 0.12);
+	content: '';
+	display: block;
+	height: 7px;
+	left: 1px;
+	position: absolute;
+	right: 1px;
+}
+.ScotchTapeButton :before {
+	top: -7px;
+}
+.ScotchTapeButton :after {
+	bottom: 0;
+}
+
+.ScotchTapeButton .left, .ScotchTapeButton .right {
+	background: transparent url(https://static.parastorage.com/services/skins/2.1229.80/images/wysiwyg/core/themes/base/scotchtape_edges.png) repeat-y;
+	bottom: 0;
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	width: 10px;
+}
+.ScotchTapeButton .left {
+	background-position: right -2px;
+	left: -7px;
+}
+.ScotchTapeButton .right {
+	background-position: left -2px;
+	right: -7px;
+}
+.ScotchTapeButton span:before,
+.ScotchTapeButton span:after,
+.ScotchTapeButton a:before,
+.ScotchTapeButton a:after {
+	content: none;
+}

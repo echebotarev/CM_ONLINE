@@ -1,0 +1,16 @@
+.ButtonShadowRight {
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+.ButtonShadowRight .right_shadow {
+	background-position: 100% 0 !important;
+	right: -20px;
+}
+.ButtonShadowRight .shadow {
+	background: url(https://static.parastorage.com/services/skins/2.1229.80/images/wysiwyg/core/themes/base/liftedshadow_medium.png) no-repeat;
+	bottom: -26px;
+	height: 26px;
+	position: absolute;
+	width: 165px;
+	pointer-events: none;
+}

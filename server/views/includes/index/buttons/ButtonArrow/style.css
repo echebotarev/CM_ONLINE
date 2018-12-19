@@ -1,0 +1,32 @@
+.ButtonArrow {
+	overflow: hidden;
+	background: none !important;
+	border: none !important;
+}
+.ButtonArrow .top {
+	border-bottom: 50px solid !important;
+	bottom: 50% !important;
+}
+
+.ButtonArrow .border {
+	border-left: 0 !important;
+	border-right: 50px solid transparent !important;
+	right: 0;
+}
+.ButtonArrow .border {
+	position: absolute;
+}
+.border {
+	border: 1px solid #dee2e6 !important;
+}
+.ButtonArrow .bottom {
+	border-top: 50px solid !important;
+	top: 50% !important;
+}
+.ButtonArrow .body {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 50px;
+	bottom: 0;
+}
