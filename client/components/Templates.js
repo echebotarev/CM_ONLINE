@@ -1,9 +1,5 @@
 import React, {Component} from 'react'
 import {connect}          from 'react-redux';
-import {
-	Nav,
-	Col
-}                         from 'react-bootstrap'
 
 import {filtratedTemplatesSelector} from '../selectors'
 import Template                     from './Template';
@@ -19,36 +15,36 @@ class Templates extends Component {
 	}
 
 	render() {
-		return (
-			<Col className='float-left pl-0' sm={3} md={3}>
-				{ this.getTemplates() }
-			</Col>
-		)
+		return this.getTemplates();
 	}
 
 	getTemplates() {
 		const { templates, currentTemplate, loading } = this.props;
-		if (loading) return <Loader />;
+		if (loading) {
+			return <Loader />;
+		}
 
 		return templates.length ? (
-			<div className='templates'>
-				<Nav
-					className='flex-column'
-					activeKey={ currentTemplate ? currentTemplate : templates[0]._id }
-					stacked
-				>
-					{
-						templates.map(template =>
-							<Template
-								className='clearfix'
-								template={template}
-								key={template._id}
-								eventKey={template._id}
+			<div
+				ref="container"
+				className='templates'
+			>
+				{
+					templates.map(template =>
+						{
+							let height = this.getContainerHeight();
+
+							return <Template
+								className = 'clearfix'
+								template = { template }
+								containerHeight = { height }
+								key = { template._id }
+								eventKey = { template._id }
+								active = { currentTemplate ? currentTemplate : templates[0]._id }
 							/>
-						)
-					}
-				</Nav>
-				<span onClick={ this.handleClick } className="addItem">Добавить шаблон</span>
+						}
+					)
+				}
 			</div>
 		) : <h3>No templates yet</h3>;
 	}
@@ -57,6 +53,17 @@ class Templates extends Component {
 		let { addItem } = this.props;
 		addItem('tmp', false)
 	};
+
+	getContainerHeight = () => {
+		let { container } = this.refs,
+			height = 0;
+
+		if (container) {
+			height = container.clientHeight;
+		}
+
+		return height;
+	}
 }
 
 export default connect(state => {

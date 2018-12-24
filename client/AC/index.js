@@ -89,8 +89,12 @@ export function checkAndLoadTemplates() {
 	return (dispatch, getState) => {
 		const { templates, isAuthenticate } = getState();
 
-		if (!getState().isAuthenticate.auth) return;
-		if (templates.loading || templates.loaded) return;
+		if (!getState().isAuthenticate.auth) {
+			return;
+		}
+		if (templates.loading || templates.loaded) {
+			return;
+		}
 
 		dispatch({
 			type: LOAD_TEMPLATES,
