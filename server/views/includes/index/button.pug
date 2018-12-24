@@ -1,10 +1,11 @@
 -
-    var backgroundColor = btn.style.backgroundColor.replace(')', `, ${btn.style.backgroundOpacity})`)
-    var borderColor = btn.style.borderColor.replace(')', `, ${btn.style.borderOpacity})`)
+    var backgroundColor = btn.style.backgroundColor.replace(')', `, ${btn.style.backgroundOpacity})`),
+        borderColor = btn.style.borderColor.replace(')', `, ${btn.style.borderOpacity})`),
+        BUTTON_HEIGHT = 60
 
 block style
 div(
     class=`button ${btn.templatesButton}`
-    style={'background': backgroundColor, 'border': `${btn.style.borderWidth}px solid ${borderColor}`}
+    style={'background': backgroundColor, 'border': `${btn.style.borderWidth}px solid ${borderColor}`, 'line-height': `${BUTTON_HEIGHT - btn.style.borderWidth * 2}px`}
 )
     block internal

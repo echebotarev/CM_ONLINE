@@ -22,7 +22,8 @@ import {
 } from '../ButtonsTemplates'
 
 import { content } from '../../fixturesEditor'
-const { buttonsPreviewEditor } = content;
+const { buttonsPreviewEditor } = content,
+	BUTTON_HEIGHT = 60;
 
 class Button extends Component {
 	state = {
@@ -44,8 +45,8 @@ class Button extends Component {
 
 		return <div style = { this.state.style } className = {`${templatesButton} button`}>
 			{ this.getTemplateButton(
-				templatesButton, 
-				this.props.button, 
+				templatesButton,
+				this.props.button,
 				this.state.style ? this.state.style : {}
 			) }
 		</div>
@@ -169,19 +170,19 @@ class Button extends Component {
 
 	renderStyle = (inputStyle, templatesButton) => {
 		let styles = {
-				background: __getRGBA(inputStyle.backgroundColor, inputStyle.backgroundOpacity),
-				color: __getRGBA(inputStyle.textColor, inputStyle.textOpacity)
+				background: getRGBA(inputStyle.backgroundColor, inputStyle.backgroundOpacity),
+				color: getRGBA(inputStyle.textColor, inputStyle.textOpacity)
 			};
 
 
 		if (buttonsPreviewEditor[templatesButton].includes('border')) {
-			styles.border = `${inputStyle.borderWidth}px solid ${__getRGBA(inputStyle.borderColor, inputStyle.borderOpacity)}`;
-			styles.lineHeight = `${60 - inputStyle.borderWidth*2}px`;
+			styles.border = `${inputStyle.borderWidth}px solid ${getRGBA(inputStyle.borderColor, inputStyle.borderOpacity)}`;
+			styles.lineHeight = `${BUTTON_HEIGHT - inputStyle.borderWidth*2}px`;
 		}
 
 		return styles;
 
-		function __getRGBA(color, opacity) {
+		function getRGBA(color, opacity) {
 			return color
 				.replace('rgb', 'rgba').
 				replace(')', `, ${opacity})`)
