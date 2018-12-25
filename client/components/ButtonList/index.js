@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import {filtratedButtonsSelector} from '../../selectors'
+import { buttonsSelector } from '../../selectors'
 import {addItem, deleteItem, openEditor}      from '../../AC'
 import Button                     from '../Button'
 import Loader                     from '../Loader'
@@ -18,26 +18,34 @@ class ButtonList extends Component {
 	}
 
 	getButtons() {
-		const { buttons, loading } = this.props;
-		if (loading) return <Loader />;
+		const { buttons, loading, templateId } = this.props;
+		if (loading) {
+			return <Loader />;
+		}
 
 		return buttons.length ? (
 			<ul>
 				{
-					buttons.map(button =>
-						<li key = { button._id }>
-							<Button button = { button } />
-							<FA
-								onClick={ this.openEditor.bind(null, button._id, true) }
-								name="cog"
-							/>
-							<FA
-								onClick={ this.deleteItem.bind(this, button._id) }
-								name="trash"
-							/>
-						</li>
-					)
-				}
+					buttons.map(button => {
+						if (templateId !== button.template) {
+							return '';
+						}
+
+						return (
+							<li key = { button._id }>
+								<Button button = { button } />
+								<FA
+									onClick={ this.openEditor.bind(null, button._id, true) }
+									name="cog"
+								/>
+								<FA
+									onClick={ this.deleteItem.bind(this, button._id) }
+									name="trash"
+								/>
+							</li>
+						)
+					}
+				)}
 				<span onClick={ this.addButton } className="addItem">Добавить кнопку</span>
 			</ul>
 		) : (
@@ -65,8 +73,8 @@ class ButtonList extends Component {
 
 export default connect(state => {
 	return {
-		templateId: state.templates.currentTemplate,
-		buttons: filtratedButtonsSelector(state),
+		// templateId: state.templates.currentTemplate,
+		buttons: buttonsSelector(state),
 		loading: state.templates.loading
 	}
 }, { addItem, deleteItem, openEditor })(ButtonList)

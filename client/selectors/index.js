@@ -6,6 +6,9 @@ export const currentButtonSelector = state => state.buttons.currentButton;
 export const buttonsMapSelector = state => state.buttons.entities;
 export const buttonsSelector = createSelector(buttonsMapSelector, buttons => buttons.valueSeq().toArray());
 
+export const templatesMapSelector = state => state.templates.entities;
+export const templatesSelector = createSelector(templatesMapSelector, templates => templates.valueSeq().toArray());
+
 // получаем список кнопок
 export const filtratedButtonsSelector = createSelector(buttonsSelector, currentTemplateSelector, (buttons, currentTemplate) => {
 	return buttons.filter(button => button.template === currentTemplate)
@@ -18,13 +21,8 @@ export const filtratedButtonSelector = createSelector(buttonsSelector, currentBu
 });
 
 
-export const templatesMapSelector = state => state.templates.entities;
-export const templatesSelector = createSelector(templatesMapSelector, templates => templates.valueSeq().toArray());
-
 // получаем список темплэйтов
-export const filtratedTemplatesSelector = createSelector(templatesSelector, templates => {
-	return templates
-});
+export const filtratedTemplatesSelector = createSelector(templatesSelector, templates => templates);
 
 // получаем конкретный темплэйт. Используется в EditorContent
 export const filtratedTemplateSelector = createSelector(templatesSelector, currentTemplateSelector, (templates, currentTemplate) => {

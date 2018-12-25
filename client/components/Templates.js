@@ -5,6 +5,8 @@ import {filtratedTemplatesSelector} from '../selectors'
 import Template                     from './Template';
 import Loader                       from './Loader';
 
+import getTemplateSize from './../utils/getTemplateSize'
+
 import {checkAndLoadTemplates, addItem, setCurrentTemplate} from '../AC';
 
 class Templates extends Component {
@@ -24,27 +26,46 @@ class Templates extends Component {
 			return <Loader />;
 		}
 
+		let height = this.getContainerHeight(),
+			size = getTemplateSize(height);
+
 		return templates.length ? (
 			<div
 				ref="container"
 				className='templates'
 			>
+				<div style={{
+					width: `${size.width / 2}px`,
+					height: '32px',
+					flex: '0 0 auto'
+				}}></div>
 				{
 					templates.map(template =>
 						{
-							let height = this.getContainerHeight();
 
 							return <Template
 								className = 'clearfix'
 								template = { template }
-								containerHeight = { height }
+								size = { size }
 								key = { template._id }
-								eventKey = { template._id }
-								active = { currentTemplate ? currentTemplate : templates[0]._id }
+								// eventKey = { template._id }
+								currentTemplate = { currentTemplate ? currentTemplate : templates[0]._id }
 							/>
 						}
 					)
 				}
+				<div
+					className='template type-add'
+					style={{
+						width: `${size.width}px`,
+						height: `${size.height}px`
+					}}
+				>+</div>
+				<div style={{
+					width: `calc(100vw - ${size.height}px)`,
+					height: '32px',
+					flex: '0 0 auto'
+				}}></div>
 			</div>
 		) : <h3>No templates yet</h3>;
 	}

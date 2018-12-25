@@ -3,22 +3,19 @@ import { connect } from 'react-redux'
 
 import FA                          from 'react-fontawesome'
 import styles                      from './styles.scss'
-import { filtratedTemplateSelector } from '../../selectors'
 import { updateItem } from '../../AC'
 
 class ImageUpload extends Component {
 
 	render() {
-		let logotypePicture = this.props.template ?
-			this.props.template.logotypePicture :
-			null,
+		let picture = this.props.picture,
+			preview = null;
 
-			imagePreview = null;
-		
-		if (logotypePicture) {
-			imagePreview = (<img src={logotypePicture}/>);
-		} else {
-			imagePreview = (<FA name="camera-retro" />)
+		if (picture) {
+			preview = (<img src={picture}/>);
+		}
+		else {
+			preview = (<FA name="camera-retro" />)
 		}
 
 		return (
@@ -33,17 +30,17 @@ class ImageUpload extends Component {
 				</form>
 				<div onClick={this.handleClick}
 				     className={
-					     logotypePicture ?
+					     picture ?
 						     styles.logoPreviewWithImg :
 						     styles.logoPreview
 				     }
 				     data-tip={
-					     logotypePicture ?
+					     picture ?
 						     "Выберите другой" :
 						     "Добавьте логотип"
 				     }
 					>
-					{imagePreview}
+					{preview}
 				</div>
 			</div>
 		)
@@ -94,8 +91,8 @@ class ImageUpload extends Component {
 	buttons: state.buttons
 });*/
 
-export default connect(state => {
+export default connect(null/*state => {
 	return {
 		template: filtratedTemplateSelector(state)
 	}
-}, { updateItem })(ImageUpload)
+}*/, { updateItem })(ImageUpload)

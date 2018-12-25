@@ -18,7 +18,7 @@ class Constructor extends Component {
 	}
 
 	render() {
-		let { template } = this.props;
+		// let { template } = this.props;
 
 		return (
 			<div className="content clearfix">
@@ -32,7 +32,7 @@ class Constructor extends Component {
 export default connect(state => {
 	return {
 		isAuthenticate: state.isAuthenticate.auth,
-		template: filtratedTemplateSelector(state),
+		// template: filtratedTemplateSelector(state),
 		editorOpen: state.editor.open
 	}
 }, { isNotAuthenticated })(Constructor);

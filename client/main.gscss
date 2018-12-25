@@ -5,6 +5,7 @@ body {
   padding: 0;
   font-family: Helvetica Neue, SansSerif;
   font-weight: 100;
+  background-color: #edeae5;
 }
 
 h1 {
@@ -16,13 +17,17 @@ button:focus, input:focus {
 }
 
 #root {
-  width: 900px;
+  width: 100%;
   margin: 0 auto;
 }
 
 .header {
   overflow: auto;
   margin-top: 10px;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .header h1 {
@@ -40,6 +45,7 @@ button:focus, input:focus {
 
 .main {
   overflow: auto;
+  padding-top: 96px;
 }
 
 .line {
@@ -65,8 +71,34 @@ button:focus, input:focus {
   height: calc(100vh - 96px);
 }
 
-.wrapper {
+.template {
   position: relative;
+  margin: 34px 32px 0 0;
+  flex: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: box-shadow .3s;
+}
+.template.active, .template:hover {
+  box-shadow: 0 5px 40px rgba(0,0,0,.12);
+}
+.template.active {
+  margin-right: 72px;
+  cursor: default;
+}
+.template.type-add {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+  border: 4px solid #fff;
+  border-radius: 7px;
+  color: #fff;
+  font-size: 80px;
+  font-weight: 700;
+}
+.template.type-add {
+  box-shadow: none;
 }
 
 .wrapper_line_top {
