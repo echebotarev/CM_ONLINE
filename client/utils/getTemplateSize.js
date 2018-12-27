@@ -2,7 +2,7 @@ const MIN_HEIGHT = 268,
 	RELATIVE_HEIGHT_OF_CONTAINER = 0.7,
 	RELATIVE_WIDTH_OF_TEMPLATE = 0.64;
 
-let getTemplateSize = (containerHeight) => {
+let getTemplateSize = containerHeight => {
 	let size = {
 		width: 0,
 		height: 0

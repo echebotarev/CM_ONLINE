@@ -5,27 +5,28 @@ import ImageUpload       from './ImageUpload'
 import ButtonList        from './ButtonList'
 import CustomizationBar  from './CustomizationBar'
 
+import getManageControl from '../utils/getManageControl'
+
 import {setCurrentTemplate, deleteItem, openEditor} from '../AC';
 
 class Template extends Component {
 
 	componentWillMount() {
-		let { setCurrentTemplate } = this.props;
-		console.log('CUR TMP', this.props.currentTemplate);
+		let { setCurrentTemplate, currentTemplate } = this.props;
 
-		if (this.props.currentTemplate) {
-			setCurrentTemplate(this.props.active);
+		if (currentTemplate) {
+			setCurrentTemplate(currentTemplate);
 		}
 	}
 
 	render() {
 		let { template, size } = this.props,
 			backgroundColor = template ? template.backgroundColor : '#fff',
-			className = this.props.currentTemplate === template._id ? 'template active' : "template";
+			isActive = this.props.currentTemplate === template._id;
 
 		return (
 			<div
-				className = { className }
+				className = { isActive ? 'template active' : "template" }
 				key = { this.props.key }
 				onClick = { this.handleClick }
 
@@ -40,17 +41,14 @@ class Template extends Component {
 				/>
 				<ButtonList
 					templateId = { this.props.template._id }
+					isActive = { isActive }
 				/>
 
-				<CustomizationBar />
+				{ getManageControl(<CustomizationBar />, isActive) }
 
 			</div>
 		)
 	}
-
-	getActionActiveTemplate = () => {
-
-	};
 
 	handleClick = () => {
 		let { setCurrentTemplate } = this.props;

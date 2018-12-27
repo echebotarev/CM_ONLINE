@@ -1,13 +1,13 @@
-import React, {Component} from 'react'
-import {connect}          from 'react-redux';
+import React, { Component } from 'react'
+import { connect }          from 'react-redux';
 
-import {filtratedTemplatesSelector} from '../selectors'
+import { filtratedTemplatesSelector } from '../selectors'
 import Template                     from './Template';
 import Loader                       from './Loader';
 
 import getTemplateSize from './../utils/getTemplateSize'
 
-import {checkAndLoadTemplates, addItem, setCurrentTemplate} from '../AC';
+import { checkAndLoadTemplates, addItem, setCurrentTemplate } from '../AC';
 
 class Templates extends Component {
 
@@ -48,15 +48,15 @@ class Templates extends Component {
 								template = { template }
 								size = { size }
 								key = { template._id }
-								// eventKey = { template._id }
 								currentTemplate = { currentTemplate ? currentTemplate : templates[0]._id }
 							/>
 						}
 					)
 				}
 				<div
-					className='template type-add'
-					style={{
+					className = 'template type-add'
+					onClick = { this.handleClick }
+					style = {{
 						width: `${size.width}px`,
 						height: `${size.height}px`
 					}}

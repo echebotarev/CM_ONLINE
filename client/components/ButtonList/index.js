@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import getManageControl from '../../utils/getManageControl'
+
 import { buttonsSelector } from '../../selectors'
-import {addItem, deleteItem, openEditor}      from '../../AC'
+import { addItem, deleteItem, openEditor }      from '../../AC'
 import Button                     from '../Button'
 import Loader                     from '../Loader'
 import FA                         from 'react-fontawesome'
@@ -18,7 +20,7 @@ class ButtonList extends Component {
 	}
 
 	getButtons() {
-		const { buttons, loading, templateId } = this.props;
+		const { buttons, loading, templateId, isActive } = this.props;
 		if (loading) {
 			return <Loader />;
 		}
@@ -34,19 +36,26 @@ class ButtonList extends Component {
 						return (
 							<li key = { button._id }>
 								<Button button = { button } />
-								<FA
-									onClick={ this.openEditor.bind(null, button._id, true) }
-									name="cog"
-								/>
-								<FA
-									onClick={ this.deleteItem.bind(this, button._id) }
-									name="trash"
-								/>
+								{
+									getManageControl(
+										<span>
+												<FA
+													onClick={ this.openEditor.bind(null, button._id, true) }
+													name="cog"
+												/>
+												<FA
+													onClick={ this.deleteItem.bind(this, button._id) }
+													name="trash"
+												/>
+											</span>,
+										isActive
+									)
+								}
 							</li>
 						)
 					}
 				)}
-				<span onClick={ this.addButton } className="addItem">Добавить кнопку</span>
+				{ getManageControl(<span onClick={ this.addButton } className="addItem">Добавить кнопку</span>, isActive) }
 			</ul>
 		) : (
 			<div>
@@ -65,7 +74,7 @@ class ButtonList extends Component {
 		this.props.openEditor('buttons', id, advanced);
 	};
 
-	deleteItem = (id) => {
+	deleteItem = id => {
 		let { deleteItem } = this.props;
 		deleteItem('btn', id);
 	}
