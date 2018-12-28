@@ -82,7 +82,6 @@ class ButtonList extends Component {
 
 export default connect(state => {
 	return {
-		// templateId: state.templates.currentTemplate,
 		buttons: buttonsSelector(state),
 		loading: state.templates.loading
 	}

@@ -198,12 +198,12 @@ span.fa-cog {
 .button {
   position: relative;
   width: 80%;
-  height: 60px;
+  height: 10%;
   background: rgb(56, 153, 236);
-  line-height: 60px;
+  line-height: 6vh;
   color: #fff;
   text-align: center;
-  font-size: 24px;
+  font-size: 3vh;
   margin: 15px auto;
   box-sizing: border-box;
   cursor: pointer;

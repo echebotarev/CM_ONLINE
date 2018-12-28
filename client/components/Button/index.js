@@ -44,11 +44,13 @@ class Button extends Component {
 		let { templatesButton } = this.props.button;
 
 		return <div style = { this.state.style } className = {`${templatesButton} button`}>
-			{ this.getTemplateButton(
-				templatesButton,
-				this.props.button,
-				this.state.style ? this.state.style : {}
-			) }
+			{
+				this.getTemplateButton(
+					templatesButton,
+					this.props.button,
+					this.state.style ? this.state.style : {}
+				)
+			}
 		</div>
 	}
 
@@ -177,7 +179,7 @@ class Button extends Component {
 
 		if (buttonsPreviewEditor[templatesButton].includes('border')) {
 			styles.border = `${inputStyle.borderWidth}px solid ${getRGBA(inputStyle.borderColor, inputStyle.borderOpacity)}`;
-			styles.lineHeight = `${BUTTON_HEIGHT - inputStyle.borderWidth*2}px`;
+			styles.lineHeight = `calc(6vh - ${inputStyle.borderWidth*2}px)`;
 		}
 
 		return styles;
