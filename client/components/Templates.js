@@ -27,7 +27,8 @@ class Templates extends Component {
 		}
 
 		let height = this.getContainerHeight(),
-			size = getTemplateSize(height);
+			size = getTemplateSize(height),
+			isDeleted = templates.length > 1;
 
 		return templates.length ? (
 			<div
@@ -48,6 +49,7 @@ class Templates extends Component {
 								template = { template }
 								size = { size }
 								key = { template._id }
+								isDeleted = { isDeleted }
 								currentTemplate = { currentTemplate ? currentTemplate : templates[0]._id }
 							/>
 						}

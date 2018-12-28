@@ -100,8 +100,4 @@ class ImageUpload extends Component {
 	buttons: state.buttons
 });*/
 
-export default connect(null/*state => {
-	return {
-		template: filtratedTemplateSelector(state)
-	}
-}*/, { updateItem })(ImageUpload)
+export default connect(null, { updateItem })(ImageUpload)

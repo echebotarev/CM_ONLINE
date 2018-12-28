@@ -1,9 +1,10 @@
 import {connect}          from 'react-redux';
 import React, {Component} from 'react'
 
-import ImageUpload       from './ImageUpload'
-import ButtonList        from './ButtonList'
-import CustomizationBar  from './CustomizationBar'
+import ImageUpload      from './ImageUpload'
+import ButtonList       from './ButtonList'
+import CustomizationBar from './CustomizationBar'
+import RemoveButton     from './RemoveButton'
 
 import getManageControl from '../utils/getManageControl'
 
@@ -22,7 +23,8 @@ class Template extends Component {
 	render() {
 		let { template, size } = this.props,
 			backgroundColor = template ? template.backgroundColor : '#fff',
-			isActive = this.props.currentTemplate === template._id;
+			isActive = this.props.currentTemplate === template._id,
+			isDeleted = isActive && this.props.isDeleted;
 
 		return (
 			<div
@@ -36,16 +38,26 @@ class Template extends Component {
 					height: `${size.height}px`
 				}}
 			>
+				{
+					getManageControl(
+						<RemoveButton
+							id = { template._id }
+						/>,
+						isDeleted
+					)
+				}
 				<ImageUpload
-					picture = { this.props.template.logotypePicture }
+					picture = { template.logotypePicture }
 					isActive = { isActive }
 				/>
 				<ButtonList
-					templateId = { this.props.template._id }
+					templateId = { template._id }
 					isActive = { isActive }
 				/>
 
-				{ getManageControl(<CustomizationBar />, isActive) }
+				{
+					getManageControl(<CustomizationBar />, isActive)
+				}
 
 			</div>
 		)
