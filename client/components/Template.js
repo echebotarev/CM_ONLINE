@@ -38,6 +38,7 @@ class Template extends Component {
 			>
 				<ImageUpload
 					picture = { this.props.template.logotypePicture }
+					isActive = { isActive }
 				/>
 				<ButtonList
 					templateId = { this.props.template._id }

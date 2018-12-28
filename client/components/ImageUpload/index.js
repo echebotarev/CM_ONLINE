@@ -21,12 +21,18 @@ class ImageUpload extends Component {
 		return (
 			<div className="previewComponent">
 				<form className="displaynone" onSubmit={(e)=>this.handleSubmit(e)}>
-					<input id="fileInput" className="fileInput"
-					       type="file"
-					       onChange={(e)=>this.handleImageChange(e)} />
-					<button className="submitButton"
-					        type="submit"
-					        onClick={(e)=>this.handleSubmit(e)}>Upload Image</button>
+					<input
+						id="fileInput" className="fileInput"
+						type="file"
+						onChange={(e)=>this.handleImageChange(e)}
+					/>
+					<button
+						className="submitButton"
+						type="submit"
+						onClick={(e)=>this.handleSubmit(e)}
+					>
+						Upload Image
+					</button>
 				</form>
 				<div onClick={this.handleClick}
 				     className={
@@ -47,7 +53,10 @@ class ImageUpload extends Component {
 	}
 
 	handleClick = () => {
-		console.log('YAPPP!');
+		if (!this.props.isActive) {
+			return false;
+		}
+
 		// TODO проверить, чтобы click работал везде
 		document.getElementById('fileInput').click();
 	};
