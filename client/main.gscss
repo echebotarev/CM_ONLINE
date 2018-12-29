@@ -200,10 +200,10 @@ span.fa-cog {
   width: 80%;
   height: 10%;
   background: rgb(56, 153, 236);
-  line-height: 6vh;
+  line-height: 2em;
   color: #fff;
   text-align: center;
-  font-size: 3vh;
+  font-size: 1.1rem;
   margin: 15px auto;
   box-sizing: border-box;
   cursor: pointer;

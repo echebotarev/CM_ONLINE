@@ -179,7 +179,7 @@ class Button extends Component {
 
 		if (buttonsPreviewEditor[templatesButton].includes('border')) {
 			styles.border = `${inputStyle.borderWidth}px solid ${getRGBA(inputStyle.borderColor, inputStyle.borderOpacity)}`;
-			styles.lineHeight = `calc(6vh - ${inputStyle.borderWidth*2}px)`;
+			styles.lineHeight = `calc(2em - ${inputStyle.borderWidth*2}px)`;
 		}
 
 		return styles;
