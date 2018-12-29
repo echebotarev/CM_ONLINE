@@ -41,130 +41,133 @@ class Button extends Component {
 	}
 
 	render() {
-		let { templatesButton } = this.props.button;
+		let { templatesButton } = this.props.button,
+			{ onChange } = this.props;
 
 		return <div style = { this.state.style } className = {`${templatesButton} button`}>
 			{
 				this.getTemplateButton(
 					templatesButton,
 					this.props.button,
-					this.state.style ? this.state.style : {}
+					this.state.style ? this.state.style : {},
+					onChange
 				)
 			}
 		</div>
 	}
 
-	getTemplateButton = (template, data, styles) => {
+	getTemplateButton = (template, data, styles, onChange) => {
 		switch(template) {
 			case 'BasicButton':
 				return <BasicButton
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 
 			case 'ButtonThreeD':
 				return <ButtonThreeD
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 
 			case 'ButtonLiftedShadow':
 				return <ButtonLiftedShadow
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 
 			case 'ShinyButtonInverted':
 				return <ShinyButtonInverted
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 
 			case 'ButtonArrow':
 				return <ButtonArrow
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 
 			case 'ButtonArrowLeft':
 				return <ButtonArrowLeft
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 
 			case 'ButtonInnerShadow':
-				return <ButtonInnerShadow button = { data }
+				return <ButtonInnerShadow
+					button = { data } onChange = { onChange }
 					styles = { styles } />;
 
 			case 'ButtonShadowRight':
 				return <ButtonShadowRight
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 
 			case 'ButtonShadowLeft':
 				return <ButtonShadowLeft
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 
 			case 'TextOnlyButtonSkin':
 				return <TextOnlyButtonSkin
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 
 			case 'ShinyButtonISkin':
 				return <ShinyButtonISkin
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 
 			case 'ShinyButtonIISkin':
 				return <ShinyButtonIISkin
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 
 			case 'RibbonButton':
 				return <RibbonButton
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 
 			case 'CircleButton':
 				return <CircleButton
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 
 			case 'SloopyButton':
 				return <SloopyButton
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 
 			case 'IronButton':
 				return <IronButton
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 
 			case 'GamingButton':
 				return <GamingButton
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 
 			case 'ScotchTapeButton':
 				return <ScotchTapeButton
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 
 			default:
 				return <BasicButton
-					button = { data }
+					button = { data } onChange = { onChange }
 					styles = { styles }
 				/>;
 		}

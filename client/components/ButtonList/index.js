@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import getManageControl from '../../utils/getManageControl'
 
 import { buttonsSelector } from '../../selectors'
-import { addItem, deleteItem, openEditor }      from '../../AC'
+import { addItem, deleteItem, openEditor, updateItem, pureSaveData }      from '../../AC'
 import Button                     from '../Button'
 import Loader                     from '../Loader'
 import FA                         from 'react-fontawesome'
@@ -35,7 +35,10 @@ class ButtonList extends Component {
 
 						return (
 							<li key = { button._id }>
-								<Button button = { button } />
+								<Button
+									button = { button }
+									onChange = { this.handleTextChange }
+								/>
 								{
 									getManageControl(
 										<span>
@@ -77,6 +80,23 @@ class ButtonList extends Component {
 	deleteItem = id => {
 		let { deleteItem } = this.props;
 		deleteItem('btn', id);
+	};
+
+	handleTextChange = (id, value, save) => {
+		if (save) {
+			this.props.pureSaveData({
+				id,
+				type: 'buttons'
+			})
+		}
+		else {
+			this.props.updateItem({
+				id,
+				value,
+				type: 'buttons',
+				name: 'text'
+			})
+		}
 	}
 }
 
@@ -85,4 +105,4 @@ export default connect(state => {
 		buttons: buttonsSelector(state),
 		loading: state.templates.loading
 	}
-}, { addItem, deleteItem, openEditor })(ButtonList)
+}, { addItem, deleteItem, openEditor, updateItem, pureSaveData })(ButtonList)

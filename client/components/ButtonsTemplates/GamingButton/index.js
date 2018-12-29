@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import Input                from "../../Input";
 
 class GamingButton extends Component {
 	render() {
-		let { styles } = this.props,
-			{ text } = this.props.button;
+		let { onChange, styles } = this.props,
+			{ text, _id } = this.props.button;
 
 		return (
 			<div>
@@ -11,7 +12,13 @@ class GamingButton extends Component {
 				<span className="substrate right"></span>
 				<span className="top"></span>
 				<a href="#">
-					<span style={{color: styles.color}}>{ text }</span>
+					<span style={{color: styles.color}}>
+						<Input
+							id = { _id }
+							text = { text }
+							onChange = { onChange }
+						/>
+					</span>
 				</a>
 			</div>
 		)

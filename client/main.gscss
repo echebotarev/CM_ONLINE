@@ -221,6 +221,36 @@ span.fa-cog {
   user-select: none;
   border-radius: 4px;
 }
+.button input {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  outline: none;
+  text-align: inherit;
+  color: inherit;
+  background: transparent;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  z-index: 2;
+}
+.input-text span {
+  position: absolute;
+  border: 1px solid transparent;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  display: flex;
+  top: 0;
+  left: 0;
+  margin: 2px;
+  z-index: 1;
+}
+.input-text:hover span, .input-text.active span {
+  border: 1px solid #9e9e9e;
+  border-radius: 4px;
+  background: #cccccc52;
+}
 
 .BasicButton {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);

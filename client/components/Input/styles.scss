@@ -1,0 +1,11 @@
+.input-text span {
+  position: absolute;
+  border: 1px solid transparent;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  display: flex;
+  top: 0;
+  left: 0;
+  margin: 2px;
+  z-index: 1;
+}
