@@ -7,10 +7,14 @@ import CustomizationBar from './CustomizationBar'
 import RemoveButton     from './RemoveButton'
 
 import getManageControl from '../utils/getManageControl'
+import getScrollWidth from '../utils/getScrollWidth'
 
 import {setCurrentTemplate, deleteItem, openEditor} from '../AC';
 
 class Template extends Component {
+	state = {
+		scrollWidth: 0
+	};
 
 	componentWillMount() {
 		let { setCurrentTemplate, currentTemplate } = this.props;
@@ -20,8 +24,16 @@ class Template extends Component {
 		}
 	}
 
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		let scrollWidth = getScrollWidth(this.refs.wrapper);
+		if (prevState.scrollWidth !== scrollWidth) {
+			this.setState({ scrollWidth: scrollWidth })
+		}
+	}
+
 	render() {
 		let { template, size } = this.props,
+			{ scrollWidth } = this.state,
 			backgroundColor = template ? template.backgroundColor : '#fff',
 			isActive = this.props.currentTemplate === template._id,
 			isDeleted = isActive && this.props.isDeleted;
@@ -38,26 +50,34 @@ class Template extends Component {
 					height: `${size.height}px`
 				}}
 			>
-				{
-					getManageControl(
-						<RemoveButton
-							id = { template._id }
-						/>,
-						isDeleted
-					)
-				}
-				<ImageUpload
-					picture = { template.logotypePicture }
-					isActive = { isActive }
-				/>
-				<ButtonList
-					templateId = { template._id }
-					isActive = { isActive }
-				/>
+				<div className = "content-wrapper">
+					<div
+						className = "wrapper"
+						ref = "wrapper"
+						style = {scrollWidth ? {width: `calc(100% + ${scrollWidth}px)`} : {}}
+					>
+						{
+							getManageControl(
+								<RemoveButton
+									id = { template._id }
+								/>,
+								isDeleted
+							)
+						}
+						<ImageUpload
+							picture = { template.logotypePicture }
+							isActive = { isActive }
+						/>
+						<ButtonList
+							templateId = { template._id }
+							isActive = { isActive }
+						/>
 
-				{
-					getManageControl(<CustomizationBar />, isActive)
-				}
+						{
+							getManageControl(<CustomizationBar />, isActive)
+						}
+					</div>
+				</div>
 
 			</div>
 		)

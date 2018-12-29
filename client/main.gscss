@@ -100,6 +100,17 @@ button:focus, input:focus {
 .template.type-add {
   box-shadow: none;
 }
+.content-wrapper {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+.wrapper {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 100%;
+  width: 107%;
+}
 
 .wrapper_line_top {
   position: absolute;
