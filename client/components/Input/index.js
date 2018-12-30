@@ -13,14 +13,18 @@ class Input extends Component {
 			<div className = { isActive ? 'input-text active' : 'input-text' }>
 				<input
 					type = "text"
-					value = { text }
+					value = { text ? text : '' }
 
 					onChange = { e => onChange(id, e.target.value) }
 
 					onFocus = { this.toggleActiveClassName }
 					onBlur = { e => this.onBlur(e) }
 				/>
-				<span></span>
+				<div>
+					<span className = 'invisible'>
+						{ text }
+					</span>
+				</div>
 			</div>
 		)
 	}

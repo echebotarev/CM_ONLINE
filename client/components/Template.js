@@ -5,11 +5,12 @@ import ImageUpload      from './ImageUpload'
 import ButtonList       from './ButtonList'
 import CustomizationBar from './CustomizationBar'
 import RemoveButton     from './RemoveButton'
+import Input from './Input'
 
 import getManageControl from '../utils/getManageControl'
 import getScrollWidth from '../utils/getScrollWidth'
 
-import {setCurrentTemplate, deleteItem, openEditor} from '../AC';
+import {setCurrentTemplate, deleteItem, openEditor, updateItem, pureSaveData} from '../AC';
 
 class Template extends Component {
 	state = {
@@ -50,20 +51,33 @@ class Template extends Component {
 					height: `${size.height}px`
 				}}
 			>
+				{
+					getManageControl(
+						<Input
+							id = { template._id }
+							text = { template.displayName }
+							onChange = { this.onLinkChange }
+						/>,
+						isActive
+					)
+				}
+				{
+					getManageControl(
+						<RemoveButton
+							id = { template._id }
+						/>,
+						isDeleted
+					)
+				}
+				{
+					getManageControl(<CustomizationBar />, isActive)
+				}
 				<div className = "content-wrapper">
 					<div
 						className = "wrapper"
 						ref = "wrapper"
 						style = {scrollWidth ? {width: `calc(100% + ${scrollWidth}px)`} : {}}
 					>
-						{
-							getManageControl(
-								<RemoveButton
-									id = { template._id }
-								/>,
-								isDeleted
-							)
-						}
 						<ImageUpload
 							picture = { template.logotypePicture }
 							isActive = { isActive }
@@ -72,10 +86,6 @@ class Template extends Component {
 							templateId = { template._id }
 							isActive = { isActive }
 						/>
-
-						{
-							getManageControl(<CustomizationBar />, isActive)
-						}
 					</div>
 				</div>
 
@@ -95,7 +105,24 @@ class Template extends Component {
 
 	openEditor = () => {
 		this.props.openEditor('templates', this.props.template._id);
+	};
+
+	onLinkChange = (id, value, save) => {
+		if (save) {
+			this.props.pureSaveData({
+				id,
+				type: 'templates'
+			})
+		}
+		else {
+			this.props.updateItem({
+				id,
+				value,
+				type: 'templates',
+				name: 'displayName'
+			})
+		}
 	}
 }
 
-export default connect(null, { setCurrentTemplate, deleteItem, openEditor })(Template);
+export default connect(null, { setCurrentTemplate, deleteItem, openEditor, updateItem, pureSaveData })(Template);

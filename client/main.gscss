@@ -221,7 +221,7 @@ span.fa-cog {
   user-select: none;
   border-radius: 4px;
 }
-.button input {
+.input-text input {
   position: relative;
   width: 100%;
   padding: 0;
@@ -236,7 +236,21 @@ span.fa-cog {
   z-index: 2;
   cursor: pointer;
 }
-.input-text span {
+.template > .input-text {
+  position: absolute;
+  top: -38px;
+  padding: 0 5px;
+
+  div {
+    width: auto;
+    padding: 0 3px;
+  }
+
+  input {
+    height: 34px;
+  }
+}
+.input-text div {
   position: absolute;
   border: 1px solid transparent;
   width: calc(100% - 4px);
@@ -250,8 +264,8 @@ span.fa-cog {
 .template.active .button input {
   cursor: auto;
 }
-.template.active .input-text:hover span,
-.template.active  .input-text.active span {
+.template.active .input-text:hover div,
+.template.active  .input-text.active div {
   border: 1px solid #9e9e9e;
   border-radius: 4px;
   background: #cccccc52;
