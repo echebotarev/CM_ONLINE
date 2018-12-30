@@ -34,7 +34,9 @@ class ButtonList extends Component {
 						}
 
 						return (
-							<li key = { button._id }>
+							<li
+								key = { button._id }
+							>
 								<Button
 									button = { button }
 									onChange = { this.handleTextChange }
