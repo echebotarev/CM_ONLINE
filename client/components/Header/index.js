@@ -46,7 +46,7 @@ class Header extends Component {
 				</h1>
 				{
 					this.state.displayName ?
-						<span className = 'link-name'>{ this.state.displayName }.cm.online</span> : ''
+						<span className = 'link-name'>{ this.state.displayName }.{ document.location.host }</span> : ''
 				}
 				{
 					username ?
