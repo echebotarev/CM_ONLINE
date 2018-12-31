@@ -1,6 +1,6 @@
 'use strict';
 
-let setLinkTemplate = (payload) => {
+const setLinkTemplate = payload => {
 	if (
 		typeof payload.displayName === 'undefined' ||
 		typeof payload.link === 'undefined'

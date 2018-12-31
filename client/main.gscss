@@ -28,6 +28,10 @@ button:focus, input:focus {
   position: fixed;
   top: 0;
   left: 0;
+
+  .link-name {
+    margin-left: 10px;
+  }
 }
 
 .header h1 {
