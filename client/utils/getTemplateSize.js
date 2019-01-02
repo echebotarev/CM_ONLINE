@@ -1,6 +1,9 @@
-const MIN_HEIGHT = 268,
+const
+	MIN_HEIGHT = 268,
 	RELATIVE_HEIGHT_OF_CONTAINER = 0.7,
 	RELATIVE_WIDTH_OF_TEMPLATE = 0.64;
+
+let HEIGHT = 0, WIDTH = 0;
 
 let getTemplateSize = containerHeight => {
 	let size = {
@@ -8,7 +11,7 @@ let getTemplateSize = containerHeight => {
 		height: 0
 	};
 
-	if (containerHeight) {
+	if (containerHeight || WIDTH || HEIGHT) {
 		size.height = getHeight(containerHeight);
 		size.width = getWidth(size.height);
 	}
@@ -16,13 +19,22 @@ let getTemplateSize = containerHeight => {
 	return size;
 
 	function getHeight(containerHeight) {
-	    let height = containerHeight * RELATIVE_HEIGHT_OF_CONTAINER;
-	    height = height < MIN_HEIGHT ? MIN_HEIGHT : height;
+		if (HEIGHT) {
+			return HEIGHT;
+		}
 
-	    return height;
+	    HEIGHT = containerHeight * RELATIVE_HEIGHT_OF_CONTAINER;
+		HEIGHT = HEIGHT < MIN_HEIGHT ? MIN_HEIGHT : HEIGHT;
+
+	    return HEIGHT;
 	}
 	function getWidth(templateHeight) {
-	    return templateHeight * RELATIVE_WIDTH_OF_TEMPLATE
+		if (WIDTH) {
+			return WIDTH;
+		}
+
+		WIDTH = templateHeight * RELATIVE_WIDTH_OF_TEMPLATE;
+	    return WIDTH;
 	}
 };
 

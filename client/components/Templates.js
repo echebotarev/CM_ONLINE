@@ -39,7 +39,7 @@ class Templates extends Component {
 					width: `${size.width / 2}px`,
 					height: '32px',
 					flex: '0 0 auto'
-				}}></div>
+				}}>&nbsp;</div>
 				{
 					templates.map(template =>
 						{
@@ -67,7 +67,7 @@ class Templates extends Component {
 					width: `calc(100vw - ${size.height}px)`,
 					height: '32px',
 					flex: '0 0 auto'
-				}}></div>
+				}}>&nbsp;</div>
 			</div>
 		) : <h3>No templates yet</h3>;
 	}
