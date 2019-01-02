@@ -187,10 +187,10 @@ export function authorization(email, password, username) {
     }
 }
 
-export function openEditor(type, id, advanced) {
+export function openEditor(type, id, advanced, coords) {
 	return {
 		type: EDITOR + OPEN,
-		payload: { type, id, advanced }
+		payload: { type, id, advanced, coords }
 	}
 }
 

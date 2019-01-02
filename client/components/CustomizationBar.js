@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 
-import { connect }                 from 'react-redux'
-import { openColorPicker, updateItem, pureSaveData }           from "../AC";
-import { filtratedTemplateSelector } from "../selectors";
+import { connect }                                   from 'react-redux'
+import { openColorPicker, updateItem, pureSaveData, openEditor } from "../AC";
+import { filtratedButtonsSelector, filtratedTemplateSelector , currentButtonSelector }  from "../selectors";
 
 class CustomizationBar extends Component {
 	render() {
+		let { buttons } = this.props;
+
 		return (
 			<div className = "customization-bar">
 				<div className="customization-item">
@@ -15,10 +17,28 @@ class CustomizationBar extends Component {
 						</g>
 					</svg>
 				</div>
+				{ buttons.length ? (
+					buttons.map(button =>
+						{
+							let className = this.props.currentButton === button._id ?
+								"customization-item active" : "customization-item";
+
+							return (
+								<div
+									className = { className }
+									onClick = { e => this.openEditor(e, button._id) }
+									key = { button._id }
+								>
+									<span>Btn</span>
+								</div>
+							)
+						})
+				) :
+					'' }
 				<div
 					className="customization-item"
 					ref="container"
-					onClick={this.onClick}
+					onClick={ this.onClick }
 				>
 					<svg className="customization-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
 						<circle stroke="#000000" strokeWidth="2" fill="#FFFFFF" cx="8" cy="8" r="7"></circle>
@@ -39,6 +59,21 @@ class CustomizationBar extends Component {
 			isGradient: true,
 			callback: this.onChange
 		})
+	};
+
+	openEditor = (e, id) => {
+		const getCoords = target => {
+			let SHIFT = 35,
+				targetCoords = target.getBoundingClientRect(),
+				containerCoords = document.querySelector('.templates').getBoundingClientRect();
+
+			return {
+				top: targetCoords.top,
+				left: targetCoords.left - containerCoords.left + SHIFT
+			}
+		};
+
+		this.props.openEditor('buttons', id, true, getCoords(e.target));
 	};
 
 	onChange = value => {
@@ -63,6 +98,8 @@ class CustomizationBar extends Component {
 export default connect(state => {
 	return {
 		colorPickerIsOpen: state.colorPicker.isOpen,
-		template: filtratedTemplateSelector(state)
+		template: filtratedTemplateSelector(state),
+		buttons: filtratedButtonsSelector(state),
+		currentButton: currentButtonSelector(state)
 	}
-}, { openColorPicker, updateItem, pureSaveData })(CustomizationBar)
+}, { openColorPicker, updateItem, pureSaveData, openEditor })(CustomizationBar)

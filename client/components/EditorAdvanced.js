@@ -6,7 +6,7 @@ import EditorStylePanel from './EditorStylePanel'
 import { content } from "../fixturesEditor"
 
 import { updateItem }            from "../AC"
-import {filtratedButtonSelector} from "../selectors";
+import { filtratedButtonSelector } from "../selectors";
 
 class EditorAdvanced extends Component {
 	state = {
@@ -21,14 +21,12 @@ class EditorAdvanced extends Component {
 	};
 
 	componentDidMount() {
-		console.log('BUTTON', this.props.button);
-
 		let { templatesButton } = this.props.button;
 
 		if (templatesButton) {
 			let count = content.buttonsPreview.indexOf(templatesButton),
 				maxShift = - (this.refs.slider.clientWidth - 288),
-				shift = -(this.state.slider.step * (count - 2));
+				shift = - (this.state.slider.step * (count - 2));
 
 			shift = shift < maxShift ?
 				maxShift :

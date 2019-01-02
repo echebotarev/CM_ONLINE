@@ -635,12 +635,13 @@ span.fa-cog {
 }
 
 .editor {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   display: flex;
+  z-index: 2;
 }
 
 .editor-header {
@@ -661,10 +662,10 @@ span.fa-cog {
 
 .editor-container {
   position: absolute;
-  top: 50%;
-  margin-top: -215px;
-  left: 50%;
-  margin-left: -280px;
+  //top: 50%;
+  //margin-top: -215px;
+  //left: 50%;
+  //margin-left: -280px;
   width: 560px;
   min-height: 433px;
   //margin: auto;
@@ -1397,6 +1398,9 @@ hr.divider-long, hr.divider-short {
   cursor: pointer;
   transition: box-shadow .2s;
 }
+.customization-bar .customization-item span {
+  margin: auto;
+}
 
 .customization-bar .customization-item:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, .1);
@@ -1410,8 +1414,11 @@ hr.divider-long, hr.divider-short {
   bottom: 0;
   left: 0;
   content: "";
-  background-color: #fff;
+  background-color: transparent;
   transition: background-color .2s;
+}
+.customization-bar .customization-item.active:before {
+  background-color: #fff;
 }
 
 .customization-bar .customization-item:hover:before {
@@ -1438,4 +1445,5 @@ hr.divider-long, hr.divider-short {
   display: flex;
   align-items: center;
   min-height: 350px;
+  user-select: none;
 }

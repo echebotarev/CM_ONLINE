@@ -29,6 +29,7 @@ export default (state = defaultState, action) => {
 				open: true,
 				id: payload.id,
 				type: payload.type,
+				coords: payload.coords,
 				advanced: payload.advanced,
 				editableData: null
 			});

@@ -58,8 +58,18 @@ class EditorContainer extends Component {
 						/>
 				}
 				<div className="editor-footer">
-					<div onClick={ this.closeEditor.bind(this, false) } className="btn float-left">Отменить</div>
-					<div onClick={ this.closeEditor.bind(this, true) } className="btn float-right editor-save">Сохранить</div>
+					<div
+						onClick={ this.closeEditor.bind(this, false) }
+						className="btn float-left"
+					>
+						Отменить
+					</div>
+					<div
+						onClick={ this.closeEditor.bind(this, true) }
+						className="btn float-right editor-save"
+					>
+						Сохранить
+					</div>
 				</div>
 			</div>
 		)

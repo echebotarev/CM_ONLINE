@@ -27,7 +27,9 @@ class Editor extends Component {
 		// если пользователь отменит введенные изменения
 		let { type, setEditableData } = this.props;
 
-		if (type === 'buttons') return;
+		if (type === 'buttons') {
+			return false;
+		}
 
 		setEditableData(this.props.template);
 	}
@@ -52,7 +54,7 @@ class Editor extends Component {
 			type = { this.props.type }
 			id = { this.props.id }
 			advanced = { this.props.advanced }
-			position = { this.state.position }
+			position = { this.props.coords }
 			onMouseDown = { this.onMouseDown }
 			onMouseUp = { this.onMouseUp }
 		/>
@@ -110,6 +112,7 @@ export default connect(state => {
 		id: state.editor.id,
 		type: state.editor.type,
 		advanced: state.editor.advanced,
+		coords: state.editor.coords,
 		template: filtratedTemplateSelector(state),
 		button: filtratedButtonSelector(state)
 	}
