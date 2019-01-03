@@ -49,10 +49,6 @@ class CustomizationBar extends Component {
 	}
 
 	onClick = () => {
-
-		console.log('BACK', this.props.template.background);
-		console.log('CALLBACK', this.callback);
-
 		this.props.openColorPicker(true, {
 			currentColor: this.props.template.backgroundColor,
 			rect: this.refs.container.getBoundingClientRect(),
@@ -64,23 +60,18 @@ class CustomizationBar extends Component {
 	openEditor = (e, id) => {
 		const getCoords = target => {
 			let SHIFT = 35,
-				targetCoords = target.getBoundingClientRect(),
-				containerCoords = document.querySelector('.templates').getBoundingClientRect();
+				targetCoords = target.getBoundingClientRect();
 
 			return {
 				top: targetCoords.top,
-				left: targetCoords.left - containerCoords.left + SHIFT
+				left: targetCoords.left + SHIFT
 			}
 		};
 
-		this.props.openEditor('buttons', id, true, getCoords(e.target));
+		this.props.openEditor('buttons', id, true, getCoords(e.target.closest('.customization-item')));
 	};
 
 	onChange = value => {
-		console.log('VALUE 1', value);
-
-		console.log('TMP ID', this.props.template._id);
-
 		let payload = {
 			id: this.props.template._id,
 			type: 'templates',

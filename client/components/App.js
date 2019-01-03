@@ -4,12 +4,13 @@ import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { checkAuthenticate, openColorPicker } from './../AC';
 
-import Header from './Header';
-import MainPage from './routes/MainPage';
-import LoginPage from './routes/LoginPage';
-import LogoutPage from './routes/LogoutPage';
+import Header      from './Header';
+import MainPage    from './routes/MainPage';
+import LoginPage   from './routes/LoginPage';
+import LogoutPage  from './routes/LogoutPage';
 import Constructor from './Constructor';
 
+import Editor from './Editor'
 import ColorPickerCircle from './ColorPickerCircle'
 
 class App extends Component {
@@ -36,6 +37,7 @@ class App extends Component {
 				</Switch>
 				<Tooltip data-type="light"/>
 				{ this.getColorPicker() }
+				{ this.props.editorOpen ? <Editor /> : '' }
 			</div>
 		)
 	}
@@ -66,6 +68,7 @@ class App extends Component {
 export default connect(state => {
 	return {
 		router: state.router,
-		colorPicker: state.colorPicker
+		colorPicker: state.colorPicker,
+		editorOpen: state.editor.open
 	}
 }, { checkAuthenticate, openColorPicker })(App)

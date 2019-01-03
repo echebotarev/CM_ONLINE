@@ -4,7 +4,6 @@ import { isNotAuthenticated } from "../AC";
 import { connect } from "react-redux";
 
 import Templates         from './Templates'
-import Editor            from './Editor'
 
 class Constructor extends Component {
 
@@ -19,7 +18,6 @@ class Constructor extends Component {
 		return (
 			<div className="content clearfix">
 				<Templates />
-				{ this.props.editorOpen ? <Editor /> : '' }
 			</div>
 		)
 	}
@@ -27,7 +25,6 @@ class Constructor extends Component {
 
 export default connect(state => {
 	return {
-		isAuthenticate: state.isAuthenticate.auth,
-		editorOpen: state.editor.open
+		isAuthenticate: state.isAuthenticate.auth
 	}
 }, { isNotAuthenticated })(Constructor);
