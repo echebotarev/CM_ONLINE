@@ -1,26 +1,22 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-import Input from '../../Input/index'
+import Input from "../../Input/index";
 
 class BasicButton extends Component {
-	render() {
-		let { onChange, styles } = this.props,
-			{ text, _id } = this.props.button;
+  render() {
+    let { onChange, styles } = this.props,
+      { text, _id } = this.props.button;
 
-		return (
-			<div>
-				<a href="#">
-					<span style={{color: styles.color}} >
-						<Input
-							id = { _id }
-							text = { text }
-							onChange = { onChange }
-						/>
-					</span>
-				</a>
-			</div>
-		)
-	}
+    return (
+      <div>
+        <a href="#">
+          <span style={{ color: styles.color }}>
+            <Input id={_id} text={text} onChange={onChange} />
+          </span>
+        </a>
+      </div>
+    );
+  }
 }
 
-export default BasicButton
+export default BasicButton;
