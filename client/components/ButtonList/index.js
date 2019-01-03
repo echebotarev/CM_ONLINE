@@ -7,7 +7,6 @@ import { buttonsSelector } from '../../selectors'
 import { addItem, deleteItem, openEditor, updateItem, pureSaveData }      from '../../AC'
 import Button                     from '../Button'
 import Loader                     from '../Loader'
-import FA                         from 'react-fontawesome'
 
 class ButtonList extends Component {
 
@@ -41,21 +40,6 @@ class ButtonList extends Component {
 									button = { button }
 									onChange = { this.handleTextChange }
 								/>
-								{
-									getManageControl(
-										<span>
-												<FA
-													onClick={ this.openEditor.bind(null, button._id, true) }
-													name="cog"
-												/>
-												<FA
-													onClick={ this.deleteItem.bind(this, button._id) }
-													name="trash"
-												/>
-											</span>,
-										isActive
-									)
-								}
 							</li>
 						)
 					}
@@ -73,15 +57,6 @@ class ButtonList extends Component {
 	addButton = () => {
 		let { templateId, addItem } = this.props;
 		addItem('btn', templateId)
-	};
-
-	openEditor = (id, advanced) => {
-		this.props.openEditor('buttons', id, advanced);
-	};
-
-	deleteItem = id => {
-		let { deleteItem } = this.props;
-		deleteItem('btn', id);
 	};
 
 	handleTextChange = (id, value, save) => {

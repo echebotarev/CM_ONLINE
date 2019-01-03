@@ -771,7 +771,7 @@ ul.editor-nav {
   height: 68px;
   width: 100%;
   overflow: hidden;
-  margin-bottom: 15px;
+  //margin-bottom: 15px;
 }
 
 .slider {
@@ -884,8 +884,8 @@ ul.editor-nav {
   position: relative;
   width: 100%;
   display: inline-block;
-  height: 48px;
-  line-height: 48px;
+  height: 61px;
+  line-height: 37px;
 }
 
 .control-tabs-vertical input:not(:checked) + span:hover {
@@ -927,7 +927,8 @@ hr.divider-long, hr.divider-short {
   position: absolute;
   left: 48px;
   //width: calc(100% - 72px);
-  line-height: 48px;
+  //line-height: 48px;
+  margin-top: 10px;
   padding-left: 24px;
   font-weight: 500;
   color: #2b5672;
@@ -964,7 +965,7 @@ hr.divider-long, hr.divider-short {
 }
 
 .style-panel-container {
-  height: 172px;
+  height: 186px;
 }
 
 .color-picker-input-with-opacity {
@@ -972,15 +973,15 @@ hr.divider-long, hr.divider-short {
 }
 
 .style-panel-container .input-slider {
-  margin: 10px 24px 7px;
+  margin: 5px 24px 7px;
 }
 
 .style-panel-container .color-picker-input-with-opacity {
-  margin: 15px 24px 0 24px;
+  margin: 5px 24px 0 24px;
 }
 
 .style-panel-container .color-picker-input-with-opacity .input-slider {
-  margin: 0 30px 8px 0;
+  margin: 0 30px 3px 0;
 }
 
 .style-panel-container .color-picker-input-with-opacity-slider .input-slider .slider-style-advanced {

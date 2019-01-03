@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import EditorBasic from './EditorBasic'
 import EditorAdvanced from './EditorAdvanced'
+import Input from './Input'
 
 import { openColorPicker, deleteItem } from '../AC'
 
@@ -33,11 +34,6 @@ class EditorContainer extends Component {
 								'Настройка шаблона' :
 								'Настройка кнопки'
 						}
-					</div>
-					<div className="editor-close">
-						<svg width="25" height="25" viewBox="0 0 25 25">
-							<path d="M11.793 12.5L8.146 8.854 7.793 8.5l.707-.707.354.353 3.646 3.647 3.646-3.647.354-.353.707.707-.353.354-3.647 3.646 3.647 3.646.353.354-.707.707-.354-.353-3.646-3.647-3.646 3.647-.354.353-.707-.707.353-.354 3.647-3.646z"></path>
-						</svg>
 					</div>
 				</div>
 				{
