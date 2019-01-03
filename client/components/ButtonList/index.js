@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { buttonsSelector } from '../../selectors'
+import { buttonsSelector, filtratedButtonSelector } from '../../selectors'
 import { deleteItem, openEditor, updateItem, pureSaveData }      from '../../AC'
 import Button                     from '../Button'
 import Loader                     from '../Loader'
@@ -17,7 +17,7 @@ class ButtonList extends Component {
 	}
 
 	getButtons() {
-		const { buttons, loading, templateId } = this.props;
+		const { buttons, loading, templateId, isActive, currentButton } = this.props;
 		if (loading) {
 			return <Loader />;
 		}
@@ -30,9 +30,15 @@ class ButtonList extends Component {
 							return '';
 						}
 
+						let isEditing = false;
+						if (currentButton) {
+							isEditing = isActive && currentButton._id === button._id;
+						}
+
 						return (
 							<li
 								key = { button._id }
+								className = { isEditing ? 'editing' : '' }
 							>
 								<Button
 									button = { button }
@@ -70,6 +76,7 @@ class ButtonList extends Component {
 
 export default connect(state => {
 	return {
+		currentButton: filtratedButtonSelector(state),
 		buttons: buttonsSelector(state),
 		loading: state.templates.loading
 	}
