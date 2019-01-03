@@ -5,6 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
+    "start": "export NODE_ENV=production&& webpack && babel-node server.js",
     "build-dev": "export NODE_ENV=development&& babel-node server.js",
     "build-debug": "export NODE_ENV=development&& babel-node --inspect server.js",
     "build-prod": "export NODE_ENV=production&& webpack && babel-node server.js",
