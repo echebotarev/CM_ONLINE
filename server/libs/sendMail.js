@@ -1,111 +1,122 @@
-'use strict';
+"use strict";
 
-import config from '../../conf/index';
-const juice = require('juice');
-const fs = require('fs');
-const path = require('path');
-const AWS = require('aws-sdk');
-const pug = require('pug');
-const Letter = require('../model/letter');
+import config from "../../conf/index";
+const juice = require("juice");
+const fs = require("fs");
+const path = require("path");
+const AWS = require("aws-sdk");
+const pug = require("pug");
+const Letter = require("../model/letter");
 
-const nodemailer = require('nodemailer');
-const htmlToText = require('nodemailer-html-to-text').htmlToText;
-const SesTransport = require('nodemailer-ses-transport');
-const SendGridTransport = require('nodemailer-sendgrid-transport');
+const nodemailer = require("nodemailer");
+const htmlToText = require("nodemailer-html-to-text").htmlToText;
+const SesTransport = require("nodemailer-ses-transport");
+const SendGridTransport = require("nodemailer-sendgrid-transport");
 
 // configure gmail: https://nodemailer.com/using-gmail/
 // allow less secure apps
-const SMTPTransport = require('nodemailer-smtp-transport');
+const SMTPTransport = require("nodemailer-smtp-transport");
 
-const Transport = config.get('mailer:transport') === 'aws' ?
-	SesTransport :
-	config.get('mailer:transport') === 'gmail' ?
-		SMTPTransport : SendGridTransport;
+const Transport =
+  config.get("mailer:transport") === "aws"
+    ? SesTransport
+    : config.get("mailer:transport") === "gmail"
+    ? SMTPTransport
+    : SendGridTransport;
 
-let options = config.get('mailer:transport') === 'aws' ?
-	{
-		ses: new AWS.SES(),
-		rateLimit: 50
-	} :
-	config.get('mailer:transport') === 'gmail' ?
-		{
-			service: "Gmail",
-			port: 587,
-			debug: true,
-			auth: {
-				user: config.get('mailer:gmail:user'),
-				pass: config.get('mailer:gmail:password')
-			}
-		} :
-		{
-			auth: {
-				api_user: config.get('mailer:sendGrid:user'),
-				api_key: config.get('mailer:sendGrid:password'),
-			}
-		};
+let options =
+  config.get("mailer:transport") === "aws"
+    ? {
+        ses: new AWS.SES(),
+        rateLimit: 50
+      }
+    : config.get("mailer:transport") === "gmail"
+    ? {
+        service: "Gmail",
+        port: 587,
+        debug: true,
+        auth: {
+          user: config.get("mailer:gmail:user"),
+          pass: config.get("mailer:gmail:password")
+        }
+      }
+    : {
+        auth: {
+          api_user: config.get("mailer:sendGrid:user"),
+          api_key: config.get("mailer:sendGrid:password")
+        }
+      };
 
 const transportEngine = new Transport(options);
 
 const transport = nodemailer.createTransport(transportEngine);
 
-transport.use('compile', htmlToText());
+transport.use("compile", htmlToText());
 
 module.exports = function(options) {
-	let message = {
-		from: 'awesome@bar.com',
-		to: '9111721308@mail.ru',
-		subject: 'Hello',
-		html: '<b>Hello world</b>'
-	};
+  let message = {
+    from: "awesome@bar.com",
+    to: "9111721308@mail.ru",
+    subject: "Hello",
+    html: "<b>Hello world</b>"
+  };
 
-	let sender = config.get('mailer:senders')[options.from || 'default'];
-	if (!sender) {
-		throw new Error("Unknown sender:" + options.from);
-	}
+  let sender = config.get("mailer:senders")[options.from || "default"];
+  if (!sender) {
+    throw new Error("Unknown sender:" + options.from);
+  }
 
-	message.from = sender.fromEmail;
+  message.from = sender.fromEmail;
 
-	// for template
-	let locals = Object.create(options);
+  // for template
+  let locals = Object.create(options);
 
-	locals.config = config;
-	locals.sender = sender;
+  locals.config = config;
+  locals.sender = sender;
 
-	message.html  =
-		pug.renderFile(path.join(config.get('root_path'), 'server/templates/email', options.template) + '.pug', locals);
-	message.html  = juice(message.html);
+  message.html = pug.renderFile(
+    path.join(
+      config.get("root_path"),
+      "server/templates/email",
+      options.template
+    ) + ".pug",
+    locals
+  );
+  message.html = juice(message.html);
 
+  message.to =
+    typeof options.to === "string" ? { address: options.to } : options.to;
 
-	message.to = (typeof options.to === 'string') ? {address: options.to} : options.to;
+  if (process.env.MAILER_REDIRECT) {
+    // for debugging
+    message.to = { address: sender.fromEmail };
+  }
 
-	if (process.env.MAILER_REDIRECT) { // for debugging
-		message.to = {address: sender.fromEmail};
-	}
+  if (!message.to.address) {
+    throw new Error(
+      "No email for recepient, message options:" + JSON.stringify(options)
+    );
+  }
 
-	if (!message.to.address) {
-		throw new Error("No email for recepient, message options:" + JSON.stringify(options));
-	}
+  message.subject = options.subject;
 
-	message.subject = options.subject;
+  message.headers = options.headers;
 
-	message.headers = options.headers;
+  let transportResponse = transport.sendMail(message, function(error, info) {
+    if (error) {
+      console.log("Error occured");
+      console.log(error.message);
+      return;
+    }
 
-	let transportResponse = transport.sendMail(message, function (error, info) {
-		if (error) {
-			console.log('Error occured');
-			console.log(error.message);
-			return;
-		}
+    console.log("INFO", info);
 
-		console.log('INFO', info);
+    Letter.create({
+      message,
+      info,
+      messageId: info.messageId //.replace(/@email.amazonses.com$/, '')
+    });
+  });
 
-		Letter.create({
-			message,
-			info,
-			messageId: info.messageId //.replace(/@email.amazonses.com$/, '')
-		});
-
-	});
-
-	// return letter;
+  // return letter;
 };
