@@ -225,6 +225,15 @@ span.fa-cog {
   user-select: none;
   border-radius: 4px;
 }
+.input-messengers {
+  display: flex;
+}
+.input-messengers .input-text {
+  padding: 0 8px;
+}
+.input-messengers .input-text div {
+  width: auto;
+}
 .input-text input {
   position: relative;
   width: 100%;
@@ -645,19 +654,21 @@ span.fa-cog {
 }
 
 .editor-header {
-  background-color: #3899ec;
-  height: 54px;
-  min-height: 54px;
+  //background-color: #3899ec;
+  //height: 54px;
+  //min-height: 54px;
   box-sizing: border-box;
   position: relative;
   width: 100%;
   //border-top-left-radius: 8px;
   //border-top-right-radius: 8px;
-  cursor: move;
+  //cursor: move;
 }
 
 .editor-name {
-  pointer-events: none;
+  //pointer-events: none;
+  margin: 8px 8px 0;
+  background-color: #f0f0f0;
 }
 
 .editor-container {

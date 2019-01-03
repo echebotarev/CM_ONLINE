@@ -6,7 +6,7 @@ class Input extends Component {
 	};
 
 	render() {
-		let { text, onChange, id } = this.props,
+		let { text, placeholder, onChange, id } = this.props,
 			{ isActive } = this.state;
 
 		return (
@@ -14,6 +14,7 @@ class Input extends Component {
 				<input
 					type = "text"
 					value = { text ? text : '' }
+					placeholder = { placeholder ? placeholder : '' }
 
 					onChange = { e => onChange(id, e.target.value) }
 

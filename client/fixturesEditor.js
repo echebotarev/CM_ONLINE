@@ -166,5 +166,28 @@ export const content = {
 		"ScotchTapeButton": [
 			"text"
 		]
-	}
+	},
+	messengers: [
+		{
+			displayName: "Telegram",
+			value: "Telegram"
+		},
+		{
+			displayName: "Вконтакте",
+			value: "VK"
+		},
+		{
+			displayName: "Whatsapp",
+			value: "Whatsapp"
+		},
+		{
+			displayName: "Email",
+			value: "Email"
+		},
+		{
+			displayName:"Телефон",
+			value: "Phone"
+		}
+
+	]
 };

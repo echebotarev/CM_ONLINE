@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import EditorBasic from './EditorBasic'
 import EditorAdvanced from './EditorAdvanced'
-import Input from './Input'
+import InputMessengers from './InputMessengers'
 
 import { openColorPicker, deleteItem } from '../AC'
 
@@ -29,11 +29,7 @@ class EditorContainer extends Component {
 					className="editor-header"
 				>
 					<div className="editor-name">
-						{
-							type === 'templates' ?
-								'Настройка шаблона' :
-								'Настройка кнопки'
-						}
+						<InputMessengers />
 					</div>
 				</div>
 				{
