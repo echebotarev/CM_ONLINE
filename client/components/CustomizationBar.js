@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { connect }                                   from 'react-redux'
-import { openColorPicker, updateItem, pureSaveData, openEditor } from "../AC";
+import { openColorPicker, updateItem, addItem, pureSaveData, openEditor } from "../AC";
 import { filtratedButtonsSelector, filtratedTemplateSelector , currentButtonSelector }  from "../selectors";
 
 class CustomizationBar extends Component {
@@ -10,7 +10,10 @@ class CustomizationBar extends Component {
 
 		return (
 			<div className = "customization-bar">
-				<div className="customization-item">
+				<div
+					className="customization-item"
+					onClick = { this.addButton }
+				>
 					<svg className="customization-icon" viewBox="0 0 17 18" xmlns="http://www.w3.org/2000/svg">
 						<g fill="none" fillRule="evenodd">
 							<path d="m33 29.478v-7h-3v7h-7v3h7v7h3v-7h7v-3h-7" transform="translate(-23-22)" fill="#000"></path>
@@ -57,6 +60,11 @@ class CustomizationBar extends Component {
 		})
 	};
 
+	addButton = () => {
+		let { template, addItem } = this.props;
+		addItem('btn', template._id)
+	};
+
 	openEditor = (e, id) => {
 		const getCoords = target => {
 			let SHIFT = 35,
@@ -93,4 +101,4 @@ export default connect(state => {
 		buttons: filtratedButtonsSelector(state),
 		currentButton: currentButtonSelector(state)
 	}
-}, { openColorPicker, updateItem, pureSaveData, openEditor })(CustomizationBar)
+}, { openColorPicker, updateItem, addItem, pureSaveData, openEditor })(CustomizationBar)
