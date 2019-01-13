@@ -35,8 +35,6 @@ export default (state = defaultState, action) => {
 			});
 
 		case EDITOR + CLOSE:
-		case SAVE + TEMPLATE + SUCCESS:
-		case SAVE + BUTTON + SUCCESS:
 			return Object.assign({}, {
 				open: false,
 				id: null,

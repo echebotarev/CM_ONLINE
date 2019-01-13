@@ -86,7 +86,13 @@ class Template extends Component {
   }
 
   handleClick = () => {
-    let { setCurrentTemplate } = this.props;
+    let { setCurrentTemplate, currentTemplate } = this.props,
+        { _id: id } = this.props.template;
+
+    if (currentTemplate === id) {
+      return false;
+    }
+
     setCurrentTemplate(this.props.template._id);
   };
 
