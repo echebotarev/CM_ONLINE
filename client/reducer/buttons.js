@@ -1,119 +1,139 @@
 import {
-	ADD_BUTTON,
-	DELETE_BUTTON,
-	LOAD_TEMPLATES,
-	DELETE_TEMPLATE,
-	LOGOUT,
-	START, SUCCESS,
-	FAIL,
-	GET_EDITABLE,
-	BUTTON,
-	EDITOR,
-	OPEN,
-	CLOSE, TEMPLATE, UPDATE, RETURN
-} from '../constants'
-import { arrToMap } from './utils'
-import { Record } from 'immutable'
+  ADD_BUTTON,
+  DELETE_BUTTON,
+  LOAD_TEMPLATES,
+  DELETE_TEMPLATE,
+  LOGOUT,
+  START,
+  SUCCESS,
+  FAIL,
+  GET_EDITABLE,
+  BUTTON,
+  EDITOR,
+  OPEN,
+  CLOSE,
+  TEMPLATE,
+  UPDATE,
+  RETURN
+} from "../constants";
+import { arrToMap } from "./utils";
+import { Record } from "immutable";
 
 const ButtonStyleRecord = Record({
-	backgroundColor: null,
-	backgroundOpacity: null,
+  backgroundColor: null,
+  backgroundOpacity: null,
 
-	textColor: null,
-	textOpacity: null,
+  textColor: null,
+  textOpacity: null,
 
-	padding: null,
-	fontSize: null,
-	textAlign: null,
-	boxShadow: null,
+  padding: null,
+  fontSize: null,
+  textAlign: null,
+  boxShadow: null,
 
-	borderRadius: null,
-	borderColor: null,
-	borderWidth: null,
-	borderOpacity: null
+  borderRadius: null,
+  borderColor: null,
+  borderWidth: null,
+  borderOpacity: null
 });
 
 const ButtonRecord = Record({
-	_id: null,
-	type: null,
-	text: null,
-	link: null,
-	style: ButtonStyleRecord,
-	template: null,
-	templatesButton: 'BasicButton'
+  _id: null,
+  type: null,
+  text: null,
+  link: null,
+  style: ButtonStyleRecord,
+  template: null,
+  templatesButton: "BasicButton"
 });
 
 const ReducerRecord = Record({
-	entities: arrToMap([], ButtonRecord, ButtonStyleRecord),
-	loading: false,
-	loaded: false,
-	creating: false,
-	deleting: false,
-	currentButton: null
+  entities: arrToMap([], ButtonRecord, ButtonStyleRecord),
+  loading: false,
+  loaded: false,
+  creating: false,
+  deleting: false,
+  currentButton: null
 });
 
 const defaultState = new ReducerRecord();
 
 export default (state = defaultState, action) => {
-	const { type, payload, response } = action;
+  const { type, payload, response } = action;
 
-	switch (type) {
-		case GET_EDITABLE + BUTTON:
-			return state.getIn(['entities', payload.id]);
+  switch (type) {
+    case GET_EDITABLE + BUTTON:
+      return state.getIn(["entities", payload.id]);
 
-		case ADD_BUTTON + START:
-			return state.setIn(['creating'], true);
+    case ADD_BUTTON + START:
+      return state.setIn(["creating"], true);
 
-		case ADD_BUTTON + SUCCESS:
-			return state
-				.setIn(['creating'], false)
-				.updateIn(['entities'], entities => entities.concat(arrToMap([payload.response], ButtonRecord, ButtonStyleRecord)));
+    case ADD_BUTTON + SUCCESS:
+      return state
+        .setIn(["creating"], false)
+        .updateIn(["entities"], entities =>
+          entities.concat(
+            arrToMap([payload.response], ButtonRecord, ButtonStyleRecord)
+          )
+        );
 
-		case UPDATE + BUTTON:
-			return payload.style ?
-				state.updateIn(['entities', payload.id, 'style', payload.name], () => payload.value) :
-				state.updateIn(['entities', payload.id, payload.name], () => payload.value);
+    case UPDATE + BUTTON:
+      return payload.style
+        ? state.updateIn(
+            ["entities", payload.id, "style", payload.name],
+            () => payload.value
+          )
+        : state.updateIn(
+            ["entities", payload.id, payload.name],
+            () => payload.value
+          );
 
-		case RETURN + BUTTON:
-			return state
-				.updateIn(['entities', payload.id], () => payload.editableData);
+    case RETURN + BUTTON:
+      return state.updateIn(
+        ["entities", payload.id],
+        () => payload.editableData
+      );
 
-		case DELETE_BUTTON + START:
-			return state.setIn(['deleting'], true);
+    case DELETE_BUTTON + START:
+      return state.setIn(["deleting"], true);
 
-		case DELETE_BUTTON + SUCCESS:
-			return state
-				.setIn(['deleting'], false)
-				.removeIn(['entities', payload.response.id]);
+    case DELETE_BUTTON + SUCCESS:
+      return state
+        .setIn(["deleting"], false)
+        .removeIn(["entities", payload.response.id]);
 
-		case DELETE_TEMPLATE + SUCCESS:
-			return state
-				.updateIn(['entities'], entities => entities.filter(button => button.template !== payload.response.id));
+    case DELETE_TEMPLATE + SUCCESS:
+      return state.updateIn(["entities"], entities =>
+        entities.filter(button => button.template !== payload.response.id)
+      );
 
-		case LOAD_TEMPLATES + START:
-			return state.setIn(['loading'], true);
+    case LOAD_TEMPLATES + START:
+      return state.setIn(["loading"], true);
 
-		case LOAD_TEMPLATES + SUCCESS:
-			return state
-				.setIn(['loading'], false)
-				.setIn(['loaded'], true)
-				.setIn(['entities'], arrToMap(payload.response.buttons, ButtonRecord, ButtonStyleRecord));
+    case LOAD_TEMPLATES + SUCCESS:
+      return state
+        .setIn(["loading"], false)
+        .setIn(["loaded"], true)
+        .setIn(
+          ["entities"],
+          arrToMap(payload.response.buttons, ButtonRecord, ButtonStyleRecord)
+        );
 
-		case LOAD_TEMPLATES + FAIL:
-			return;
+    case LOAD_TEMPLATES + FAIL:
+      return;
 
-		case LOGOUT + SUCCESS:
-			return state
-				.setIn(['loading'], false)
-				.setIn(['loaded'], false)
-				.setIn(['entities'], arrToMap([], ButtonRecord));
+    case LOGOUT + SUCCESS:
+      return state
+        .setIn(["loading"], false)
+        .setIn(["loaded"], false)
+        .setIn(["entities"], arrToMap([], ButtonRecord));
 
-		case EDITOR + OPEN:
-			return state.setIn(['currentButton'], payload.id);
+    case EDITOR + OPEN:
+      return state.setIn(["currentButton"], payload.id);
 
-		case EDITOR + CLOSE:
-			return state.setIn(['currentButton'], null);
-	}
+    case EDITOR + CLOSE:
+      return state.setIn(["currentButton"], null);
+  }
 
-	return state
-}
+  return state;
+};

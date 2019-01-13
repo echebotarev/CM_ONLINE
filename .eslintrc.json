@@ -1,5 +1,10 @@
 {
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "react"],
+  "parser": "babel-eslint",
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true
+  },
   "rules": {
     "prettier/prettier": "error"
   }
