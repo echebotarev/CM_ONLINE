@@ -67,6 +67,10 @@ class ImageUpload extends Component {
     let reader = new FileReader();
     let file = e.target.files[0];
 
+    if (!file) {
+      return false;
+    }
+
     let { updateItem, pureSaveData, currentTemplate: {_id: id} } = this.props,
       type = "templates",
       name = "logotypePicture";
@@ -74,12 +78,6 @@ class ImageUpload extends Component {
     console.log('ID', id);
 
     reader.onloadend = () => {
-      console.log("reader", reader);
-      console.log("target", file);
-
-      // this.setState({
-      // 	logotypePicture: reader.result
-      // });
       updateItem({
         id,
         type,
