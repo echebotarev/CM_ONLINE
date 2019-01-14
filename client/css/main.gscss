@@ -1,4 +1,4 @@
-@import './fonts/font-awesome/scss/font-awesome.scss';
+@import 'fonts/font-awesome/scss/font-awesome';
 
 body {
   margin: 0;
@@ -112,10 +112,10 @@ button:focus, input:focus {
   overflow-x: hidden;
   overflow-y: scroll;
   height: 100%;
-  width: calc(100% + 14px);
+  width: calc(100% + 16px);
 }
 .previewComponent, .buttons {
-  width: calc(100% - 14px);
+  width: calc(100% - 16px);
 }
 
 .wrapper_line_top {
@@ -1196,7 +1196,7 @@ hr.divider-long, hr.divider-short {
   height: 36px;
   line-height: 36px;
   padding: 0 7px;
-  width: calc(100% - 14px);
+  width: calc(100% - 16px);
   display: inline-block;
   color: #162d3d;
   box-sizing: unset;
