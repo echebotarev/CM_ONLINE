@@ -8,7 +8,6 @@ import RemoveButton from "./RemoveButton";
 import Input from "./Input";
 
 import getManageControl from "../utils/getManageControl";
-import getScrollWidth from "../utils/getScrollWidth";
 
 import {
   setCurrentTemplate,
@@ -19,10 +18,6 @@ import {
 } from "../AC";
 
 class Template extends Component {
-  state = {
-    scrollWidth: 0
-  };
-
   componentWillMount() {
     let { setCurrentTemplate, currentTemplate } = this.props;
 
@@ -31,16 +26,8 @@ class Template extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    let scrollWidth = getScrollWidth(this.refs.wrapper);
-    if (prevState.scrollWidth !== scrollWidth) {
-      this.setState({ scrollWidth: scrollWidth });
-    }
-  }
-
   render() {
     let { template, size } = this.props,
-      { scrollWidth } = this.state,
       backgroundColor = template ? template.backgroundColor : "#fff",
       isActive = this.props.currentTemplate === template._id,
       isDeleted = isActive && this.props.isDeleted;
@@ -67,13 +54,7 @@ class Template extends Component {
         {getManageControl(<RemoveButton id={template._id} />, isDeleted)}
         {getManageControl(<CustomizationBar />, isActive)}
         <div className="content-wrapper">
-          <div
-            className="wrapper"
-            ref="wrapper"
-            style={
-              scrollWidth ? { width: `calc(100% + ${scrollWidth}px)` } : {}
-            }
-          >
+          <div className="wrapper">
             <ImageUpload
               picture={template.logotypePicture}
               isActive={isActive}

@@ -113,7 +113,10 @@ button:focus, input:focus {
   overflow-x: hidden;
   overflow-y: scroll;
   height: 100%;
-  width: 107%;
+  width: calc(100% + 14px);
+}
+.previewComponent, .buttons {
+  width: calc(100% - 14px);
 }
 
 .wrapper_line_top {
