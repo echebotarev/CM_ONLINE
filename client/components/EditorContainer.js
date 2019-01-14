@@ -1,72 +1,62 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import EditorBasic from './EditorBasic'
-import EditorAdvanced from './EditorAdvanced'
-import InputMessengers from './InputMessengers'
+import EditorBasic from "./EditorBasic";
+import EditorAdvanced from "./EditorAdvanced";
+import InputMessengers from "./InputMessengers";
 
-import { openColorPicker, deleteItem } from '../AC'
+import { openColorPicker, deleteItem } from "../AC";
 
 class EditorContainer extends Component {
-	state = {
-		currentTab: 0
-	};
+  state = {
+    currentTab: 0
+  };
 
-	render() {
-		let {
-			id,
-			type,
-			position,
-			advanced
-		} = this.props;
+  render() {
+    let { id, type, position, advanced } = this.props;
 
-		return (
-			<div
-				style={ position }
-				className={ advanced ? "editor-container advanced" : "editor-container" }
-			>
-				<div
-					className="editor-header"
-				>
-					<div className="editor-name">
-						<InputMessengers />
-					</div>
-				</div>
-				{
-					advanced ?
-						<EditorAdvanced
-							id = { id }
-							type = { type }
-						/> :
-						<EditorBasic
-							id = { id }
-							type = { type }
-							currentTab = { this.state.currentTab }
-							switchTabs = { this.switchTabs }
-						/>
-				}
-				<div className="editor-footer">
-					<button
-						className = 'delete-item'
-						onClick = { () => this.deleteItem(id) }
-					>
-						Delete
-					</button>
-				</div>
-			</div>
-		)
-	}
+    return (
+      <div
+        style={position}
+        className={advanced ? "editor-container advanced" : "editor-container"}
+      >
+        <div className="editor-header">
+          <div className="editor-name">
+            <InputMessengers />
+          </div>
+        </div>
+        {advanced ? (
+          <EditorAdvanced id={id} type={type} />
+        ) : (
+          <EditorBasic
+            id={id}
+            type={type}
+            currentTab={this.state.currentTab}
+            switchTabs={this.switchTabs}
+          />
+        )}
+        <div className="editor-footer">
+          <button className="delete-item" onClick={() => this.deleteItem(id)}>
+            Delete
+          </button>
+        </div>
+      </div>
+    );
+  }
 
-	deleteItem = id => {
-		let { deleteItem } = this.props;
-		deleteItem('btn', id);
-	};
+  deleteItem = id => {
+    let { deleteItem } = this.props;
+    deleteItem("btn", id);
+  };
 
-	switchTabs = (index) => {
-		this.setState({
-			currentTab: index
-		})
-	}
+  switchTabs = index => {
+    this.setState({
+      currentTab: index
+    });
+  };
 }
 
-export default connect(null, { openColorPicker, deleteItem })(EditorContainer)
+export default connect(
+  null,
+  { openColorPicker, deleteItem }
+)(EditorContainer);
