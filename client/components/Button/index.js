@@ -183,7 +183,10 @@ class Button extends Component {
         inputStyle.backgroundColor,
         inputStyle.backgroundOpacity
       ),
-      color: getRGBA(inputStyle.textColor, inputStyle.textOpacity)
+      color: getRGBA(
+        inputStyle.textColor,
+        inputStyle.textOpacity
+      )
     };
 
     if (buttonsPreviewEditor[templatesButton].includes("border")) {

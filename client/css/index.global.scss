@@ -333,13 +333,13 @@ span.fa-cog {
   overflow: hidden;
   background: none !important;
 
-  a {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
+  //a {
+  //  position: absolute;
+  //  top: 0;
+  //  right: 0;
+  //  bottom: 0;
+  //  left: 0;
+  //}
 
   .border {
     //border-left: 0 !important;
@@ -452,13 +452,13 @@ span.fa-cog {
 .RibbonButton {
   background: none !important;
 
-  a {
+  /*a {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-  }
+  }*/
 
   .body {
     position: absolute;
@@ -567,7 +567,6 @@ span.fa-cog {
   border: solid #000 2px;
   box-shadow: rgba(255, 255, 255, 0.3) 0 3px 6px 0 inset, rgba(0, 0, 0, 0.6) -2px -3px 6px 0 inset, rgba(0, 0, 0, 0.6) 1px 1px 6px 1px, rgba(255, 255, 255, 0.3) 1px 1px 3px 0;
   border-radius: 12px !important;
-  line-height: 56px !important;
 
   .substrate {
     background-position: 0 center;
@@ -625,7 +624,7 @@ span.fa-cog {
     right: -7px;
   }
 
-  :before, :after {
+  a:before, a:after {
     border-bottom: solid 1px rgba(255, 255, 255, 0.12);
     content: '';
     display: block;
@@ -635,11 +634,11 @@ span.fa-cog {
     right: 1px;
   }
 
-  :before {
+  a:before {
     top: -7px;
   }
 
-  :after {
+  a:after {
     bottom: 0;
   }
 }
@@ -656,6 +655,7 @@ span.fa-cog {
   height: 100%;
   top: 0;
   left: 0;
+  z-index: 1000;
 }
 
 .editor-header {
