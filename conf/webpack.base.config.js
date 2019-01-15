@@ -23,7 +23,7 @@ export default new Config().merge({
             loader: "file-loader",
             options: {
               name: "[name].[ext]",
-              // путь прописан относительно ~client/main.gscss
+              // путь прописан относительно ~client/css/main.global.scss
               // нашел путем брутфорса
               outputPath: "/../public/fonts/fonts"
             }

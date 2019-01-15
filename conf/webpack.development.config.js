@@ -14,33 +14,7 @@ export default new Config().extend("conf/webpack.base.config.js").merge({
   module: {
     loaders: [
       {
-        test: /\.gscss$/,
-        use: [
-          {
-            loader: "style-loader",
-            options: { sourceMap: true }
-          },
-          {
-            loader: "css-loader",
-            options: {
-              modules: false,
-              importLoaders: 1,
-              minimize: false,
-              sourceMap: true
-            }
-          },
-          {
-            loader: "postcss-loader",
-            options: { sourceMap: true }
-          },
-          {
-            loader: "sass-loader",
-            options: { sourceMap: true }
-          }
-        ]
-      },
-      {
-        test: /\.scss$/,
+        test: /\.local.scss$/,
         use: [
           {
             loader: "style-loader",
@@ -58,6 +32,33 @@ export default new Config().extend("conf/webpack.base.config.js").merge({
                 Math.random()
                   .toString()
                   .slice(2, 8),
+              minimize: false,
+              sourceMap: true
+            }
+          },
+          {
+            loader: "postcss-loader",
+            options: { sourceMap: true }
+          },
+          {
+            loader: "sass-loader",
+            options: { sourceMap: true }
+          }
+        ]
+      },
+      {
+        test: /\.global.scss$/,
+        use: [
+          {
+            loader: "style-loader",
+            options: { sourceMap: true }
+          },
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              importLoaders: 2,
+              localIdentName: "[local]",
               minimize: false,
               sourceMap: true
             }

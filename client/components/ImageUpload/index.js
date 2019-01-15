@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import FA from "react-fontawesome";
-import styles from "./styles.scss";
+import styles from "./styles.local.scss";
 import { updateItem, pureSaveData } from "../../AC";
 
-import { filtratedTemplateSelector } from '../../selectors'
+import { filtratedTemplateSelector } from "../../selectors";
 
 class ImageUpload extends Component {
   render() {
@@ -71,11 +71,15 @@ class ImageUpload extends Component {
       return false;
     }
 
-    let { updateItem, pureSaveData, currentTemplate: {_id: id} } = this.props,
+    let {
+        updateItem,
+        pureSaveData,
+        currentTemplate: { _id: id }
+      } = this.props,
       type = "templates",
       name = "logotypePicture";
 
-    console.log('ID', id);
+    console.log("ID", id);
 
     reader.onloadend = () => {
       updateItem({
@@ -88,7 +92,7 @@ class ImageUpload extends Component {
       pureSaveData({
         id,
         type: "templates"
-      })
+      });
     };
 
     reader.readAsDataURL(file);
@@ -107,7 +111,7 @@ export default connect(
   state => {
     return {
       currentTemplate: filtratedTemplateSelector(state)
-    }
+    };
   },
   { updateItem, pureSaveData }
 )(ImageUpload);

@@ -15,7 +15,7 @@ export default new Config().extend("conf/webpack.base.config.js").merge({
   module: {
     loaders: [
       {
-        test: /\.scss$/,
+        test: /\.local.scss$/,
         use: extractSass.extract({
           use: [
             {
@@ -39,7 +39,7 @@ export default new Config().extend("conf/webpack.base.config.js").merge({
         })
       },
       {
-        test: /\.gscss$/,
+        test: /\.global.scss$/,
         use: extractSass.extract({
           use: [
             {

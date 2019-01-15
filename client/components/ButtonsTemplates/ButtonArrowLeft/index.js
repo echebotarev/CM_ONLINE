@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./styles.scss";
+import styles from "./styles.local.scss";
 import Input from "../../Input";
 
 class ButtonArrowLeft extends Component {

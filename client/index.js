@@ -4,7 +4,7 @@ import { AppContainer } from "react-hot-loader";
 
 import store from "./store";
 import Root from "./components/Root";
-import "./css/main.gscss";
+import "./css/index.global.scss";
 
 render(
   <AppContainer>
