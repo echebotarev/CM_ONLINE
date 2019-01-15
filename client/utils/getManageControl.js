@@ -1,1 +1,1 @@
-export default (control, isActive) => isActive ? control : '';
+export default (control, isActive) => (isActive ? control : "");

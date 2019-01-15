@@ -1,23 +1,29 @@
 import { IS, DRAG, START, STOP } from "../constants";
 
 const defaultState = {
-	isDraggable: false
+  isDraggable: false
 };
 
 export default (state = defaultState, action) => {
-	const { type } = action;
+  const { type } = action;
 
-	switch (type) {
-		case IS + DRAG + START:
-			return Object.assign({}, {
-				isDraggable: true
-			});
+  switch (type) {
+    case IS + DRAG + START:
+      return Object.assign(
+        {},
+        {
+          isDraggable: true
+        }
+      );
 
-		case IS + DRAG + STOP:
-			return Object.assign({}, {
-				isDraggable: false
-			});
-	}
+    case IS + DRAG + STOP:
+      return Object.assign(
+        {},
+        {
+          isDraggable: false
+        }
+      );
+  }
 
-	return state
-}
+  return state;
+};

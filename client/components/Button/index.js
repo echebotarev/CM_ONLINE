@@ -22,8 +22,7 @@ import {
 } from "../ButtonsTemplates";
 
 import { content } from "../../fixturesEditor";
-const { buttonsPreviewEditor } = content,
-  BUTTON_HEIGHT = 60;
+const { buttonsPreviewEditor } = content;
 
 class Button extends Component {
   state = {
@@ -35,7 +34,7 @@ class Button extends Component {
     this.setState({ style: this.renderStyle(style, templatesButton) });
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let { style, templatesButton } = nextProps.button;
     this.setState({ style: this.renderStyle(style, templatesButton) });
   }
@@ -183,10 +182,7 @@ class Button extends Component {
         inputStyle.backgroundColor,
         inputStyle.backgroundOpacity
       ),
-      color: getRGBA(
-        inputStyle.textColor,
-        inputStyle.textOpacity
-      )
+      color: getRGBA(inputStyle.textColor, inputStyle.textOpacity)
     };
 
     if (buttonsPreviewEditor[templatesButton].includes("border")) {
