@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { buttonsSelector, filtratedButtonsSelector, filtratedButtonSelector } from "../../selectors";
+import {
+  buttonsSelector,
+  filtratedButtonsSelector,
+  filtratedButtonSelector
+} from "../../selectors";
 import { deleteItem, openEditor, updateItem, pureSaveData } from "../../AC";
 import Button from "../Button";
 import Loader from "../Loader";
@@ -27,7 +31,8 @@ class ButtonList extends Component {
     }
 
     // делаем это присваивание, чтобы показывать сообщение "Кнопок еще нет"
-    let currentButtons = currentTemplate === templateId ? filtratedButtons : buttons;
+    let currentButtons =
+      currentTemplate === templateId ? filtratedButtons : buttons;
 
     return currentButtons.length ? (
       <ul>
