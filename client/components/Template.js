@@ -27,7 +27,7 @@ class Template extends Component {
   }
 
   render() {
-    let { template, size } = this.props,
+    let { template, currentTemplate, size } = this.props,
       backgroundColor = template ? template.backgroundColor : "#fff",
       isActive = this.props.currentTemplate === template._id,
       isDeleted = isActive && this.props.isDeleted;
@@ -59,7 +59,11 @@ class Template extends Component {
               picture={template.logotypePicture}
               isActive={isActive}
             />
-            <ButtonList templateId={template._id} isActive={isActive} />
+            <ButtonList
+              isActive={isActive}
+              templateId={template._id}
+              currentTemplate={currentTemplate}
+            />
           </div>
         </div>
       </div>

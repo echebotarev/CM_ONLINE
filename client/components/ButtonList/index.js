@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { buttonsSelector, filtratedButtonSelector } from "../../selectors";
+import { buttonsSelector, filtratedButtonsSelector, filtratedButtonSelector } from "../../selectors";
 import { deleteItem, openEditor, updateItem, pureSaveData } from "../../AC";
 import Button from "../Button";
 import Loader from "../Loader";
@@ -14,19 +14,24 @@ class ButtonList extends Component {
   getButtons() {
     const {
       buttons,
+      filtratedButtons,
       loading,
       templateId,
       isActive,
-      currentButton
+      currentButton,
+      currentTemplate
     } = this.props;
 
     if (loading) {
       return <Loader />;
     }
 
-    return buttons.length ? (
+    // делаем это присваивание, чтобы показывать сообщение "Кнопок еще нет"
+    let currentButtons = currentTemplate === templateId ? filtratedButtons : buttons;
+
+    return currentButtons.length ? (
       <ul>
-        {buttons.map(button => {
+        {currentButtons.map(button => {
           if (templateId !== button.template) {
             return "";
           }
@@ -45,7 +50,7 @@ class ButtonList extends Component {
       </ul>
     ) : (
       <div>
-        <h3>No buttons yet</h3>
+        <p>Нажми плюсик справа, чтобы создать первую кнопку.</p>
       </div>
     );
   }
@@ -72,6 +77,7 @@ export default connect(
     return {
       currentButton: filtratedButtonSelector(state),
       buttons: buttonsSelector(state),
+      filtratedButtons: filtratedButtonsSelector(state),
       loading: state.templates.loading
     };
   },
