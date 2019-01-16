@@ -48,7 +48,14 @@ export const content = {
       }
     }
   ],
-  buttons: [],
+  buttons: [
+    {
+      name: "Выбор способа связи"
+    },
+    {
+      name: "Дизайн"
+    }
+  ],
   buttonsPreview: [
     "BasicButton",
     "ButtonThreeD",

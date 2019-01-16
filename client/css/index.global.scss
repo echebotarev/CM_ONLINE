@@ -659,37 +659,39 @@ span.fa-cog {
 }
 
 .editor-header {
-  //background-color: #3899ec;
-  //height: 54px;
-  //min-height: 54px;
   box-sizing: border-box;
   position: relative;
   width: 100%;
-  //border-top-left-radius: 8px;
-  //border-top-right-radius: 8px;
-  //cursor: move;
+}
+.editor-header ul {
+  font-size: 14px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    float: left;
+    margin-right: 15px;
+    cursor: pointer;
+
+    &.active {
+      border-bottom: 2px solid #1A82FF;
+    }
+  }
 }
 
 .editor-name {
-  //pointer-events: none;
-  margin: 8px 8px 0;
-  background-color: #f0f0f0;
+  font-weight: 400;
 }
 
 .editor-container {
   position: absolute;
-  //top: 50%;
-  //margin-top: -215px;
-  //left: 50%;
-  //margin-left: -280px;
   width: 560px;
-  //min-height: 433px;
-  //margin: auto;
+  padding: 8px;
   background: #fff;
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-  //border-radius: 8px;
 }
 
 .editor-container.advanced {

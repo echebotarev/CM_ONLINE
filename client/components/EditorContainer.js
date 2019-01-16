@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import { content } from "../fixturesEditor";
+
 import EditorBasic from "./EditorBasic";
 import EditorAdvanced from "./EditorAdvanced";
 import InputMessengers from "./InputMessengers";
@@ -22,11 +24,32 @@ class EditorContainer extends Component {
       >
         <div className="editor-header">
           <div className="editor-name">
-            <InputMessengers />
+            Редактор кнопки
+            {/*<InputMessengers />*/}
           </div>
+          <ul className="clearfix">
+            {content[type].map((item, index) => {
+              let className = this.state.currentTab === index ? "active" : "";
+
+              return (
+                <li
+                  key={index}
+                  className={className}
+                  onClick={this.switchTabs.bind(null, index)}
+                >
+                  {item.name}
+                </li>
+              );
+            })}
+          </ul>
         </div>
         {advanced ? (
-          <EditorAdvanced id={id} type={type} />
+          <EditorAdvanced
+            id={id}
+            type={type}
+            currentTab={this.state.currentTab}
+            switchTabs={this.switchTabs}
+          />
         ) : (
           <EditorBasic
             id={id}
