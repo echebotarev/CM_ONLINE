@@ -100,34 +100,40 @@ export const content = {
     {
       displayName: "Telegram",
       value: "Telegram",
+      placeholder: "username",
       description: "Укажите username вашего аккаунта в Telegram.",
       descriptionForMe: "https://telegram.me/${username}"
     },
     {
       displayName: "Вконтакте",
       value: "VK",
+      placeholder: "username",
       description: "Укажите username вашего аккаунта в VK.",
       descriptionForMe: "https://vk.me/${username}"
     },
     {
       displayName: "Whatsapp",
       value: "Whatsapp",
+      placeholder: "79211234567",
       description: "Укажите номер телефона к которому привязан аккаунт WhatsApp в формате 79211234567",
       descriptionForMe: "https://wa.me/${79111721308}"
     },
     {
       displayName: "Email",
       value: "Email",
+      placeholder: "example@email.ru",
       description: "Укажите почту"
     },
     {
       displayName: "Телефон",
       value: "Phone",
+      placeholder: "+79211234567",
       description: "Укажите номер телефона"
     },
     {
       displayName: "Сайт",
       value: "Site",
+      placeholder: "example.ru",
       description: "Укажите ваш сайт"
     }
   ]

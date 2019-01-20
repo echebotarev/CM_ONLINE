@@ -4,4 +4,15 @@
   .select-wrapper {
     margin-bottom: 20px;
   }
+
+  .input-wrapper {
+    padding: 5px;
+    background: #cccccc52;
+    border: 1px solid transparent;
+    border-radius: 4px;
+
+    &:hover {
+      border: 1px solid #9e9e9e;
+    }
+  }
 }

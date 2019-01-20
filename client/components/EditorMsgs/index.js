@@ -59,12 +59,14 @@ class EditorMsgs extends Component {
           />
         </div>
 
-        <Input
-          id={button._id}
-          text={button.link}
-          placeholder="https://"
-          onChange={this.onChangeInput}
-        />
+        <div className="input-wrapper">
+          <Input
+            id={button._id}
+            text={button.link}
+            placeholder={content.messengers[this.state.mssg.index].placeholder}
+            onChange={this.onChangeInput}
+          />
+        </div>
 
         <span>{content.messengers[this.state.mssg.index].description}</span>
       </div>
