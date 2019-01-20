@@ -8,6 +8,7 @@
   "rules": {
     "prettier/prettier": "error",
     "no-unused-expressions": "warn",
-    "no-unexpected-multiline": "off"
+    "no-unexpected-multiline": "off",
+    "no-trailing-spaces": "off"
   }
 }
