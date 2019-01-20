@@ -16,6 +16,37 @@ h1 {
 button:focus, input:focus {
   outline: none;
 }
+button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+
+  &.delete-item {
+    height: 32px;
+    line-height: 32px;
+    user-select: none;
+    cursor: pointer;
+    border-radius: 4px;
+    padding-right: 8px;
+
+    &:hover {
+      background-color: rgba(0,0,0,.04);
+    }
+
+    div {
+      float: left;
+      width: 32px;
+      height: 32px;
+      display: flex;
+
+      svg {
+        width: 16px;
+        height: 16px;
+        margin: auto;
+      }
+  }
+  }
+}
 
 #root {
   width: 100%;
@@ -662,6 +693,7 @@ span.fa-cog {
   box-sizing: border-box;
   position: relative;
   width: 100%;
+  margin-bottom: 7px;
 }
 .editor-header ul {
   font-size: 14px;
@@ -730,13 +762,10 @@ ul.editor-nav {
 }
 
 .editor-footer {
+  position: absolute;
   width: 100%;
-  height: 66px;
-  padding: 18px;
   box-sizing: border-box;
-  //position: absolute;
-  bottom: 0;
-  border-top: 1px solid #d9e1e8;
+  bottom: 8px;
 }
 
 .editor-close {
@@ -1467,4 +1496,8 @@ hr.divider-long, hr.divider-short {
   align-items: center;
   min-height: 350px;
   user-select: none;
+}
+
+.input-text {
+  position: relative;
 }

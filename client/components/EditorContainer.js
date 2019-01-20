@@ -5,7 +5,6 @@ import { content } from "../fixturesEditor";
 
 import EditorBasic from "./EditorBasic";
 import EditorAdvanced from "./EditorAdvanced";
-import InputMessengers from "./InputMessengers";
 
 import { openColorPicker, deleteItem } from "../AC";
 
@@ -43,6 +42,7 @@ class EditorContainer extends Component {
             })}
           </ul>
         </div>
+        <hr className="divider-long" />
         {advanced ? (
           <EditorAdvanced
             id={id}
@@ -60,7 +60,20 @@ class EditorContainer extends Component {
         )}
         <div className="editor-footer">
           <button className="delete-item" onClick={() => this.deleteItem(id)}>
-            Delete
+            <div>
+              <svg
+                className="zen-icon"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m10.4996 0h-.99992v9.50037h-9.49968v.99993h9.49968v9.4996h.99992v-9.4996h9.5003v-.99993h-9.5003z"
+                  fillRule="evenodd"
+                  transform="matrix(.707107 .707107 -.707107 .707107 8 -6.139999999999)"
+                />
+              </svg>
+            </div>
+            Удалить
           </button>
         </div>
       </div>

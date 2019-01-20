@@ -21,22 +21,22 @@ import {
   ScotchTapeButton
 } from "../ButtonsTemplates";
 
-import { content } from "../../fixturesEditor";
-const { buttonsPreviewEditor } = content;
+import getButtonStyle from "../../utils/getButtonStyle";
 
 class Button extends Component {
   state = {
     style: null
   };
 
-  componentDidMount() {
-    let { style, templatesButton } = this.props.button;
-    this.setState({ style: this.renderStyle(style, templatesButton) });
-  }
+  static getDerivedStateFromProps(nextProps, prevState) {
+    let { button } = nextProps;
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    let { style, templatesButton } = nextProps.button;
-    this.setState({ style: this.renderStyle(style, templatesButton) });
+    if (!button) {
+      return null;
+    }
+
+    let { style, templatesButton } = button;
+    return { style: getButtonStyle(style, templatesButton) };
   }
 
   render() {
@@ -173,30 +173,6 @@ class Button extends Component {
         return (
           <BasicButton button={data} onChange={onChange} styles={styles} />
         );
-    }
-  };
-
-  renderStyle = (inputStyle, templatesButton) => {
-    let styles = {
-      background: getRGBA(
-        inputStyle.backgroundColor,
-        inputStyle.backgroundOpacity
-      ),
-      color: getRGBA(inputStyle.textColor, inputStyle.textOpacity)
-    };
-
-    if (buttonsPreviewEditor[templatesButton].includes("border")) {
-      styles.border = `${inputStyle.borderWidth}px solid ${getRGBA(
-        inputStyle.borderColor,
-        inputStyle.borderOpacity
-      )}`;
-      styles.lineHeight = `calc(2em - ${inputStyle.borderWidth * 2}px)`;
-    }
-
-    return styles;
-
-    function getRGBA(color, opacity) {
-      return color.replace("rgb", "rgba").replace(")", `, ${opacity})`);
     }
   };
 }
