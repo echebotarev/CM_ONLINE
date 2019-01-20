@@ -128,7 +128,7 @@ export const content = {
       displayName: "Телефон",
       value: "Phone",
       placeholder: "+79211234567",
-      description: "Укажите номер телефона"
+      description: "Укажите номер телефона в формате +79211234567"
     },
     {
       displayName: "Сайт",

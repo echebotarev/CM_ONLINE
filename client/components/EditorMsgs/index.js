@@ -15,7 +15,8 @@ class EditorMsgs extends Component {
     mssg: {
       type: null,
       index: 0
-    }
+    },
+    error: false
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -59,12 +60,18 @@ class EditorMsgs extends Component {
           />
         </div>
 
+
+        <div className="error-mssg">
+          {this.state.error ? "Данные введены не верно" : ""}
+        </div>
+
         <div className="input-wrapper">
           <Input
             id={button._id}
             text={button.link}
             placeholder={content.messengers[this.state.mssg.index].placeholder}
             onChange={this.onChangeInput}
+            onValidate={this.validate}
           />
         </div>
 
@@ -72,6 +79,57 @@ class EditorMsgs extends Component {
       </div>
     );
   }
+
+  validate = value => {
+    if (!value) {
+      return this.setState({
+        error: false
+      });
+    }
+
+    let regexp,
+      regexpTG = "^[a-zA-Z0-9_]+$",
+      regexpWhatsapp = "^[0-9]+$",
+      regexpMail = "^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$",
+      regexpPhone = "^\\+[0-9]+$",
+      regexpSite =
+        "^([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?.)+[a-zA-Z]{2,6}$";
+
+    switch (this.state.mssg.type) {
+      case "Telegram":
+      case "VK":
+        regexp = regexpTG;
+        break;
+
+      case "Whatsapp":
+        regexp = regexpWhatsapp;
+        break;
+
+      case "Email":
+        regexp = regexpMail;
+        break;
+
+      case "Phone":
+        regexp = regexpPhone;
+        break;
+
+      case "Site":
+        regexp = regexpSite;
+        break;
+    }
+
+    let results = value.match(regexp);
+
+    this.setState({
+      error: !results
+    });
+
+    setTimeout(() => {
+      this.setState({
+        error: false
+      });
+    }, 5000);
+  };
 
   onChangeInput = (id, value) => {
     this.props.updateItem({

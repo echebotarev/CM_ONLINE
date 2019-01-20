@@ -16,8 +16,8 @@ class Input extends Component {
           value={text ? text : ""}
           placeholder={placeholder ? placeholder : ""}
           onChange={e => onChange(id, e.target.value)}
-          onFocus={this.toggleActiveClassName}
-          onBlur={e => this.onBlur(e)}
+          onFocus={this.handlerFocus}
+          onBlur={e => this.handlerBlur(e)}
         />
         <div>
           <span className="invisible">{text}</span>
@@ -26,8 +26,20 @@ class Input extends Component {
     );
   }
 
-  onBlur = e => {
+  handlerFocus = () => {
+    if (this.props.onValidate) {
+      this.props.onValidate(false);
+    }
+
+    this.toggleActiveClassName();
+  };
+
+  handlerBlur = e => {
     let { id } = this.props;
+
+    if (this.props.onValidate) {
+      this.props.onValidate(e.target.value);
+    }
 
     this.toggleActiveClassName();
     this.props.onChange(id, e.target.value, true);
