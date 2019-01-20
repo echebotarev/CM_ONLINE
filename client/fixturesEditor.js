@@ -99,23 +99,33 @@ export const content = {
   messengers: [
     {
       displayName: "Telegram",
-      value: "Telegram"
+      value: "Telegram",
+      description: "Укажите username вашего аккаунта."
     },
     {
       displayName: "Вконтакте",
-      value: "VK"
+      value: "VK",
+      description: ""
     },
     {
       displayName: "Whatsapp",
-      value: "Whatsapp"
+      value: "Whatsapp",
+      description: ""
     },
     {
       displayName: "Email",
-      value: "Email"
+      value: "Email",
+      description: ""
     },
     {
       displayName: "Телефон",
-      value: "Phone"
+      value: "Phone",
+      description: ""
+    },
+    {
+      displayName: "Сайт",
+      value: "Site",
+      description: ""
     }
   ]
 };
