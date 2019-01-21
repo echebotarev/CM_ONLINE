@@ -5,6 +5,12 @@ class Input extends Component {
     isActive: false
   };
 
+  componentWillUnmount() {
+    if (this.props.onValidate) {
+      this.props.onValidate(false);
+    }
+  }
+
   render() {
     let { text, placeholder, onChange, id } = this.props,
       { isActive } = this.state;

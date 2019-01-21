@@ -16,7 +16,8 @@ class EditorMsgs extends Component {
       type: null,
       index: 0
     },
-    error: false
+    error: false,
+    timerError: null
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -81,9 +82,12 @@ class EditorMsgs extends Component {
   }
 
   validate = value => {
+    // ф-ия validate вызывается в componentWillUnmount input'a
+    // со значние false, чтобы скрыть ошибку и удалить таймер
     if (!value) {
       return this.setState({
-        error: false
+        error: false,
+        timerError: clearTimeout(this.state.timerError)
       });
     }
 
@@ -124,11 +128,13 @@ class EditorMsgs extends Component {
       error: !results
     });
 
-    setTimeout(() => {
+    let timerError = setTimeout(() => {
       this.setState({
         error: false
       });
     }, 5000);
+
+    this.setState({ timerError });
   };
 
   onChangeInput = (id, value) => {
