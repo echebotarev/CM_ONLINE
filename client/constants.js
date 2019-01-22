@@ -42,3 +42,6 @@ export const TEMPLATE = "_TEMPLATE";
 export const UPDATE = "UPDATE";
 export const SAVE = "SAVE";
 export const AND = "_AND";
+
+export const EDITOR_HEIGHT = 370;
+export const EDITOR_SHIFT = 35;

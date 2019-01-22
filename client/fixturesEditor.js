@@ -115,7 +115,8 @@ export const content = {
       displayName: "Whatsapp",
       value: "Whatsapp",
       placeholder: "79211234567",
-      description: "Укажите номер телефона к которому привязан аккаунт WhatsApp в формате 79211234567",
+      description:
+        "Укажите номер телефона к которому привязан аккаунт WhatsApp в формате 79211234567",
       descriptionForMe: "https://wa.me/${79111721308}"
     },
     {

@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 
+import {
+  EDITOR_HEIGHT,
+  EDITOR_SHIFT
+} from "../constants";
+
 import { connect } from "react-redux";
 import {
   openColorPicker,
@@ -93,12 +98,15 @@ class CustomizationBar extends Component {
 
   openEditor = (e, id) => {
     const getCoords = target => {
-      let SHIFT = 35,
-        targetCoords = target.getBoundingClientRect();
+      let targetCoords = target.getBoundingClientRect(),
+        bottom = document.documentElement.clientHeight - targetCoords.bottom,
+        editorOffset = EDITOR_HEIGHT - bottom,
+        editorTop = targetCoords.top - (editorOffset > 0 ? editorOffset : 0);
 
       return {
-        top: targetCoords.top,
-        left: targetCoords.left + document.documentElement.scrollLeft + SHIFT
+        top: editorTop,
+        left:
+          targetCoords.left + document.documentElement.scrollLeft + EDITOR_SHIFT
       };
     };
 
