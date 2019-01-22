@@ -61,7 +61,6 @@ class EditorMsgs extends Component {
           />
         </div>
 
-
         <div className="error-mssg">
           {this.state.error ? "Данные введены не верно" : ""}
         </div>

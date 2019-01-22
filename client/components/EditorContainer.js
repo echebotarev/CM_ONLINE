@@ -22,10 +22,7 @@ class EditorContainer extends Component {
         className={advanced ? "editor-container advanced" : "editor-container"}
       >
         <div className="editor-header">
-          <div className="editor-name">
-            Редактор кнопки
-            {/*<InputMessengers />*/}
-          </div>
+          <div className="editor-name">Редактор кнопки</div>
           <ul className="clearfix">
             {content[type].map((item, index) => {
               let className = this.state.currentTab === index ? "active" : "";
