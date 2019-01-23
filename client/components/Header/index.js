@@ -52,25 +52,29 @@ class Header extends Component {
 
     return (
       <div className="header">
-        <h1>Contact Me</h1>
-        {this.state.displayName ? (
-          <span className="link-name">
-            {this.state.displayName}.{document.location.host}
-          </span>
-        ) : (
-          ""
-        )}
-        {username ? <span className="float-right">{username}</span> : ""}
+        <div className="above-line">
+          <h1>Contact Me</h1>
+          {this.state.displayName ? (
+            <span className="link-name">
+              {this.state.displayName}.{document.location.host}
+            </span>
+          ) : (
+            ""
+          )}
+          {username ? <span className="float-right">{username}</span> : ""}
+        </div>
         <div className="line" />
-        <Menu className="float-left">
-          <MenuItem className="mr-3" to="/">
-            Главная
-          </MenuItem>
-          <MenuItem className="mr-3" to="/constructor">
-            Конструктор
-          </MenuItem>
-        </Menu>
-        <Menu className="float-right">{this.getLink()}</Menu>
+        <div className="under-line">
+          <Menu className="float-left">
+            <MenuItem className="mr-3" to="/">
+              Главная
+            </MenuItem>
+            <MenuItem className="mr-3" to="/constructor">
+              Конструктор
+            </MenuItem>
+          </Menu>
+          <Menu className="float-right">{this.getLink()}</Menu>
+        </div>
       </div>
     );
   }
