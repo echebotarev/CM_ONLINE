@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Tooltip from "react-tooltip";
 import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { checkAuthenticate, openColorPicker } from "./../AC";
+import { checkAuthenticate } from "./../AC";
 
 import Header from "./Header";
 import MainPage from "./routes/MainPage";
@@ -20,7 +20,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="main" ref="main" onClick={this.handlerColorPickerOpen}>
+      <div className="main">
         <Header />
         <Switch>
           <Route path="/register" component={LoginPage} />
@@ -31,8 +31,8 @@ class App extends Component {
           <Route path="*" render={this.notFound} />
         </Switch>
         <Tooltip data-type="light" />
-        {this.getColorPicker()}
         {this.props.editorOpen ? <Editor /> : ""}
+        {this.getColorPicker()}
       </div>
     );
   }
@@ -41,25 +41,10 @@ class App extends Component {
 
   getColorPicker = () => {
     return this.props.colorPicker.isOpen ? (
-      <ColorPickerCircle
-        data={this.props.colorPicker}
-        parent={this.refs.main}
-      />
+      <ColorPickerCircle data={this.props.colorPicker} />
     ) : (
       ""
     );
-  };
-
-  handlerColorPickerOpen = event => {
-    // не обрабатываем клики по
-    // ColorPickerInput и ColorPickerCircle
-    if (
-      this.props.colorPicker.isOpen &&
-      !event.target.closest(".narrative-colorpicker") &&
-      !event.target.classList.contains("color-picker-color")
-    ) {
-      this.props.openColorPicker(false);
-    }
   };
 }
 
@@ -71,5 +56,5 @@ export default connect(
       editorOpen: state.editor.open
     };
   },
-  { checkAuthenticate, openColorPicker }
+  { checkAuthenticate }
 )(App);

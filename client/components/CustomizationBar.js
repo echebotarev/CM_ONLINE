@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 
-import {
-  EDITOR_HEIGHT,
-  EDITOR_SHIFT
-} from "../constants";
+import { EDITOR_HEIGHT, EDITOR_SHIFT } from "../constants";
 
 import { connect } from "react-redux";
 import {
@@ -60,8 +57,7 @@ class CustomizationBar extends Component {
           : ""}
         <div
           className="customization-item"
-          ref="container"
-          onClick={this.onClick}
+          onClick={e => this.handlerColorPicker(e)}
         >
           <svg
             className="customization-icon"
@@ -82,10 +78,10 @@ class CustomizationBar extends Component {
     );
   }
 
-  onClick = () => {
+  handlerColorPicker = e => {
     this.props.openColorPicker(true, {
       currentColor: this.props.template.backgroundColor,
-      rect: this.refs.container.getBoundingClientRect(),
+      rect: e.target.closest(".customization-item").getBoundingClientRect(),
       isGradient: true,
       callback: this.onChange
     });

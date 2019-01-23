@@ -40,8 +40,7 @@ class ColorPickerInput extends Component {
     return (
       <div>
         <div
-          onClick={this.onClick}
-          ref="container"
+          onClick={e => this.handlerColorPicker(e)}
           data-aid="bg-colorPicker"
           className="color-picker-input"
         >
@@ -59,14 +58,14 @@ class ColorPickerInput extends Component {
     );
   }
 
-  onClick = () => {
+  handlerColorPicker = e => {
     // открыт ColorPicker или нет
     // узнаем в ComponentWillReceiveProps
     let value = !this.state.isOpen;
 
     this.props.openColorPicker(value, {
       currentColor: this.state.background,
-      rect: this.refs.container.getBoundingClientRect(),
+      rect: e.target.closest(".color-picker-input").getBoundingClientRect(),
       isGradient: false,
       callback: this.props.callback
     });
