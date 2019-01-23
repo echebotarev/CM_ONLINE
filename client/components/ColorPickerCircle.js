@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 
 import { openColorPicker } from "../AC";
 
+import { COLOR_PICKER_WIDTH, COLOR_PICKER_HEIGHT } from "../constants";
+
 const rgbToString = {
   "rgb(0, 0, 0)": "black",
   "rgb(255, 255, 255)": "white",
@@ -69,9 +71,8 @@ class ColorPickerCircle extends Component {
 
     isGradient: false,
 
-    width: 272,
-    height: 44,
-    margin: 5
+    width: COLOR_PICKER_WIDTH,
+    height: COLOR_PICKER_HEIGHT
   };
 
   componentDidMount() {
@@ -79,7 +80,7 @@ class ColorPickerCircle extends Component {
 
     this.setState({
       currentColor: rgbToString[currentColor],
-      height: isGradient ? 88 : 44,
+      height: isGradient ? COLOR_PICKER_HEIGHT * 2 : COLOR_PICKER_HEIGHT,
       isGradient,
       callback
     });
@@ -127,7 +128,7 @@ class ColorPickerCircle extends Component {
 
   getPosition = () => {
     let { rect } = this.props.data,
-      { margin, width, height } = this.state;
+      { width, height } = this.state;
 
     return {
       top: rect.top + rect.height,

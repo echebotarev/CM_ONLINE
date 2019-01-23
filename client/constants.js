@@ -45,3 +45,5 @@ export const AND = "_AND";
 
 export const EDITOR_HEIGHT = 370;
 export const EDITOR_SHIFT = 35;
+export const COLOR_PICKER_WIDTH = 272;
+export const COLOR_PICKER_HEIGHT = 44;
