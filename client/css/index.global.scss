@@ -156,6 +156,10 @@ button {
 .previewComponent, .buttons {
   width: calc(100% - #{$scroll-width});
 }
+.template-header {
+  width: 80%;
+  margin: 20px auto 0;
+}
 
 .wrapper_line_top {
   position: absolute;
@@ -238,17 +242,20 @@ span.fa-cog {
   right: 20px;
 }
 
-.buttons ul {
-  padding: 0;
-}
+.buttons {
+  .initial-text {
+    width: 80%;
+    margin: 10px auto;
+  }
 
-.buttons li {
-  position: relative;
-  list-style: none;
-}
+  ul {
+    padding: 0;
 
-.buttons li:hover .fa-trash, .buttons li:hover .fa-cog {
-  display: block;
+    li {
+      position: relative;
+      list-style: none;
+    }
+  }
 }
 
 .button {

@@ -54,7 +54,7 @@ class ButtonList extends Component {
         })}
       </ul>
     ) : (
-      <div>
+      <div className="initial-text">
         <p>Нажми плюсик справа, чтобы создать первую кнопку.</p>
       </div>
     );

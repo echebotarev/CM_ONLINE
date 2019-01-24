@@ -1,29 +1,33 @@
-$logo-width: 120px;
+$logo-size: 77px;
 
 .logoPreview, .logoPreviewWithImg {
   position: relative;
   display: flex;
-  width: $logo-width;
-  height: 120px;
-  border-radius: 100px;
+  width: $logo-size;
+  height: $logo-size;
+  border-radius: 50%;
   box-sizing: border-box;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 .logoPreview {
-  border: 2px dashed #000;
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+
+  svg {
+    width: 35px;
+    margin: 15px auto;
+    fill: rgba(0, 0, 0, 0.3);
+  }
 }
 .logoPreviewWithImg {
-  border: none;
-}
-.logoPreview:hover {
-  cursor: pointer;
-  border-style: solid;
-}
-.logoPreviewWithImg:hover {
-  cursor: pointer;
-}
-.logoPreviewWithImg img {
-  height: 120px;
-  margin: auto;
+  overflow: hidden;
+
+  img {
+    height: $logo-size;
+    margin: auto;
+  }
 }
 .logoPreview span {
   display: inline-block !important;
