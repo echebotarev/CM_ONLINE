@@ -7,26 +7,22 @@ import Menu, { MenuItem } from "./../Menu";
 
 class Header extends Component {
   state = {
-    displayName: ""
+    link: ""
   };
 
   componentDidMount() {
-    let displayName = this.props.template
-      ? this.props.template.displayName
-      : null;
+    let link = this.props.template ? this.props.template.link : null;
 
-    if (displayName !== this.state.displayName) {
-      this.setState({ displayName });
+    if (link !== this.state.link) {
+      this.setState({ link });
     }
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    let displayName = this.props.template
-      ? this.props.template.displayName
-      : null;
+    let link = this.props.template ? this.props.template.link : null;
 
-    if (displayName !== prevState.displayName) {
-      this.setState({ displayName });
+    if (link !== prevState.link) {
+      this.setState({ link });
     }
   }
 
@@ -54,9 +50,9 @@ class Header extends Component {
       <div className="header">
         <div className="above-line">
           <h1>Contact Me</h1>
-          {this.state.displayName ? (
+          {this.state.link ? (
             <span className="link-name">
-              {this.state.displayName}.{document.location.host}
+              {this.state.link}.{document.location.host}
             </span>
           ) : (
             ""

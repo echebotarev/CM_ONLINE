@@ -46,7 +46,7 @@ class Template extends Component {
         {getManageControl(
           <Input
             id={template._id}
-            text={template.displayName}
+            text={template.link}
             onChange={this.onLinkChange}
           />,
           isActive
@@ -96,7 +96,7 @@ class Template extends Component {
         id,
         value,
         type: "templates",
-        name: "displayName"
+        name: "link"
       });
     }
   };

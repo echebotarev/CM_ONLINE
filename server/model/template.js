@@ -7,13 +7,20 @@ const Template = new Schema({
     default: "Новый шаблон",
     type: String
   },
+  description: {
+    default: "Описание",
+    type: String
+  },
   logotypePicture: String,
   backgroundColor: {
     default: "#fff",
     type: String
   },
   font: String,
-  link: String,
+  link: {
+    default: "Ссылка на страницу",
+    type: String
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
