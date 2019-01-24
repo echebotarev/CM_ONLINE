@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const Template = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
   displayName: {
-    default: "Новый шаблон",
+    default: "Имя",
     type: String
   },
   description: {

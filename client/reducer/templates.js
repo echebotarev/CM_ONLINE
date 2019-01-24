@@ -20,6 +20,7 @@ import { Record } from "immutable";
 const TemplateRecord = Record({
   _id: null,
   displayName: null,
+  description: null,
   logotypePicture: null,
   backgroundColor: null,
   link: null,

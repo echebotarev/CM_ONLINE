@@ -157,8 +157,51 @@ button {
   width: calc(100% - #{$scroll-width});
 }
 .template-header {
+  position: relative;
   width: 80%;
   margin: 20px auto 0;
+
+  form {
+    visibility: hidden;
+    position: absolute;
+    width: $logo-size;
+    height: $logo-size;
+    z-index: 1;
+
+    input {
+      width: $logo-size;
+      height: $logo-size;
+    }
+  }
+
+  .description-preview {
+    position: absolute;
+    display: flex;
+    top: 0;
+    right: 0;
+    width: calc(100% - #{$logo-size});
+    height: 100%;
+    overflow: hidden;
+    padding-left: 10px;
+
+    .description-preview-wrap {
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 18px;
+      font-weight: 500;
+      white-space: nowrap;
+      margin: 0;
+    }
+
+    p {
+      margin: 0;
+      color: #888;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
 }
 
 .wrapper_line_top {
