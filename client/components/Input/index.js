@@ -12,7 +12,7 @@ class Input extends Component {
   }
 
   render() {
-    let { text, placeholder, onChange, id } = this.props,
+    let { text, name, placeholder, onChange, id } = this.props,
       { isActive } = this.state;
 
     return (
@@ -20,8 +20,9 @@ class Input extends Component {
         <input
           type="text"
           value={text ? text : ""}
+          name={name ? name : ""}
           placeholder={placeholder ? placeholder : ""}
-          onChange={e => onChange(id, e.target.value)}
+          onChange={e => onChange(id, e.target.value, false, name)}
           onFocus={this.handlerFocus}
           onBlur={e => this.handlerBlur(e)}
         />

@@ -186,6 +186,20 @@ button {
 
     .description-preview-wrap {
       margin: auto;
+
+      .input-text:last-of-type {
+        margin-top: -6px;
+      }
+
+      input[name="displayName"] {
+        font-size: 18px;
+        font-weight: 500;
+      }
+      input[name="description"] {
+        font-size: 14px;
+        font-weight: 400;
+        color: #888;
+      }
     }
 
     h1 {
@@ -201,6 +215,16 @@ button {
       font-size: 14px;
       font-weight: 400;
     }
+  }
+}
+
+.template.active .description-preview {
+  .input-text:hover div, .input-text.active div {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    background: transparent;
   }
 }
 

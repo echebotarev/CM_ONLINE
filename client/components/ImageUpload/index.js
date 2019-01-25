@@ -10,7 +10,7 @@ import DescriptionPreview from "../DescriptionPreview";
 
 class ImageUpload extends Component {
   render() {
-    let picture = this.props.picture,
+    let picture = this.props.template.logotypePicture,
       preview = picture ? <img src={picture} /> : <svg xmlns="http://www.w3.org/2000/svg" width="54" height="43" viewBox="0 0 54 43">
         <path fillRule="nonzero" d="M0 0v43h54V0H0zm2.16 2.15h49.68V30.1H40.306l-7.56-5.375h-6.379l-4.413-4.392-5.256 1.05-4.65-6.946L2.16 24.28V2.15zM40.5 8.6c-2.67 0-4.86 2.18-4.86 4.838s2.19 4.837 4.86 4.837c2.67 0 4.86-2.18 4.86-4.837 0-2.659-2.19-4.838-4.86-4.838zm0 2.15a2.68 2.68 0 0 1 2.7 2.688 2.68 2.68 0 0 1-2.7 2.687 2.68 2.68 0 0 1-2.7-2.688 2.68 2.68 0 0 1 2.7-2.687zm-28.789 7.063l3.991 5.955 5.544-1.1 4.227 4.207h6.581l7.56 5.375H51.84v8.6H2.16V27.32l9.551-9.507z"/>
       </svg>;
@@ -34,7 +34,7 @@ class ImageUpload extends Component {
             {preview}
           </div>
           <DescriptionPreview
-            template={this.props.currentTemplate}
+            template={this.props.template}
             updateItem={this.props.updateItem}
             pureSaveData={this.props.pureSaveData}
           />

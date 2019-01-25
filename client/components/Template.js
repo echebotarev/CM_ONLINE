@@ -56,7 +56,7 @@ class Template extends Component {
         <div className="content-wrapper">
           <div className="wrapper">
             <ImageUpload
-              picture={template.logotypePicture}
+              template={template}
               isActive={isActive}
             />
             <ButtonList
