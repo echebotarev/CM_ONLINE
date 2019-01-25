@@ -1,6 +1,6 @@
 @import '../../css/variables.global';
 
-.logoPreview, .logoPreviewWithImg {
+.logo-preview, .logo-preview-with-img {
   position: relative;
   display: flex;
   width: $logo-size;
@@ -12,7 +12,7 @@
     cursor: pointer;
   }
 }
-.logoPreview {
+.logo-preview {
   box-shadow: 0 0 2px rgba(0,0,0,0.5);
 
   svg {
@@ -21,7 +21,7 @@
     fill: rgba(0, 0, 0, 0.3);
   }
 }
-.logoPreviewWithImg {
+.logo-preview-with-img {
   overflow: hidden;
 
   img {
@@ -29,10 +29,10 @@
     margin: auto;
   }
 }
-.logoPreview span {
+.logo-preview span {
   display: inline-block !important;
   margin: auto;
 }
-.logoPreview span:before {
+.logo-preview span:before {
   font-size: 50px;
 }

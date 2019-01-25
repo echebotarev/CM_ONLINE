@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { filtratedTemplateSelector } from "../selectors";
 
-import ImageUpload from "./ImageUpload";
+import ImageUpload from "./TemplateHeader";
 import ColorPicker from "./ColorPicker";
 
 import { updateItem, setEditableData } from "../AC";

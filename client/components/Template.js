@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import React, { Component } from "react";
 
-import ImageUpload from "./ImageUpload";
+import TemplateHeader from "./TemplateHeader";
 import ButtonList from "./ButtonList";
 import CustomizationBar from "./CustomizationBar";
 import RemoveButton from "./RemoveButton";
@@ -55,10 +55,7 @@ class Template extends Component {
         {getManageControl(<CustomizationBar />, isActive)}
         <div className="content-wrapper">
           <div className="wrapper">
-            <ImageUpload
-              template={template}
-              isActive={isActive}
-            />
+            <TemplateHeader template={template} isActive={isActive} />
             <ButtonList
               isActive={isActive}
               templateId={template._id}
