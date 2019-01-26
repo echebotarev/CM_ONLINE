@@ -1,6 +1,11 @@
 let InstagramStrategy = require("passport-instagram").Strategy;
 
+import Template from "../../model/template";
+
 import config from "../../../conf";
+
+import logger from "./../../log";
+const log = logger(module);
 
 module.exports = new InstagramStrategy(
   {
@@ -12,17 +17,17 @@ module.exports = new InstagramStrategy(
     passReqToCallback: true
   },
   function(req, accessToken, refreshToken, profile, done) {
-    console.log("PROFILE", profile);
-    console.log("ACCESS TOKEN", accessToken);
-    console.log("REFRESH TOKEN", refreshToken);
+    Template.findByIdAndUpdate(
+      req.session.templateID,
+      { logotypePicture: profile._json.data.profile_picture },
+      function(err, template) {
+        if (err) {
+          log.error(err);
+          return done(err);
+        }
 
-    // asynchronous verification, for effect...
-    process.nextTick(function() {
-      // To keep the example simple, the user's Instagram profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the Instagram account with a user record in your database,
-      // and return that user instead.
-      return done(null, profile);
-    });
+        return done(null, template);
+      }
+    );
   }
 );

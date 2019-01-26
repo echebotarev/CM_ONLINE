@@ -1,22 +1,20 @@
 import express from "express";
 import passport from "passport";
-import mongoose from "mongoose";
-import User from "./../model/user";
-import Template from "./../model/template";
-const router = express.Router();
-
-import logger from "./../log";
-const log = logger(module);
-const sendMail = require("./../libs/sendMail");
+const router = express.Router(),
+  env = process.env.NODE_ENV;
 
 router
   .get("/", passport.authenticate("instagram"))
   .get(
-    "/callback",
-    passport.authenticate("instagram", { failureRedirect: "/login" }),
-    function(req, res) {
-      res.redirect("/");
-    }
-  );
+  "/callback",
+  passport.authenticate("instagram", {
+    failureRedirect: env === "development" ? "/" : "/login"
+  }),
+  function(req, res) {
+    return env === "development"
+      ? res.redirect("/")
+      : res.redirect("/constructor");
+  }
+);
 
 export default router;

@@ -18,8 +18,9 @@ module.exports = new LocalStrategy(
           message: "Нет такого пользователя или пароль не верен"
         });
       }
-      if (!user.verifiedEmail)
+      if (!user.verifiedEmail) {
         return done(null, false, { message: "Email не подтвержден" });
+      }
 
       return done(null, user);
     });

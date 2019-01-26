@@ -4,6 +4,8 @@ import styles from "./styles.global.scss";
 
 class ImageUpload extends Component {
   render() {
+    let { _id: id } = this.props.template;
+
     return (
       <ul>
         <li>
@@ -15,11 +17,12 @@ class ImageUpload extends Component {
             onChange={e => this.handleImageChange(e)}
           />
         </li>
+        <li>
+          <a href={`/auth/instagram?templateID=${id}`}>Instagram</a>
+        </li>
       </ul>
     );
   }
-
-  handleClick = () => {};
 
   handleImageChange = e => {
     e.preventDefault();
@@ -34,7 +37,7 @@ class ImageUpload extends Component {
     let {
         updateItem,
         pureSaveData,
-        currentTemplate: { _id: id }
+        template: { _id: id }
       } = this.props,
       type = "templates",
       name = "logotypePicture";

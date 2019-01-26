@@ -9,6 +9,8 @@ import config from "./conf";
 import mongoose from "./server/libs/mongoose";
 import isAuthenticated from "./server/routes/isAuthenticated";
 
+import setTemplateID from "./server/utils/setTemplateID";
+
 import error from "./server/routes/error";
 import users from "./server/routes/users";
 import instagram from "./server/routes/instagram";
@@ -52,7 +54,7 @@ if (config.get("NODE_ENV") === "development") {
 app.use(isAuthenticated);
 
 app.use("/users", users);
-// app.use('/auth/instagram', instagram);
+app.use("/auth/instagram", setTemplateID, instagram);
 app.use("/api", api);
 app.use("/verify-email", verifyEmail);
 app.use("/error", error);

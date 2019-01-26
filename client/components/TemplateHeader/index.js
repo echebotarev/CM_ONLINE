@@ -38,7 +38,7 @@ class TemplateHeader extends Component {
             <ImageUpload
               updateItem={this.props.updateItem}
               pureSaveData={this.props.pureSaveData}
-              currentTemplate={this.props.currentTemplate}
+              template={this.props.template}
             />
           ) : (
             ""
