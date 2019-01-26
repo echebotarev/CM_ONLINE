@@ -171,20 +171,30 @@ button {
   width: 80%;
   margin: 20px auto 0;
 
-  label {
-    cursor: pointer;
-  }
+  ul {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+    padding: 5px;
+    margin: 0 0 5px 0;
 
-  form {
-    visibility: hidden;
-    position: absolute;
-    width: $logo-size;
-    height: $logo-size;
-    z-index: 1;
+    label {
+      cursor: pointer;
+      margin: 0;
+      color: $base-color;
+      text-decoration: underline;
 
-    input {
-      width: $logo-size;
-      height: $logo-size;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    a {
+      text-decoration: underline;
+
+      &:hover {
+        color: $base-color;
+        text-decoration: none;
+      }
     }
   }
 
@@ -230,6 +240,12 @@ button {
       font-weight: 400;
     }
   }
+}
+
+.template-header > ul + div + div.description-preview {
+  height: calc(100% - 58px) !important;
+  bottom: 0 !important;
+  top: unset !important;
 }
 
 .template.active .description-preview {

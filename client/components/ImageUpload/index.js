@@ -9,7 +9,7 @@ class ImageUpload extends Component {
     return (
       <ul>
         <li>
-          <label htmlFor="fileInput">Изображение</label>
+          <label htmlFor="fileInput">Загрузить с компьютера</label>
           <input
             id="fileInput"
             className="file-input"
@@ -18,7 +18,9 @@ class ImageUpload extends Component {
           />
         </li>
         <li>
-          <a href={`/image/instagram?templateID=${id}`}>Instagram</a>
+          <a href={`/image/instagram?templateID=${id}`}>
+            Загрузить из Instagram
+          </a>
         </li>
       </ul>
     );
