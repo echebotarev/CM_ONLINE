@@ -18,7 +18,7 @@ class ImageUpload extends Component {
           />
         </li>
         <li>
-          <a href={`/auth/instagram?templateID=${id}`}>Instagram</a>
+          <a href={`/image/instagram?templateID=${id}`}>Instagram</a>
         </li>
       </ul>
     );

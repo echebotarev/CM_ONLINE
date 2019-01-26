@@ -13,21 +13,15 @@ module.exports = new InstagramStrategy(
     clientSecret: config.get("providers:instagram:clientSecret"),
     callbackURL: `http://${config.get("host")}:${config.get(
       "port"
-    )}/auth/instagram/callback`,
+    )}/image/instagram/callback`,
     passReqToCallback: true
   },
-  function(req, accessToken, refreshToken, profile, done) {
-    Template.findByIdAndUpdate(
-      req.session.templateID,
-      { logotypePicture: profile._json.data.profile_picture },
-      function(err, template) {
-        if (err) {
-          log.error(err);
-          return done(err);
-        }
+  async function(req, accessToken, refreshToken, profile, done) {
+    await Template.findByIdAndUpdate(req.session.templateID, {
+      logotypePicture: profile._json.data.profile_picture
+    });
 
-        return done(null, template);
-      }
-    );
+    // паспорт должен всегда возвращать User'a
+    return done(null, req.user);
   }
 );

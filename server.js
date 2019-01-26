@@ -13,7 +13,7 @@ import setTemplateID from "./server/utils/setTemplateID";
 
 import error from "./server/routes/error";
 import users from "./server/routes/users";
-import instagram from "./server/routes/instagram";
+import imageInstagram from "./server/routes/imageInstagram";
 import api from "./server/routes/api";
 import subdomain from "./server/routes/subdomain";
 import verifyEmail from "./server/routes/verifyEmail";
@@ -54,7 +54,7 @@ if (config.get("NODE_ENV") === "development") {
 app.use(isAuthenticated);
 
 app.use("/users", users);
-app.use("/auth/instagram", setTemplateID, instagram);
+app.use("/image/instagram", setTemplateID, imageInstagram);
 app.use("/api", api);
 app.use("/verify-email", verifyEmail);
 app.use("/error", error);
