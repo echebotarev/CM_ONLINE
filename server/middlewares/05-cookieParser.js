@@ -1,2 +1,2 @@
-import cookieParser from 'cookie-parser';
+import cookieParser from "cookie-parser";
 module.exports = cookieParser();

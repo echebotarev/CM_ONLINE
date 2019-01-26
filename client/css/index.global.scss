@@ -171,6 +171,10 @@ button {
   width: 80%;
   margin: 20px auto 0;
 
+  label {
+    cursor: pointer;
+  }
+
   form {
     visibility: hidden;
     position: absolute;

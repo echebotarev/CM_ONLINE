@@ -1,48 +1,47 @@
 import config from "../../conf";
-import path from 'path';
+import path from "path";
 
-import express from 'express';
+import express from "express";
 const router = express.Router();
 
-import Template from '../model/template';
-import Button from '../model/button';
+import Template from "../model/template";
+import Button from "../model/button";
 
-import logger from './../log';
+import logger from "./../log";
 const log = logger(module);
 
 let getSubdomain = subdomains => {
-	return subdomains.length <= 1 ? subdomains[0] : null;
+  return subdomains.length <= 1 ? subdomains[0] : null;
 };
 
 let getData = async (link, hostname) => {
-	let template = await Template.find({ link }).lean(),
-		buttons, data = null;
+  let template = await Template.find({ link }).lean(),
+    buttons,
+    data = null;
 
-	template = template.length ? template[0] : null;
+  template = template.length ? template[0] : null;
 
-	if (template) {
-		buttons = await Button.find({ template: template }).lean();
-		data = Object.assign(template, { buttons: buttons, hostname });
-	}
+  if (template) {
+    buttons = await Button.find({ template: template }).lean();
+    data = Object.assign(template, { buttons: buttons, hostname });
+  }
 
-	return data;
+  return data;
 };
 
-router.get('*', async (req, res, next) => {
-	if (req.subdomains.length) {
-		let subdomain = getSubdomain(req.subdomains),
-			data = await getData(subdomain, req.hostname);
+router.get("*", async (req, res, next) => {
+  if (req.subdomains.length) {
+    let subdomain = getSubdomain(req.subdomains),
+      data = await getData(subdomain, req.hostname);
 
-		if (data) {
-			res.render('index', data);
-		}
-		else {
-			res.send('API');
-		}
-	}
-	else {
-		next();
-	}
+    if (data) {
+      res.render("index", data);
+    } else {
+      res.send("API");
+    }
+  } else {
+    next();
+  }
 });
 
-export default router
+export default router;
