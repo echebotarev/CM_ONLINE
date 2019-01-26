@@ -137,6 +137,10 @@ button {
 .template.active {
   margin-right: 72px;
   cursor: default;
+
+  input.input-text {
+    pointer-events: auto;
+  }
 }
 .template.type-add {
   display: flex;
@@ -396,7 +400,7 @@ span.fa-cog {
   font-size: inherit;
   line-height: inherit;
   z-index: 2;
-  cursor: text;
+  pointer-events: none;
 }
 
 .template.active > .input-text div {
@@ -427,7 +431,8 @@ span.fa-cog {
   margin: 2px;
   z-index: 1;
 }
-.template.active .button input {
+.template.active .button .input-text input {
+  pointer-events: auto;
   cursor: auto;
 }
 .template.active .input-text:hover div,
